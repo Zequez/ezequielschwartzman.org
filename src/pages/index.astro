@@ -1,0 +1,59 @@
+---
+import Layout from "../layouts/Layout.astro";
+// import Items from "../components/Items";
+import mainImage from "../assets/pic1.jpg";
+---
+
+<Layout title="Ezequiel Schwartzman">
+  <div class="sm:flex mx-auto sm:max-w-screen-md">
+    <div
+      class="flex-shrink-0 overflow-hidden sm:overflow-auto sm:h-auto aspect-square sm:aspect-auto"
+    >
+      <img
+        src={mainImage}
+        alt="A picture of myself in the woods"
+        class="sm:max-w-xs md:max-w-sm sm:m-4 sm:rounded-md shadow-sm -mt-40 sm:mt-4"
+      />
+    </div>
+    <div class="p-4 text-black/80 space-y-4 max-w-sm mx-auto">
+      <h1
+        class="text-3xl tracking-wider font-light font-serif text-center sm:text-left"
+      >
+        Ezequiel<br />Schwartzman
+      </h1>
+      <div class="font-sans space-y-4">
+        <p class="-mt-2 text-xs text-center sm:text-left whitespace-nowrap">
+          Love &#9733; Integrity &#9733; Collaboration &#9733; Possibilities
+        </p>
+        <ul class="list-disc pl-4 space-y-4">
+          <li>
+            More than a decade of experience experimenting with web
+            technologies.
+            <div class="italic text-black/50 text-sm">
+              Make solutions as simple as possible but not simpler than needed
+            </div>
+          </li>
+          <li>
+            A passionate advocate of the free and open source software movement.
+            <div class="italic text-black/50 text-sm">
+              Collaboration is foundational to next-culture.
+            </div>
+          </li>
+          <li>
+            Freelances as a web developer while raising funds to pay for mage
+            initiations, his true calling.
+            <div class="italic text-black/50 text-sm">
+              Working for Gaia as an Earth Guardian
+            </div>
+          </li>
+          <li>
+            Dad for one beautiful soul. His one unshakable commitment.
+            <div class="italic text-black/50 text-sm">
+              Children unleash the best of us
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</Layout>
