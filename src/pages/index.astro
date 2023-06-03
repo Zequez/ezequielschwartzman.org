@@ -1,9 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
-// import Items from "../components/Items";
 import mainImage from "../assets/pic1.jpg";
-import Separator from "../components/Separator.astro";
 import Section from "../components/Section.astro";
+import Creations from "../components/creations/Creations.astro";
 ---
 
 <Layout title="Ezequiel Schwartzman">
@@ -56,7 +55,7 @@ import Section from "../components/Section.astro";
     </div>
 
     <Section name="Creations" hue={85} titleTop={-20} spaceBottom={20} textClass="md:rotate-3">
-      Portfolio of things I've created.
+      <Creations />
     </Section>
     <Section name="Deliverables" hue={130} spaceBottom={20} textClass="md:-rotate-3">
       Things I'm willing to take responsibility for building.

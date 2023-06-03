@@ -1,0 +1,52 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import { arch } from "os";
+
+const images = (
+  await Astro.glob("/src/assets/*").then((files) => {
+    return files.map((file) => {
+      const name = file.default as string;
+      const key = name.slice(name.lastIndexOf("/") + 1);
+
+      return [key, file.default];
+    });
+  })
+).reduce((arr, [k, v]) => {
+  arr[k] = v;
+  return arr;
+}, {} as { [key: string]: string });
+
+const creations = await getCollection("creations");
+
+const parsedCreations = creations.slice(0, 8).map((creation) => {
+  return creation;
+});
+---
+
+<div class="grid grid-cols-4 gap-4 mb-12">
+  {
+    parsedCreations.map((creation) => (
+      <a
+        href={creation.data.link}
+        class="relative group overflow-hidden transition-transform duration-500 bg-white rounded-md shadow-md cursor-pointer aspect-square hover:scale-105"
+      >
+        <img src={images[creation.data.images[0]]} class="w-full h-full object-cover " />
+        <span
+          class="absolute inset-x-0 bottom-0 h-12 bg-black/20 text-white flex items-center justify-center transition-transform duration-500 translate-y-12 group-hover:translate-y-0"
+          style={{ textShadow: "0 1px 0 #0009" }}
+        >
+          {creation.data.name}
+        </span>
+      </a>
+    ))
+  }
+</div>
+{
+  creations.length > 8 ? (
+    <div class="mt-4 text-right">
+      <button class="px-4 py-2 transition rounded-md bg-white/80 hover:scale-105 active:scale-95">
+        Explore all (${creations.length}) &rarr;
+      </button>
+    </div>
+  ) : null
+}
