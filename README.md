@@ -2,8 +2,6 @@
 
 This is my latest one.
 
-https://ezequielschwartzman.org
-
 ## Development
 
 - Written using VSCode
