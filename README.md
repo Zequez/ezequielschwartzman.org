@@ -1,7 +1,13 @@
-# Astro with Git as CMS
+# Ezequiel's Newest Website
 
-Very simple experiment to test a concept:
+This is my latest one.
 
-  - There is a list of items.
-  - When the items are modified (add, remove, change), these are submitted to a Vercel serverless function that makes a commit the the Github repository and triggers a redeploy.
-  - There is an admin passphrase set as an environment variable for security
+https://ezequielschwartzman.org
+
+## Development
+
+- Written using VSCode
+- Compiled using Astro
+- Deployed using Vercel
+- Styled using Tailwind
+- Wavy SVG using [Wavy SVG Generator](https://github.com/Zequez/wavy-svg-generator)
