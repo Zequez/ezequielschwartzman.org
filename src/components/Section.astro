@@ -1,5 +1,6 @@
 ---
 import Separator from "./Separator.astro";
+import { bgColor } from "../lib/chroma";
 const {
   name,
   textClass,
@@ -9,7 +10,7 @@ const {
   spaceBottom = 0,
   path = null,
 } = Astro.props;
-const color = `oklch(85% 0.18 ${hue})`;
+const color = bgColor(hue);
 ---
 
 <div class="relative">

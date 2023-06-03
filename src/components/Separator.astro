@@ -1,14 +1,15 @@
 ---
 const { path = null, hue, adjustTop = 0 } = Astro.props;
 import paths, { nextPath } from "../lib/svgPaths.js";
+import { bgColor, bgBorderColor } from "../lib/chroma";
 
 const resultingPath = path == null ? nextPath() : paths[path];
 
 const pathFill = resultingPath[0];
 const pathStroke = resultingPath[1];
 
-const color = `oklch(85% 0.18 ${hue})`;
-const colorStroke = `oklch(90% 0.20 ${hue})`;
+const color = bgColor(hue);
+const colorStroke = bgBorderColor(hue);
 ---
 
 <div

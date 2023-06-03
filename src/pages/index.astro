@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import mainImage from "../assets/pic1.jpg";
 import Section from "../components/Section.astro";
 import Creations from "../components/creations/Creations.astro";
+import { bgColor } from "../lib/chroma";
 ---
 
 <Layout title="Ezequiel Schwartzman">
@@ -70,7 +71,13 @@ import Creations from "../components/creations/Creations.astro";
       spaceBottom={-60}
       textClass="md:rotate-3"
     >
-      Schedule a discovery call
+      <div class="text-center py-12">
+        <button
+          class="px-8 py-4 text-xl text-white uppercase tracking-wider font-semibold rounded-md hover:scale-105 active:scale-100 transition shadow-md hover:shadow-lg active:shadow-sm"
+          style={{ background: bgColor(340 - 180), textShadow: "0 1px 0 #0009" }}
+          >Schedule discovery call</button
+        >
+      </div>
     </Section>
   </div>
 </Layout>
