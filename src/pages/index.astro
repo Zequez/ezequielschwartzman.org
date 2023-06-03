@@ -2,58 +2,164 @@
 import Layout from "../layouts/Layout.astro";
 // import Items from "../components/Items";
 import mainImage from "../assets/pic1.jpg";
+import Separator from "../components/Separator.astro";
+import Section from "../components/Section.astro";
+
+const paths = [
+  [
+    "M 0 162.09153478965163,C 82.3901568818663 155.10173185831445 552.2843107454862 238.32698310443578 677 238.22730088420212,C 746.6397124373456 238.1716395540705 1058.2430749328555 174.28932895701627 1121 164.51316233631223,C 1168.090406418049 157.17749923798536 1317.6308718562018 179.248102540146 1440 183.77597453910857",
+    "M 0 162.09153478965163,C 82.3901568818663 155.10173185831445 552.2843107454862 238.32698310443578 677 238.22730088420212,C 746.6397124373456 238.1716395540705 1058.2430749328555 174.28932895701627 1121 164.51316233631223,C 1168.090406418049 157.17749923798536 1317.6308718562018 179.248102540146 1440 183.77597453910857,L 1440 400,L 0 400,Z",
+  ],
+  [
+    "M 0 148.41670662164688,C 170.6211748802575 150.82436406340275 107.42036053885784 192.93162653104648 329 204.28596828877926,C 490.21834326708654 212.54723350033763 637.6805762352803 121.00838911302034 903 153.50178261101246,C 997.9660234619017 165.13217259717317 1214.1090154237345 208.4074499888723 1440 211.8351387558505",
+    "M 0 148.41670662164688,C 170.6211748802575 150.82436406340275 107.42036053885784 192.93162653104648 329 204.28596828877926,C 490.21834326708654 212.54723350033763 637.6805762352803 121.00838911302034 903 153.50178261101246,C 997.9660234619017 165.13217259717317 1214.1090154237345 208.4074499888723 1440 211.8351387558505,L 1440 400,L 0 400,Z",
+  ],
+  [
+    "M 0 224.65710936114192,C 108.44193515182242 235.0268696919493 630.3638457056496 147.13306368815367 696 149.38531856052577,C 726.2971924952795 150.42494375109797 835.4110488196127 209.6581989032547 1030 207.83664666302502,C 1120.3179155600135 206.99117830306295 1274.8444357362428 134.21945035341963 1440 139.5910697998479",
+    "M 0 224.65710936114192,C 108.44193515182242 235.0268696919493 630.3638457056496 147.13306368815367 696 149.38531856052577,C 726.2971924952795 150.42494375109797 835.4110488196127 209.6581989032547 1030 207.83664666302502,C 1120.3179155600135 206.99117830306295 1274.8444357362428 134.21945035341963 1440 139.5910697998479,L 1440 400,L 0 400,Z",
+  ],
+  [
+    "M 0 104.0352099239826,C 92.95554666641335 113.42971135430143 130.49955811782806 186.0204159577377 207 195.5992056429386,C 254.97611062420168 201.60640066399452 531.8160159738043 256.95036310702665 771 291.8227247297764,C 911.4309409164838 312.2971665056366 969.0201144926558 220.7629797004403 1090 214.49974884837866,C 1203.754243850414 208.6105955676574 1246.5199911687853 179.1499247496994 1440 158.89959955960512",
+    "M 0 104.0352099239826,C 92.95554666641335 113.42971135430143 130.49955811782806 186.0204159577377 207 195.5992056429386,C 254.97611062420168 201.60640066399452 531.8160159738043 256.95036310702665 771 291.8227247297764,C 911.4309409164838 312.2971665056366 969.0201144926558 220.7629797004403 1090 214.49974884837866,C 1203.754243850414 208.6105955676574 1246.5199911687853 179.1499247496994 1440 158.89959955960512,L 1440 400,L 0 400,Z",
+  ],
+];
 ---
 
 <Layout title="Ezequiel Schwartzman">
-  <div class="sm:flex mx-auto sm:max-w-screen-md">
-    <div
-      class="flex-shrink-0 overflow-hidden sm:overflow-auto sm:h-auto aspect-square sm:aspect-auto"
-    >
-      <img
-        src={mainImage}
-        alt="A picture of myself in the woods"
-        class="sm:max-w-xs md:max-w-sm sm:m-4 sm:rounded-md shadow-sm -mt-40 sm:mt-4"
-      />
-    </div>
-    <div class="p-4 text-black/80 space-y-4 max-w-sm mx-auto">
-      <h1
-        class="text-3xl tracking-wider font-light font-serif text-center sm:text-left"
+  <div class="text-black/90 sm:pt-20">
+    <div class="sm:flex mx-auto sm:max-w-screen-md pb-32">
+      <div
+        class="flex-shrink-0 overflow-hidden sm:overflow-auto sm:h-auto aspect-square sm:aspect-auto"
       >
-        Ezequiel<br />Schwartzman
-      </h1>
-      <div class="font-sans space-y-4">
-        <p class="-mt-2 text-xs text-center sm:text-left whitespace-nowrap">
-          Love &#9733; Integrity &#9733; Collaboration &#9733; Possibilities
-        </p>
-        <ul class="list-disc pl-4 space-y-4">
-          <li>
-            More than a decade of experience experimenting with web
-            technologies.
-            <div class="italic text-black/50 text-sm">
-              Make solutions as simple as possible but not simpler than needed
-            </div>
-          </li>
-          <li>
-            A passionate advocate of the free and open source software movement.
-            <div class="italic text-black/50 text-sm">
-              Collaboration is foundational to next-culture.
-            </div>
-          </li>
-          <li>
-            Freelances as a web developer while raising funds to pay for mage
-            initiations, his true calling.
-            <div class="italic text-black/50 text-sm">
-              Working for Gaia as an Earth Guardian
-            </div>
-          </li>
-          <li>
-            Dad for one beautiful soul. His one unshakable commitment.
-            <div class="italic text-black/50 text-sm">
-              Children unleash the best of us
-            </div>
-          </li>
-        </ul>
+        <img
+          src={mainImage}
+          alt="A picture of myself in the woods"
+          class="sm:max-w-xs md:max-w-sm sm:m-4 sm:rounded-md shadow-sm -mt-40 sm:mt-4"
+        />
+      </div>
+      <div class="p-4 space-y-4 max-w-sm mx-auto">
+        <h1
+          class="text-4xl md:text-5xl tracking-wider font-light font-serif text-center sm:text-left"
+        >
+          Ezequiel<br />Schwartzman
+        </h1>
+        <div class="font-sans space-y-4">
+          <p class="-mt-2 text-sm sm:text-xs md:text-sm text-center sm:text-left whitespace-nowrap">
+            Love &#9733; Integrity &#9733; Collaboration &#9733; Possibilities
+          </p>
+          <ul class="list-disc pl-4 space-y-4">
+            <li>
+              More than a decade of experience experimenting with web technologies.
+              <div class="italic text-black/50 text-sm">
+                Make solutions as simple as possible but not simpler than needed
+              </div>
+            </li>
+            <li>
+              A passionate advocate of the free and open source software movement.
+              <div class="italic text-black/50 text-sm">
+                Collaboration is foundational to next-culture.
+              </div>
+            </li>
+            <li>
+              Freelances as a web developer while raising funds to pay for mage initiations, his
+              true calling.
+              <div class="italic text-black/50 text-sm">Working for Gaia as an Earth Guardian</div>
+            </li>
+            <li>
+              Dad for one beautiful soul. His one unshakable commitment.
+              <div class="italic text-black/50 text-sm">Children unleash the best of us</div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
+
+    <div>
+      <Separator
+        klass="text-yellow-400"
+        top={-150}
+        pathStroke={paths[0][0]}
+        pathFill={paths[0][1]}
+      />
+      <Section
+        name="Creations"
+        top={-100}
+        bottom={120}
+        textClass="sm:rotate-3"
+        colorClass="bg-yellow-400"
+      >
+        Portfolio of things I've created.
+      </Section>
+    </div>
+    <div>
+      <Separator
+        klass="text-green-400"
+        top={-140}
+        pathStroke={paths[1][0]}
+        pathFill={paths[1][1]}
+      />
+      <Section
+        name="Deliverables"
+        top={-100}
+        bottom={120}
+        textClass="sm:-rotate-3 -translate-y-3"
+        colorClass="bg-green-400"
+      >
+        Things I'm willing to take responsibility for building.
+      </Section>
+    </div>
+    <div>
+      <Separator klass="text-blue-400" top={-140} pathStroke={paths[2][0]} pathFill={paths[2][1]} />
+      <Section
+        name="Testimony"
+        top={-100}
+        bottom={150}
+        textClass="sm:-rotate-3"
+        colorClass="bg-blue-400"
+      >
+        What clients, partners and team members say about me.
+      </Section>
+    </div>
+    <div>
+      <Separator
+        klass="text-purple-400"
+        top={-190}
+        pathStroke={paths[3][0]}
+        pathFill={paths[3][1]}
+      />
+      <Section
+        name="Let's partner up"
+        top={-80}
+        bottom={80}
+        textClass="sm:rotate-3"
+        colorClass="bg-purple-400"
+      >
+        Schedule a discovery call with me
+      </Section>
+    </div>
+    <!-- <Separator colorClass="text-green-400" seed="noieneio" />
+    <div class="bg-green-400 pb-16">
+      <div class="max-w-sm sm:max-w-screen-md mx-auto p-4">
+        <div class="text-4xl tracking-wider text-white font-serif text-center sm:text-left">
+          Deliverables
+        </div>
+      </div>
+    </div>
+    <Separator colorClass="text-blue-400" seed="noieneio" />
+    <div class="bg-blue-400 pb-16">
+      <div class="max-w-sm sm:max-w-screen-md mx-auto p-4">
+        <div class="text-4xl tracking-wider text-white font-serif text-center sm:text-left">
+          Testimony
+        </div>
+      </div>
+    </div>
+    <Separator colorClass="text-purple-400" seed="noieneio" />
+    <div class="bg-purple-400 pb-16">
+      <div class="max-w-sm sm:max-w-screen-md mx-auto p-4">
+        <div class="text-4xl tracking-wider text-white font-serif text-center sm:text-left">
+          Let's create something together
+        </div>
+      </div>
+    </div> -->
   </div>
 </Layout>
