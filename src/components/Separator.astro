@@ -1,8 +1,20 @@
 ---
-const { klass, pathStroke, pathFill, top = 0 } = Astro.props;
+const { path = null, hue, adjustTop = 0 } = Astro.props;
+import paths, { nextPath } from "../lib/svgPaths.js";
+
+const resultingPath = path == null ? nextPath() : paths[path];
+
+const pathFill = resultingPath[0];
+const pathStroke = resultingPath[1];
+
+const color = `oklch(85% 0.18 ${hue})`;
+const colorStroke = `oklch(90% 0.20 ${hue})`;
 ---
 
-<div class:list={[klass, "h-60 pointer-events-none relative"]} style={{ marginTop: `${top}px` }}>
+<div
+  class:list={["pointer-events-none absolute w-full"]}
+  style={{ height: "300px", top: `-${200 + adjustTop}px`, color }}
+>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 1440 400"
@@ -10,12 +22,7 @@ const { klass, pathStroke, pathFill, top = 0 } = Astro.props;
     fill="currentColor"
     class="w-full h-full"
   >
-    <path
-      stroke-opacity="0.75"
-      d={pathStroke}
-      stroke-width="70"
-      fill="transparent"
-      stroke="currentColor"></path>
+    <path d={pathStroke} stroke-width="70" fill="transparent" stroke={colorStroke}></path>
     <path d={pathFill}></path>
   </svg>
 </div>
