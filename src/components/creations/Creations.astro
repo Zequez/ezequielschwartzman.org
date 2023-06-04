@@ -6,7 +6,9 @@ const images = (
   await Astro.glob("/src/assets/*").then((files) => {
     return files.map((file) => {
       const name = file.default as string;
-      const key = name.slice(name.lastIndexOf("/") + 1);
+      const key = name
+        .slice(name.lastIndexOf("/") + 1)
+        .replace(/\.[a-z0-9]{8}(\.[a-z0-9]+)$/, "$1");
 
       return [key, file.default];
     });
