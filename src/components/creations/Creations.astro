@@ -1,6 +1,6 @@
 ---
-import { getCollection, getEntry } from "astro:content";
-import { arch } from "os";
+import { getCollection } from "astro:content";
+import { bgColor } from "../../lib/chroma";
 
 const images = (
   await Astro.glob("/src/assets/*").then((files) => {
@@ -23,6 +23,8 @@ const creations = await getCollection("creations");
 const parsedCreations = creations.slice(0, 8).map((creation) => {
   return creation;
 });
+
+const linkStyle = { background: bgColor(85 + 180) };
 ---
 
 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
@@ -52,3 +54,14 @@ const parsedCreations = creations.slice(0, 8).map((creation) => {
     </div>
   ) : null
 }
+<div class="max-w-screen-sm mx-auto tracking-wider text-white">
+  There are more, is just that I haven't added them to the site yet. Check <a
+    style={linkStyle}
+    href="https://github.com/zequez"
+  >
+    my Github</a
+  >. Or <a href="https://zequez.space/" style={linkStyle}>my old website</a>. Or <a
+    href="http://oldsite.zequez.space/"
+    style={linkStyle}>my older website</a
+  >
+</div>
