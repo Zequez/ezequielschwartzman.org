@@ -25,7 +25,7 @@ const parsedCreations = creations.slice(0, 8).map((creation) => {
 });
 ---
 
-<div class="grid grid-cols-4 gap-4 mb-12">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
   {
     parsedCreations.map((creation) => (
       <a
@@ -34,7 +34,7 @@ const parsedCreations = creations.slice(0, 8).map((creation) => {
       >
         <img src={images[creation.data.images[0]]} class="w-full h-full object-cover " />
         <span
-          class="absolute inset-x-0 bottom-0 h-12 bg-black/20 text-white flex items-center justify-center transition-transform duration-500 translate-y-12 group-hover:translate-y-0"
+          class="absolute inset-x-0 bottom-0 h-12 bg-black/20 text-white flex items-center justify-center transition-transform duration-500 translate-y-12 group-hover:translate-y-0 text-center"
           style={{ textShadow: "0 1px 0 #0009" }}
         >
           {creation.data.name}
