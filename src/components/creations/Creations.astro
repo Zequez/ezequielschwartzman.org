@@ -1,47 +1,151 @@
 ---
-import { getCollection } from "astro:content";
+import { CollectionEntry, getCollection } from "astro:content";
 import { bgColor } from "../../lib/chroma";
 
-const images = (
-  await Astro.glob("/src/assets/*").then((files) => {
-    return files.map((file) => {
-      const name = file.default as string;
-      const key = name
-        .slice(name.lastIndexOf("/") + 1)
-        .replace(/\.[a-z0-9]{8}(\.[a-z0-9]+)$/, "$1");
+// const images = (
+//   await Astro.glob("/src/assets/*").then((files) => {
+//     return files.map((file) => {
+//       const name = file.default as string;
+//       const key = name
+//         .slice(name.lastIndexOf("/") + 1)
+//         .replace(/\.[a-z0-9]{8}(\.[a-z0-9]+)$/, "$1");
 
-      return [key, file.default];
-    });
-  })
-).reduce((arr, [k, v]) => {
-  arr[k] = v;
-  return arr;
-}, {} as { [key: string]: string });
+//       return [key, file.default];
+//     });
+//   })
+// ).reduce((arr, [k, v]) => {
+//   arr[k] = v;
+//   return arr;
+// }, {} as { [key: string]: string });
 
 const creations = await getCollection("creations");
 
-const parsedCreations = creations.slice(0, 8).map((creation) => {
+function resolveDate (e: CollectionEntry<"creations">) {
+  if (e.data.date) return e.data.date;
+  else if (e.data.dateStart && e.data.dateEnd)
+    return new Date((e.data.dateStart.getTime() + e.data.dateEnd.getTime()) / 2 );
+  else if (e.data.dateStart && !e.data.dateEnd) return e.data.dateStart;
+  else if (e.data.dateEnd && !e.data.dateStart) return e.data.dateEnd;
+  else return new Date();
+}
+
+const sortedCreations = creations.sort((a, b) => {
+  console.log(b.data.title, resolveDate(b));
+  return resolveDate(b).getTime() - resolveDate(a).getTime();
+});
+
+const parsedCreations = sortedCreations.slice(0, 8).map((creation) => {
   return creation;
 });
 
 const linkStyle = { background: bgColor(85 + 180) };
+
+const creationTypeToEmoji = (creationType: string) => {
+  switch (creationType) {
+    case "video":
+      return "▶️";
+    case "collaboration":
+      return "🤝";
+    case "software":
+      return '💻'
+    case "writing":
+      return '📄'
+    default:
+      return "📷";
+  }
+};
+
+const creationTypeToText = (creationType: string) => {
+  switch (creationType) {
+    case "video":
+      return "Video";
+    case "collaboration":
+      return "Collaboration";
+    case "software":
+      return "Software";
+    case "writing":
+      return "Writing";
+    default:
+      return "Other";
+  }
+};
+
+const langToFlag = (lang: string) =>{
+  switch (lang) {
+    case 'en': return "🇬🇧";
+    case 'es': return "🇦🇷";
+  }
+}
+
+const langToText = (lang: string) =>{
+  switch (lang) {
+    case 'en': return "English";
+    case 'es': return "Español";
+  }
+}
+
+function timeAgoInMoons (date: Date) {
+  const diff = new Date().getTime() - date.getTime();
+  return Math.floor(diff / (1000 * 60 * 60 * 24 * 28));
+}
+
+function timeAgoInWords (date: Date) {
+  const moons = timeAgoInMoons(date);
+  if (moons === 0) {
+    return "most recently";
+  } else if (moons === 1) {
+    return "last moon";
+  } else if (moons > 2 && moons < 13) {
+    return `${moons} moons ago`;
+  } else if (moons >= 13) {
+    const solars =  Math.floor(moons / 13);
+    const rest = moons % 13;
+    if (solars < 3) {
+      return `${solars}.${rest} solars.moons ago`;
+    } else {
+      return `${solars} ago`;
+    }
+  }
+}
+
 ---
 
-<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
   {
     parsedCreations.map((creation) => (
-      <a
-        href={creation.data.link}
-        class="relative group overflow-hidden transition-transform duration-500 bg-white rounded-md shadow-md cursor-pointer aspect-square hover:scale-105"
-      >
-        <img src={images[creation.data.images[0]]} class="w-full h-full object-cover " />
-        <span
-          class="absolute inset-x-0 bottom-0 h-12 bg-black/20 text-white flex items-center justify-center transition-transform duration-500 translate-y-12 group-hover:translate-y-0 text-center"
-          style={{ textShadow: "0 1px 0 #0009" }}
-        >
-          {creation.data.name}
-        </span>
-      </a>
+      <div class="relative rounded-md shadow-md bg-white transition-all duration-500 hover:scale-105 hover:z-10 hover:shadow-xl rounded-b-md cursor-pointer">
+        <div class="flex whitespace-nowrap">
+          <div class="text-[60px] text-white/100 relative top-2 -left-2 -rotate-6" title={creationTypeToText(creation.data.creationType)}>
+            {creationTypeToEmoji(creation.data.creationType)}
+          </div>
+          <div class="flex-grow rounded-t-md bg-white px-2 py-2 text-center text-2xl font-light text-ellipsis overflow-hidden">{creation.data.title}</div>
+        </div>
+        <div>
+          <div class="aspect-video w-full">
+            <img src={creation.data.images[0]} class="w-full h-full object-cover" />
+          </div>
+          <div class="h-4 px-1">
+            <div class="flex -mt-4 h-8">
+              <div class="flex items-center justify-start text-sm bg-white shadow-sm rounded-md p-1 border border-gray-200" title={resolveDate(creation).toString()}>
+                <span class="text-2xl mr-2">⏳</span>
+                {timeAgoInWords(resolveDate(creation))}
+              </div>
+              <div class="flex justify-end flex-grow space-x-2">
+                {creation.data.language.map((lang) =>
+                  <div class="flex items-center bg-white shadow-sm rounded-md p-1 border border-gray-200">
+                    <span class="text-3xl mr-2">{langToFlag(lang)}</span>
+                    <span class="text-sm">{langToText(lang)}</span></div>
+                )}
+              </div>
+          </div>
+          </div>
+          <div class="p-4 pt-6">
+            <div class="font-light line-clamp-2 overflow-hidden">
+              {creation.data.description}
+            </div>
+          </div>
+        </div>
+      </div>
     ))
   }
 </div>
