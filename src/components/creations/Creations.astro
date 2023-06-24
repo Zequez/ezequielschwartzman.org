@@ -103,7 +103,7 @@ function timeAgoInWords (date: Date) {
     if (solars < 3) {
       return `${solars}.${rest} solars.moons ago`;
     } else {
-      return `${solars} ago`;
+      return `${solars} solars ago`;
     }
   }
 }
@@ -140,7 +140,7 @@ function timeAgoInWords (date: Date) {
           </div>
           </div>
           <div class="p-4 pt-6">
-            <div class="font-light line-clamp-2 overflow-hidden">
+            <div class="font-light line-clamp-2 overflow-hidden text-black/50">
               {creation.data.description}
             </div>
           </div>

@@ -4,9 +4,7 @@ link: https://wavy-svg.ezequielschwartzman.org
 sourceLink: https://github.com/Zequez/wavy-svg-generator
 images:
   - /assets/wavy-svg-screenshot.png
-dateStart: 2023-05-01
-dateEnd: 2023-05-01
-image: /public/assets/wavy-svg-screenshot.png
+date: 2023-05-01
 tech:
   - Preact
   - Twind

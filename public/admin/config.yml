@@ -1,0 +1,53 @@
+backend:
+  name: github
+  repo: zequez/ezequielschwartzman.org # Path to your Github/Gitlab repository
+  branch: main # Branch to update
+  base_url: https://decap-cms-oauth.vercel.app
+media_folder: public/assets
+collections:
+  -
+    name: "creations"
+    label: "Creations"
+    folder: "src/content/creations"
+    create: true
+    delete: true
+    fields:
+      -
+        name: title
+        widget: string
+        label: Title
+      -
+        name: body
+        widget: markdown
+        label: Content
+      -
+        name: image
+        widget: image
+        label: Image
+      -
+        name: link
+        widget: string
+        label: Link
+      -
+        name: sourceLink
+        widget: string
+        label: Source Link
+      -
+        name: tags
+        widget: string
+        label: Tags
+      -
+        label: Date (start)
+        name: dateStart
+        widget: date
+        format: YYYY-MM-DD
+      -
+        label: Date (end)
+        name: dateEnd
+        widget: date
+        format: YYYY-MM-DD
+      -
+        name: creationType
+        widget: select
+        label: Type
+        options: ['software', 'writing', 'video']
