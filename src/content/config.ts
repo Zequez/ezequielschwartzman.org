@@ -10,7 +10,6 @@ export const creationsCollection = defineCollection({
     sourceLink: z.optional(z.string()),
     images: z.array(z.string()),
     tags: z.array(z.string()),
-    tech: z.array(z.string()),
     isPublished: z.boolean(),
     isOnline: z.boolean(),
     date: z.optional(z.date()),

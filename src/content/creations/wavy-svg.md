@@ -5,11 +5,11 @@ sourceLink: https://github.com/Zequez/wavy-svg-generator
 images:
   - /assets/wavy-svg-screenshot.png
 date: 2023-05-01
-tech:
+tags:
   - Preact
   - Twind
   - Front-end
-tags: []
+  - Generator
 creationType: software
 isPublished: true
 isOnline: true

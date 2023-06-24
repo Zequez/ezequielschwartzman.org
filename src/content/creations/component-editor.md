@@ -6,11 +6,10 @@ images:
   - /assets/component-editor-screenshot.png
 dateStart: 2023-05-10
 dateEnd: 2023-05-10
-tech:
+tags:
   - Preact
   - Twind
   - Front-end
-tags: []
 creationType: software
 isPublished: true
 isOnline: true

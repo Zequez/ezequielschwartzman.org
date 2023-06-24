@@ -5,11 +5,11 @@ sourceLink: https://github.com/Zequez/zequez.github.io/tree/master/sandbox/blind
 images:
   - /assets/target-shooter-1.png
 date: 2011-01-01
-tech:
+tags:
   - CoffeeScript
   - Canvas
   - Front-end
-tags: ['Game']
+  - Game
 creationType: software
 isPublished: true
 isOnline: true

@@ -7,13 +7,13 @@ images:
   - /assets/before-after-player-2.png
   - /assets/before-after-player-3.png
 date: 2023-06-01
-tech:
+tags:
   - Next.js
   - Tailwind
   - Full-stack
   - TypeScript
   - React
-tags: []
+  - SASS
 creationType: software
 isPublished: true
 isOnline: true

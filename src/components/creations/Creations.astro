@@ -113,17 +113,17 @@ function timeAgoInWords (date: Date) {
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
   {
     parsedCreations.map((creation) => (
-      <div class="relative rounded-md shadow-md bg-white transition-all duration-500 hover:scale-105 hover:z-10 hover:shadow-xl rounded-b-md cursor-pointer">
-        <div class="flex whitespace-nowrap">
-          <div class="text-[60px] text-white/100 relative top-2 -left-2 -rotate-6" title={creationTypeToText(creation.data.creationType)}>
+      <div class="relative rounded-md shadow-md bg-white transition-all duration-500 hover:scale-105 hover:z-10 hover:shadow-xl rounded-b-md">
+        <a href={`/creations/${creation.slug}`} class="flex whitespace-nowrap">
+          <span class="block text-[60px] text-white/100 relative top-2 -left-2 -rotate-6" title={creationTypeToText(creation.data.creationType)}>
             {creationTypeToEmoji(creation.data.creationType)}
-          </div>
-          <div class="flex-grow rounded-t-md bg-white px-2 py-2 text-center text-2xl font-light text-ellipsis overflow-hidden">{creation.data.title}</div>
-        </div>
+          </span>
+          <span class="flex-grow rounded-t-md bg-white px-2 py-2 text-center text-2xl font-light text-ellipsis overflow-hidden">{creation.data.title}</span>
+        </a>
         <div>
-          <div class="aspect-video w-full">
+          <a href={`/creations/${creation.slug}`} class="block aspect-video w-full">
             <img src={creation.data.images[0]} class="w-full h-full object-cover" />
-          </div>
+          </a>
           <div class="h-4 px-1">
             <div class="flex -mt-4 h-8">
               <div class="flex items-center justify-start text-sm bg-white shadow-sm rounded-md p-1 border border-gray-200" title={resolveDate(creation).toString()}>
@@ -142,6 +142,21 @@ function timeAgoInWords (date: Date) {
           <div class="p-4 pt-6">
             <div class="font-light line-clamp-2 overflow-hidden text-black/50">
               {creation.data.description}
+            </div>
+            <div class="mt-2 text-right space-x-2">
+              {(() => {
+                const d = creation.data;
+                switch(d.creationType) {
+                  case "software":
+                    return <>
+                      {d.sourceLink ? <a class="bg-blue-400 px-2 py-1 rounded-md text-white hover:opacity-80" href={d.sourceLink} target="_blank">Source code</a> : null}
+                      {d.link ? <a class="bg-blue-400 px-2 py-1 rounded-md text-white hover:opacity-80" href={d.link} target="_blank">Visit</a> : null}
+                    </>
+                  case "writing":
+                    return <a class="bg-blue-400 px-2 py-1 rounded-md text-white hover:opacity-80" href={d.link}>Read</a>
+                  default: return null;
+                }
+              })()}
             </div>
           </div>
         </div>

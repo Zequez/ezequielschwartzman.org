@@ -5,7 +5,7 @@ sourceLink: https://github.com/zequez/archy-collab
 images:
   - /assets/archy-collab-1.png
 date: 2023-02-01
-tech:
+tags:
   - Full-stack
   - TypeScript
   - React
@@ -13,7 +13,6 @@ tech:
   - Multi-domain
   - Web app
   - Atomic Server
-tags: []
 creationType: software
 isPublished: true
 isOnline: true

@@ -6,11 +6,11 @@ images:
   - /assets/email-signatures-screenshot.png
 dateStart: 2023-05-05
 dateEnd: 2023-05-05
-tech:
+tags:
   - Preact
   - Twind
   - Front-end
-tags: []
+  - Generator
 creationType: software
 isPublished: true
 isOnline: true
