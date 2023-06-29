@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --main-color-hue: 25;
+  --main-color: oklch(50% 0.18 25);
+  --main-color-shadow: oklch(45% 0.18 var(--main-color-hue));
+  --main-color-light: oklch(62% 0.18 var(--main-color-hue));
+}
+
 .markdown {
   letter-spacing: 0.25px;
 }

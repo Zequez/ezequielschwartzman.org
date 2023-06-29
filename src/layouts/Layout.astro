@@ -4,6 +4,7 @@ import "./base.css";
 import HeaderBar from "@/components/HeaderBar.astro";
 import NavBar from "@/components/NavBar.astro";
 import Rainbow from "@/components/Rainbow.astro";
+import { colors } from "@/lib/chroma";
 
 // export interface Props {
 //   title: string;
@@ -14,11 +15,16 @@ const { title, frontmatter } = Astro.props;
 let baseTitle = "Ezequiel Schwartzman";
 let givenTitle = title || frontmatter?.title;
 let resolvedTitle = givenTitle ? `${givenTitle} | ${baseTitle}` : baseTitle;
+
+const pathname = new URL(Astro.request.url).pathname;
+const section = pathname.slice(1).split("/")[0];
+const color = colors[section as keyof typeof colors] || colors.about;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <style define:vars={{ mainColor: color }}></style>
     <meta charset="UTF-8" />
     <meta name="description" content="Ezequiel's website" />
     <meta name="viewport" content="width=device-width" />
@@ -26,17 +32,23 @@ let resolvedTitle = givenTitle ? `${givenTitle} | ${baseTitle}` : baseTitle;
     <meta property="og:image" content="/assets/avatar.jpg" />
     <meta name="generator" content={Astro.generator} />
     <title>{resolvedTitle}</title>
+    <!-- <style set:html={`:root {--main-color: ${color};}`}></style>
+    <style>
+      :root {
+        --main-color: oklch(75% 0.3 180);
+      }
+    </style> -->
   </head>
   <body class="bg-gray-50">
     <HeaderBar />
     <!-- <div class="relative z-10"> -->
     <div
-      class={`pt-28 pb-12 px-8 text-black/80 ${frontmatter ? "markdown max-w-3xl mx-auto" : ""}`}
+      class={`pt-32 pb-12 px-8 text-black/80 ${frontmatter ? "markdown max-w-3xl mx-auto" : ""}`}
     >
       <slot />
     </div>
     <!-- </div> -->
-    <NavBar />
+    <!-- <NavBar /> -->
     <!-- <div class="absolute z-0 h-30 w-full top-0 pointer-events-none opacity-10">
       <Rainbow />
     </div> -->
