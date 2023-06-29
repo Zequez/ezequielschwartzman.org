@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
-import Layout from "../../layouts/Layout.astro";
-import { bgColor } from "../../lib/chroma";
+import Layout from "@/layouts/Layout.astro";
+import HeaderBar from "@/components/HeaderBar.astro";
 
 export async function getStaticPaths() {
   const creationsEntries = await getCollection("creations");
@@ -16,60 +16,9 @@ const { Content } = await creation.render();
 ---
 
 <Layout title={creation.data.title}>
-  <div class="overflow-hidden pb-8">
-    <div
-      class="h-14 text-2xl font-light text-gray-100 tracking-wider flex items-center justify-center relative z-20"
-      style={{ backgroundColor: bgColor(25, -30) }}
-    >
-      <div
-        class="flex items-center justify-center cursor-pointer -mt-1"
-        style={{ textShadow: "0 1px 0 #0006" }}
-      >
-        <a class="relative group" href="/">
-          <span
-            class="absolute right-[100%] top-1/2 block h-12 -mt-4 mr-2 transition-transform duration-500 group-hover:-translate-x-2"
-            >Ezequiel</span
-          >
-          <img
-            src="/assets/avatar.jpg"
-            class="h-24 w-24 rounded-full transition-transform duration-500 group-hover:scale-105"
-          />
-          <span
-            class="absolute left-[100%] top-1/2 block h-12 -mt-4 ml-2 transition-transform duration-500 group-hover:translate-x-2"
-            >Schwartzman</span
-          >
-        </a>
-      </div>
-    </div>
-    <div class="flex items-center justify-center relative z-10" style={{ color: bgColor(25, -30) }}>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 300 100"
-        preserveAspectRatio="none"
-        fill="currentColor"
-        class="h-8 w-[250px]"
-      >
-        <path d="M 0 0, C 100 0 100 100 150 100, C 200 100 200 0 300 0, Z"></path>
-      </svg>
-    </div>
-    <div class="-mt-10 relative z-0 scale-x-110 blur-md">
-      <div class="overflow-hidden"><div class="h-4 w-[140%] -ml-[20%] bg-black/20"></div></div>
-      <div class="flex items-center justify-center text-black/20">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 300 100"
-          preserveAspectRatio="none"
-          fill="currentColor"
-          class="h-8 w-[250px]"
-        >
-          <path d="M 0 0, C 100 0 100 100 150 100, C 200 100 200 0 300 0, Z"></path>
-        </svg>
-      </div>
-    </div>
-  </div>
-
+  <HeaderBar />
   <div class="pt-0">
-    <h1 class="text-4xl mb-4 text-center mb-8 font-light px-4">{creation.data.title}</h1>
+    <h1 class="text-4xl mb-4 text-center mb-8 font-light px-4 font-serif">{creation.data.title}</h1>
     <div class="lg:px-4 flex justify-center">
       <div
         class="overflow-x-scroll aspect-video w-full p-4 max-w-screen-xl lg:rounded-md shadow-md border flex items-center justify-start mb-4 bg-gray-600"
@@ -82,10 +31,10 @@ const { Content } = await creation.render();
       </div>
     </div>
     <div class="text-lg font-light max-w-screen-lg mx-auto px-4 pb-8">
-      <div class="flex justify-center flex-wrap space-x-2 mb-4">
+      <div class="flex justify-center flex-wrap mb-4">
         {
           creation.data.tags.map((tag: string) => (
-            <span class="bg-gray-400/80 font-bold text-white uppercase tracking-wider px-2 py-1 rounded-md">
+            <span class="bg-gray-400/80 font-bold text-white uppercase tracking-wider px-2 py-1 mr-2 mb-2 rounded-md">
               {tag}
             </span>
           ))

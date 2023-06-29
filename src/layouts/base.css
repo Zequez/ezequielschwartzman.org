@@ -44,19 +44,19 @@
 }
 
 .markdown h1 {
-  @apply mb-4 text-4xl font-bold tracking-wider;
+  @apply mb-4 text-4xl font-bold tracking-wider font-serif;
 }
 
 .markdown h2 {
-  @apply mb-4 text-3xl font-bold tracking-wider;
+  @apply mb-4 text-3xl font-bold tracking-wider font-serif;
 }
 
 .markdown h3 {
-  @apply mb-4 text-2xl font-bold tracking-wider;
+  @apply mb-4 text-2xl font-bold tracking-wider font-serif;
 }
 
 .markdown h4 {
-  @apply mb-4 text-xl font-bold tracking-wider;
+  @apply mb-4 text-xl font-bold tracking-wider font-serif;
 }
 
 .markdown ul {
@@ -65,4 +65,8 @@
 
 .markdown li {
   @apply mb-0;
+}
+
+.text-shadow-sm {
+  text-shadow: 0 1px 0 #0006;
 }

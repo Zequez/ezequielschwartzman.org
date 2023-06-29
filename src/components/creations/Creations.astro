@@ -1,6 +1,7 @@
 ---
 import { CollectionEntry, getCollection } from "astro:content";
 import { bgColor } from "../../lib/chroma";
+import ActionLink from "./ActionLink.astro";
 
 // const images = (
 //   await Astro.glob("/src/assets/*").then((files) => {
@@ -34,7 +35,7 @@ const sortedCreations = creations.sort((a, b) => {
   return resolveDate(b).getTime() - resolveDate(a).getTime();
 });
 
-const parsedCreations = sortedCreations.slice(0, 8).map((creation) => {
+const parsedCreations = sortedCreations.map((creation) => {
   return creation;
 });
 
@@ -95,7 +96,7 @@ function timeAgoInWords (date: Date) {
     return "most recently";
   } else if (moons === 1) {
     return "last moon";
-  } else if (moons > 2 && moons < 13) {
+  } else if (moons >= 2 && moons < 13) {
     return `${moons} moons ago`;
   } else if (moons >= 13) {
     const solars =  Math.floor(moons / 13);
@@ -105,82 +106,99 @@ function timeAgoInWords (date: Date) {
     } else {
       return `${solars} solars ago`;
     }
+  } else {
+    return '???';
   }
 }
+
+const groupedByTimeAgoInWords = sortedCreations.reduce((acc, curr) => {
+  const words = timeAgoInWords(resolveDate(curr));
+  if (!acc[words]) {
+    acc[words] = [];
+  }
+  acc[words].push(curr);
+  return acc;
+}, {} as { [key: string]: CollectionEntry<"creations">[] });
 
 ---
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
-  {
-    parsedCreations.map((creation) => (
-      <div class="relative rounded-md shadow-md bg-white transition-all duration-500 hover:scale-105 hover:z-10 hover:shadow-xl rounded-b-md">
-        <a href={`/creations/${creation.slug}`} class="flex whitespace-nowrap">
-          <span class="block text-[60px] text-white/100 relative top-2 -left-2 -rotate-6" title={creationTypeToText(creation.data.creationType)}>
-            {creationTypeToEmoji(creation.data.creationType)}
-          </span>
-          <span class="flex-grow rounded-t-md bg-white px-2 py-2 text-center text-2xl font-light text-ellipsis overflow-hidden">{creation.data.title}</span>
-        </a>
-        <div>
-          <a href={`/creations/${creation.slug}`} class="block aspect-video w-full">
-            <img src={creation.data.images[0]} class="w-full h-full object-cover" />
+<div class=" max-w-4xl mx-auto">
+  {Object.entries(groupedByTimeAgoInWords).map(([group, creations], i) =>
+    <div class="text-4xl italic font-thin tracking-wider mb-12">...{group}</div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+    {
+      creations.map((creation) => (
+        <div class="relative rounded-md shadow-sm bg-white rounded-b-md border border-gray-300">
+          <div class="absolute -top-2 left-2 px-2 py-1 bg-gray-100 border border-gray-400 rounded-md uppercase text-sm tracking-wider font-semibold" title={creationTypeToText(creation.data.creationType)}>
+              {creationTypeToText(creation.data.creationType)}
+          </div>
+          <a href={`/creations/${creation.slug}`} class="flex whitespace-nowrap items-center h-20">
+            <h2 class="flex-grow rounded-t-md bg-white px-2 py-2 text-center text-2xl font-light text-ellipsis overflow-hidden font-serif">{creation.data.title}</h2>
           </a>
-          <div class="h-4 px-1">
-            <div class="flex -mt-4 h-8">
-              <div class="flex items-center justify-start text-sm bg-white shadow-sm rounded-md p-1 border border-gray-200" title={resolveDate(creation).toString()}>
-                <span class="text-2xl mr-2">⏳</span>
-                {timeAgoInWords(resolveDate(creation))}
-              </div>
-              <div class="flex justify-end flex-grow space-x-2">
-                {creation.data.language.map((lang) =>
-                  <div class="flex items-center bg-white shadow-sm rounded-md p-1 border border-gray-200">
-                    <span class="text-3xl mr-2">{langToFlag(lang)}</span>
-                    <span class="text-sm">{langToText(lang)}</span></div>
-                )}
-              </div>
-          </div>
-          </div>
-          <div class="p-4 pt-6">
-            <div class="font-light line-clamp-2 overflow-hidden text-black/50">
-              {creation.data.description}
+          <div>
+            <a href={`/creations/${creation.slug}`} class="block aspect-video w-full">
+              <img src={creation.data.images[0]} class="w-full h-full object-cover" />
+            </a>
+            <div class="h-4 px-2 hidden">
+              <div class="flex -mt-4 h-8 text-black/70 tracking-wider">
+                {/*<div class="flex items-center justify-start text-sm bg-white shadow-sm rounded-md py-1 px-2 border border-gray-200 font-semibold uppercase" title={resolveDate(creation).toString()}>
+                  <span class="text-xl mr-2">⏳</span>
+                  {timeAgoInWords(resolveDate(creation))}
+                </div>*/}
+                <div class="flex justify-end flex-grow space-x-2">
+                  {creation.data.language.map((lang) =>
+                    <div class="flex items-center bg-gray-50 shadow-sm rounded-md py-1 px-2 border border-gray-200 font-semibold uppercase">
+                      <span class="text-3xl mr-2">{langToFlag(lang)}</span>
+                      <span class="text-sm">{langToText(lang)}</span></div>
+                  )}
+                </div>
             </div>
-            <div class="mt-2 text-right space-x-2">
-              {(() => {
-                const d = creation.data;
-                switch(d.creationType) {
-                  case "software":
-                    return <>
-                      {d.sourceLink ? <a class="bg-blue-400 px-2 py-1 rounded-md text-white hover:opacity-80" href={d.sourceLink} target="_blank">Source code</a> : null}
-                      {d.link ? <a class="bg-blue-400 px-2 py-1 rounded-md text-white hover:opacity-80" href={d.link} target="_blank">Visit</a> : null}
-                    </>
-                  case "writing":
-                    return <a class="bg-blue-400 px-2 py-1 rounded-md text-white hover:opacity-80" href={d.link}>Read</a>
-                  default: return null;
-                }
-              })()}
+            </div>
+            <div class="relative p-8 pt-12">
+              <div class="font-light line-clamp-2 overflow-hidden text-black/50 mb-12">
+                {creation.data.description}
+              </div>
+              <div class="absolute bottom-4 inset-x-4 flex items-center justify-center space-x-2">
+                {(() => {
+                  const d = creation.data;
+                  switch(d.creationType) {
+                    case "software":
+                      return <>
+                        {d.sourceLink ? <ActionLink href={d.sourceLink} target="_blank">Source code</ActionLink> : null}
+                        {d.link ? <ActionLink href={d.link} target="_blank">Visit</ActionLink> : null}
+                      </>
+                    case "writing":
+                      return <ActionLink href={d.link}>Read</ActionLink>
+                    default: return null;
+                  }
+                })()}
+              </div>
             </div>
           </div>
         </div>
+      ))
+    }
+  </div>
+  )}
+
+  <!-- {
+    creations.length > 8 ? (
+      <div class="mt-4 text-right">
+        <button class="px-4 py-2 transition rounded-md bg-white/80 hover:scale-105 active:scale-95">
+          Explore all (${creations.length}) &rarr;
+        </button>
       </div>
-    ))
-  }
-</div>
-{
-  creations.length > 8 ? (
-    <div class="mt-4 text-right">
-      <button class="px-4 py-2 transition rounded-md bg-white/80 hover:scale-105 active:scale-95">
-        Explore all (${creations.length}) &rarr;
-      </button>
-    </div>
-  ) : null
-}
-<div class="max-w-screen-sm mx-auto tracking-wider text-white">
-  There are more, is just that I haven't added them to the site yet. Check <a
-    style={linkStyle}
-    href="https://github.com/zequez"
-  >
-    my Github</a
-  >. Or <a href="https://zequez.space/" style={linkStyle}>my old website</a>. Or <a
-    href="http://oldsite.zequez.space/"
-    style={linkStyle}>my older website</a
-  >
+    ) : null
+  } -->
+  <!-- <div class="max-w-screen-sm mx-auto tracking-wider text-white">
+    There are more, is just that I haven't added them to the site yet. Check <a
+      style={linkStyle}
+      href="https://github.com/zequez"
+    >
+      my Github</a
+    >. Or <a href="https://zequez.space/" style={linkStyle}>my old website</a>. Or <a
+      href="http://oldsite.zequez.space/"
+      style={linkStyle}>my older website</a
+    >
+  </div> -->
 </div>

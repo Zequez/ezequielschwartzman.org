@@ -1,0 +1,23 @@
+---
+import { bgColor } from "@/lib/chroma";
+const { href } = Astro.props;
+
+const pathname = new URL(Astro.request.url).pathname;
+const active = pathname.slice(1) === href.replace(/^\//, "");
+---
+
+{
+  active ? (
+    <a
+      href={href}
+      class="bg-black/10 px-1 h-9 -mt-1 rounded-t-md flex items-center shadow-md text-shadow-sm"
+      style={{ backgroundColor: bgColor(25, -27) }}
+    >
+      <slot />
+    </a>
+  ) : (
+    <a href={href} class="flex items-center px-1 text-shadow-sm">
+      <slot />
+    </a>
+  )
+}

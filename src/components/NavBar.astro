@@ -1,0 +1,19 @@
+---
+import { bgColor } from "@/lib/chroma";
+import NavItem from "./NavItem.astro";
+---
+
+<div
+  class="fixed z-20 bottom-0 inset-x-0 h-8 flex items-stretch justify-center text-white/80 uppercase text-xs sm:text-sm tracking-wider border-t-2"
+  style={{
+    backgroundColor: bgColor(25, -30),
+    boxShadow: "0 0 4px #0003",
+    borderColor: bgColor(25, -23),
+  }}
+>
+  <!-- <a href="/" class="flex items-center px-1 text-shadow-sm">🏠</a> -->
+  <NavItem href="/">About</NavItem>
+  <NavItem href="/creations">Creations</NavItem>
+  <NavItem href="/collaboration">Collaboration</NavItem>
+  <NavItem href="/contact">Contact</NavItem>
+</div>

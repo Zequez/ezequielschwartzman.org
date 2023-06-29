@@ -1,64 +1,34 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Section from "../components/Section.astro";
-import Creations from "../components/creations/Creations.astro";
-import { bgColor } from "../lib/chroma";
+import Section from "@/components/Section.astro";
+import Creations from "@/components/creations/Creations.astro";
+import Collaboration from "@/components/Collaboration.astro";
+import HeaderBar from "@/components/HeaderBar.astro";
+import { bgColor } from "@/lib/chroma";
+import { Content as About } from "./_about.md";
 ---
 
-<Layout title="Ezequiel Schwartzman">
-  <div class="text-black/90 sm:pt-20">
-    <div class="sm:flex mx-auto sm:max-w-screen-md pb-32">
+<Layout>
+  <div class="text-black/90">
+    <div class="relative z-10 sm:mx-auto sm:max-w-screen-lg -mt-16 sm:mt-0 -mx-8">
       <div
-        class="flex-shrink-0 overflow-hidden sm:overflow-auto sm:h-auto aspect-square sm:aspect-auto"
+        class="flex-shrink-0 overflow-hidden sm:overflow-auto sm:h-auto aspect-square sm:aspect-auto float-left sm:mr-8 mb-4"
       >
         <img
           src="/assets/my-photo-1.jpg"
           alt="A picture of myself in the woods"
-          class="sm:max-w-[260px] md:max-w-sm sm:m-4 sm:rounded-md shadow-sm -mt-40 sm:mt-4"
+          class="sm:max-w-[270px] md:max-w-[400px] sm:rounded-md shadow-sm -mt-52 sm:mt-0"
         />
       </div>
-      <div class="p-4 space-y-4 max-w-sm mx-auto">
-        <h1
-          class="text-4xl md:text-5xl tracking-wider font-light font-serif text-center sm:text-left"
-        >
-          Ezequiel<br />Schwartzman
-        </h1>
-        <div class="font-sans space-y-4">
-          <p class="-mt-2 text-sm sm:text-xs md:text-sm text-center sm:text-left">
-            Truth &#9733; Integrity &#9733; Collaboration &#9733; Possibilities
-          </p>
-          <ul class="list-disc pl-4 space-y-4">
-            <li>
-              15 years of experience experimenting with web technologies
-              <div class="italic text-black/50 text-sm">
-                There are times I want to throw my laptop away and never touch a computer for the
-                rest of my life
-              </div>
-            </li>
-            <li>
-              A passionate advocate of the free and open source software movement
-              <div class="italic text-black/50 text-sm">
-                Collaboration is foundational to next-culture. Artificial scarcity is rotten.
-              </div>
-            </li>
-            <li>
-              Raising funds to pay for initiations
-              <div class="italic text-black/50 text-sm">
-                I can be of better service to Gaia and all beings as a powerful mage
-              </div>
-            </li>
-            <li>
-              Papá for one little human
-              <div class="italic text-black/50 text-sm">Learning parenting as I go</div>
-            </li>
-          </ul>
-        </div>
+      <div class="markdown text-xl font-light p-8 sm:p-0">
+        <About />
       </div>
+      <div class="clear-both"></div>
     </div>
 
-    <Section name="Creations" hue={85} titleTop={-20} spaceBottom={20} textClass="md:rotate-3">
+    <!-- <Section name="Creations" hue={85} titleTop={-20} spaceBottom={20} textClass="md:rotate-3">
       <Creations />
-    </Section>
+    </Section> -->
     <!-- <Section
       name="Deliverables"
       hue={130}
@@ -89,7 +59,7 @@ import { bgColor } from "../lib/chroma";
         </p>
       </div>
     </Section> -->
-    <Section
+    <!-- <Section
       name="Wall of love"
       hue={130}
       spaceBottom={20}
@@ -98,8 +68,8 @@ import { bgColor } from "../lib/chroma";
       <div class="max-w-screen-sm mx-auto tracking-wider text-white">
         What clients, partners and team members say about me. Information pending.
       </div>
-    </Section>
-    <Section
+    </Section> -->
+    <!-- <Section
       name="Team up with me"
       hue={250}
       titleTop={-40}
@@ -114,6 +84,6 @@ import { bgColor } from "../lib/chroma";
           href="https://t.me/zequez">Schedule discovery call</a
         >
       </div>
-    </Section>
+    </Section> -->
   </div>
 </Layout>

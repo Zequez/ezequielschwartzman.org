@@ -1,0 +1,67 @@
+---
+import { bgColor } from "../lib/chroma";
+
+const svgPath = "M 0 0, C 100 0 100 100 150 100, C 200 100 200 0 300 0, Z";
+const mainColor = bgColor(25, -30);
+const shadowColor = bgColor(25, -35);
+
+const itemsLeft = ["About me", "Creations", "Collaboration"];
+const itemsRight = ["", "Contact"];
+---
+
+<div class="overflow-hidden pb-8 font-serif absolute top-0 inset-x-0 z-20">
+  <div
+    class="h-14 text-lg sm:text-2xl tracking-widest flex items-center justify-center relative z-20"
+    style={{ background: `linear-gradient(to bottom, ${shadowColor}, ${mainColor})` }}
+  >
+    <div
+      class="flex items-center justify-center cursor-pointer mt-4"
+      style={{ textShadow: "0 1px 0 #0006" }}
+    >
+      <a
+        class="relative group text-gray-200 hover:text-gray-100 transition-colors duration-500"
+        href="/"
+      >
+        <span
+          class="absolute right-[100%] top-1/2 block h-12 -mt-6 mr-2 transition-transform duration-500 group-hover:-translate-x-2 group-hover:scale-105"
+          >Ezequiel</span
+        >
+        <img
+          src="/assets/avatar.jpg"
+          class="h-12 w-12 -mt-4 sm:mt-0 sm:h-24 sm:w-24 rounded-full transition-transform duration-500 border-b-1 sm:border-b-[3px] border-white/25"
+        />
+        <span
+          class="absolute left-[100%] top-1/2 block h-12 -mt-6 ml-2 transition-transform duration-500 group-hover:translate-x-2 group-hover:scale-105"
+          >Schwartzman</span
+        >
+      </a>
+    </div>
+  </div>
+  <div class="flex items-center justify-center relative z-10" style={{ color: mainColor }}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 300 100"
+      preserveAspectRatio="none"
+      fill="currentColor"
+      class="h-8 w-[250px] hidden sm:block"
+    >
+      <path d={svgPath}></path>
+    </svg>
+  </div>
+  <div class="-mt-3 sm:-mt-11 relative z-0">
+    <div class="overflow-hidden">
+      <div class="h-4" style={{ background: shadowColor }}></div>
+    </div>
+    <div class="hidden sm:flex items-center justify-center" style={{ color: shadowColor }}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 300 100"
+        preserveAspectRatio="none"
+        fill="currentColor"
+        class="h-8 w-[250px]"
+      >
+        <path d={svgPath}></path>
+      </svg>
+    </div>
+  </div>
+</div>
