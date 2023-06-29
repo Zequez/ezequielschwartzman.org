@@ -2,8 +2,7 @@
 title: Archy Collab
 link: https://archy.site/
 sourceLink: https://github.com/zequez/archy-collab
-images:
-  - /assets/archy-collab-1.png
+thumbnail: /assets/archy-collab-1.png
 date: 2023-02-01
 tags:
   - Full-stack
@@ -19,7 +18,14 @@ isOnline: true
 language:
   - en
 description: An experimental multi-domain web app to edit websites from the web itself
+releases:
+  -
+    version: 0.1.0
+    date: 2023-02-01
+    description: ''
 ---
+
+![Editor screenshot](/assets/archy-collab-1.png)
 
 It's part of the effort towards creating a collaborative web-building platform. A medium sized experiment where I worked
 with:

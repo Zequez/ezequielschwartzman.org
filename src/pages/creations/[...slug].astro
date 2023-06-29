@@ -17,29 +17,64 @@ const { Content } = await creation.render();
 
 <Layout title={creation.data.title}>
   <HeaderBar />
-  <div class="pt-0">
-    <h1 class="text-4xl mb-4 text-center mb-8 font-light px-4 font-serif">{creation.data.title}</h1>
-    <div class="lg:px-4 flex justify-center">
-      <div
-        class="overflow-x-scroll aspect-video w-full p-4 max-w-screen-xl lg:rounded-md shadow-md border flex items-center justify-start mb-4 bg-gray-600"
-      >
-        {
-          creation.data.images.map((image: string) => (
-            <img src={image} class="max-w-full max-h-full rounded-md" alt="" />
-          ))
-        }
-      </div>
-    </div>
-    <div class="text-lg font-light max-w-screen-lg mx-auto px-4 pb-8">
-      <div class="flex justify-center flex-wrap mb-4">
-        {
-          creation.data.tags.map((tag: string) => (
+  <div class="pt-0 max-w-screen-lg mx-auto">
+    <h1 class="text-4xl text-center mb-8 font-light px-4 font-serif">{creation.data.title}</h1>
+    {
+      creation.data.iframe ? (
+        <div class:list={["w-full flex-shrink-0 flex items-center justify-center mb-8"]}>
+          <div class="w-full">
+            <iframe
+              src={creation.data.iframe}
+              class:list={[
+                "w-full rounded-md border border-black/10 mx-auto aspect-video flex-shrink-0",
+              ]}
+              style={creation.data.iframeStyle}
+              sandbox="allow-scripts allow-same-origin"
+            />
+            <div class="flex justify-center flex-col items-center">
+              <div class="bg-red-400 text-white font-semibold px-2 py-1 rounded-b-md text-xl border border-red-500 border-t-0 text-shadow-sm">
+                LIVE APP
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null
+    }
+    {
+      creation.data.link || creation.data.sourceLink ? (
+        <div class="flex flex-wrap mb-4 items-center justify-center">
+          {[
+            ["Access", creation.data.link],
+            ["Source code", creation.data.sourceLink],
+          ].map(([text, link]) =>
+            link ? (
+              <a
+                href={link}
+                target="_blank"
+                class="mb-4 bg-blue-100 border border-blue-300 rounded-md text-blue-500 group mx-2 mb-4"
+              >
+                <strong class="inline-block text-center text-xl font-semibold bg-blue-200 rounded-l-md text-blue-500 py-2 px-8 border-r border-blue-300">
+                  {text}
+                </strong>
+                <span class="px-2 group-hover:underline">{link}</span>
+              </a>
+            ) : null
+          )}
+        </div>
+      ) : null
+    }
+    {
+      creation.data.tags.length ? (
+        <div class="flex justify-center items-center flex-wrap mb-4 w-full">
+          {creation.data.tags.map((tag: string) => (
             <span class="bg-gray-400/80 font-bold text-white uppercase tracking-wider px-2 py-1 mr-2 mb-2 rounded-md">
               {tag}
             </span>
-          ))
-        }
-      </div>
+          ))}
+        </div>
+      ) : null
+    }
+    <div class="text-lg font-light max-w-screen-lg mx-auto px-4 pb-8">
       <div class="markdown">
         <Content />
       </div>

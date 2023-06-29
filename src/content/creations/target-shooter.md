@@ -2,8 +2,9 @@
 title: Target Shooter
 link: http://oldsite.zequez.space/sandbox/blindmice/
 sourceLink: https://github.com/Zequez/zequez.github.io/tree/master/sandbox/blindmice
-images:
-  - /assets/target-shooter-1.png
+# iframe: http://oldsite.zequez.space/sandbox/blindmice/
+# iframeStyle: "height: 640px; width: 740px;"
+thumbnail: /assets/target-shooter-1.png
 date: 2011-01-01
 tags:
   - CoffeeScript
@@ -16,7 +17,14 @@ isOnline: true
 language:
   - en
 description: A small game about shooting targets with the mouse.
+releases:
+  -
+    version: 1.0.0
+    date: 2011-01-01
+    description: ''
 ---
+
+![Screenshot](/assets/target-shooter-1.png)
 
 Little game I made while learning JS canvas and having fun.
 

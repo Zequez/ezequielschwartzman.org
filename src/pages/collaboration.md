@@ -4,7 +4,7 @@ markdown: true
 title: "Collaboration"
 ---
 
-## Collaboration Manifesto
+# Collaboration Manifesto
 
 ### Possibilities
 

@@ -2,8 +2,7 @@
 title: "Introducción a la Arquiarquía"
 link: ''
 sourceLink: ''
-images:
-  - /assets/archiarchy.webp
+thumbnail: /assets/archiarchy.webp
 date: 2023-06-24
 tags: []
 creationType: writing
@@ -12,7 +11,14 @@ isOnline: true
 description: Un vistazo general al mundo más allá del patriarcado.
 language:
   - es
+releases:
+  -
+    version: Draft-1
+    date: 2023-06-24
+    description: ''
 ---
+
+![Símbolo de la arquearquía](/assets/archiarchy.webp)
 
 Con este post doy comienzo una serie cuyo título es “Cruzando el puente: Escapando del patriarcado y descubriendo los límites culturales” donde comparto mi propio recorrido en este camino que estoy tomando.
 

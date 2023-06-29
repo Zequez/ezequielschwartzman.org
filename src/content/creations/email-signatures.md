@@ -2,8 +2,8 @@
 title: Email Signatures Builder
 link: https://firmas-gen.ezequielschwartzman.org
 sourceLink: https://github.com/Zequez/email-signature-builder
-images:
-  - /assets/email-signatures-screenshot.png
+thumbnail: /assets/email-signatures-screenshot.png
+iframe: https://firmas-gen.ezequielschwartzman.org
 dateStart: 2023-05-05
 dateEnd: 2023-05-05
 tags:
@@ -17,6 +17,11 @@ isOnline: true
 description: A template-based HTML email signature generator.
 language:
   - en
+releases:
+  -
+    version: 0.1.0
+    date: 2023-05-05
+    description: ''
 ---
 
 I built this for a client initially. They wanted to generate an HTML email signature based on a design. Turns out you gotta copy the signature as HTML and then paste it on Gmail or other email systems. The whole thing is quite convoluted.

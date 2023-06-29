@@ -120,6 +120,11 @@ const groupedByTimeAgoInWords = sortedCreations.reduce((acc, curr) => {
   return acc;
 }, {} as { [key: string]: CollectionEntry<"creations">[] });
 
+function withLatestVersion (creation: CollectionEntry<"creations">, cb: (version: string) => any) {
+  return creation.data.releases[0]?.version ? cb(creation.data.releases[0].version) : null;
+
+}
+
 ---
 
 <div class=" max-w-4xl mx-auto">
@@ -132,12 +137,16 @@ const groupedByTimeAgoInWords = sortedCreations.reduce((acc, curr) => {
           <div class="absolute -top-2 left-2 px-2 py-1 bg-gray-100 border border-gray-400 rounded-md uppercase text-sm tracking-wider font-semibold" title={creationTypeToText(creation.data.creationType)}>
               {creationTypeToText(creation.data.creationType)}
           </div>
+          {withLatestVersion(creation, (version) => <div class="absolute -top-2 right-2 px-2 py-1 bg-gray-100 border border-gray-400 rounded-md text-sm tracking-wider font-semibold" title={creationTypeToText(creation.data.creationType)}>
+              {version.match(/^[0-9]/) ? `v${version}` : version}
+          </div>)}
+
           <a href={`/creations/${creation.slug}`} class="flex whitespace-nowrap items-center h-20">
             <h2 class="flex-grow rounded-t-md bg-white px-2 py-2 text-center text-2xl font-light text-ellipsis overflow-hidden font-serif">{creation.data.title}</h2>
           </a>
           <div>
             <a href={`/creations/${creation.slug}`} class="block aspect-video w-full">
-              <img src={creation.data.images[0]} class="w-full h-full object-cover" />
+              <img src={creation.data.thumbnail} class="w-full h-full object-cover" />
             </a>
             <div class="h-4 px-2 hidden">
               <div class="flex -mt-4 h-8 text-black/70 tracking-wider">
@@ -154,11 +163,11 @@ const groupedByTimeAgoInWords = sortedCreations.reduce((acc, curr) => {
                 </div>
             </div>
             </div>
-            <div class="relative p-8 pt-12">
-              <div class="font-light line-clamp-2 overflow-hidden text-black/50 mb-12">
+            <div class="relative p-8">
+              <div class="font-light line-clamp-2 overflow-hidden text-black/50">
                 {creation.data.description}
               </div>
-              <div class="absolute bottom-4 inset-x-4 flex items-center justify-center space-x-2">
+              {/*<div class="absolute bottom-4 inset-x-4 flex items-center justify-center space-x-2">
                 {(() => {
                   const d = creation.data;
                   switch(d.creationType) {
@@ -172,7 +181,7 @@ const groupedByTimeAgoInWords = sortedCreations.reduce((acc, curr) => {
                     default: return null;
                   }
                 })()}
-              </div>
+              </div>*/}
             </div>
           </div>
         </div>

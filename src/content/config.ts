@@ -8,7 +8,7 @@ export const creationsCollection = defineCollection({
     title: z.string(),
     link: z.optional(z.string()),
     sourceLink: z.optional(z.string()),
-    images: z.array(z.string()),
+    thumbnail: z.string(),
     tags: z.array(z.string()),
     isPublished: z.boolean(),
     isOnline: z.boolean(),
@@ -17,7 +17,13 @@ export const creationsCollection = defineCollection({
     dateEnd: z.optional(z.date()),
     description: z.string(),
     language: z.array(z.string()),
+    iframe: z.optional(z.string()),
+    iframeAspect: z.optional(z.string()),
+    iframeStyle: z.optional(z.string()),
     creationType: z.enum(["video", "collaboration", "software", "writing"]),
+    releases: z
+      .array(z.object({ date: z.date(), version: z.optional(z.string()), description: z.string() }))
+      .default([]),
   }),
 });
 

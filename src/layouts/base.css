@@ -44,7 +44,7 @@
 }
 
 .markdown h1 {
-  @apply mb-4 text-4xl font-bold tracking-wider font-serif;
+  @apply mb-8 text-4xl font-bold tracking-wider font-serif text-center;
 }
 
 .markdown h2 {
@@ -65,6 +65,14 @@
 
 .markdown li {
   @apply mb-0;
+}
+
+.markdown img {
+  @apply rounded-md border border-black/10 mx-auto;
+}
+
+.markdown iframe {
+  @apply block mx-auto;
 }
 
 .text-shadow-sm {
