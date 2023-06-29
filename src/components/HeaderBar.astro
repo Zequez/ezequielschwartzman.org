@@ -1,55 +1,63 @@
 ---
 ---
 
-<div class="font-serif absolute top-0 inset-x-0 z-30 border-b border-black/80 shadow-lg">
-  <div class="h-14 text-lg sm:text-2xl tracking-widest relative z-20 bg-[var(--main-color)]">
-    <h1 class="text-gray-100 text-shadow-sm text-2xl max-w-screen-lg mx-auto">
-      <a href="/" class="flex items-center h-full">
-        <span class="block sm:p-1">
-          <img
-            src="/assets/avatar.jpg"
-            class="h-14 w-14 sm:h-12 sm:w-12 sm:rounded-md shadow-sm border-r sm:border border-black/20"
-          />
-        </span>
-        <span class="block w-[1px] h-10 mx-2">
-          <span class="block w-full h-full bg-white/20"></span>
-        </span>
-        <span>Ezequiel Schwartzman</span>
-      </a>
-    </h1>
+<div class="font-serif absolute top-0 inset-x-0">
+  <div class="z-30 border-b border-black/80 shadow-lg relative">
+    <div
+      class="h-14 text-lg sm:text-2xl leading-tight tracking-widest relative z-20 bg-[var(--main-color)]"
+    >
+      <h1 class="text-gray-100 text-shadow-sm max-w-screen-lg mx-auto">
+        <a href="/" class="flex items-center h-full">
+          <span class="block border-r border-black/20 sm:border-0 sm:p-1">
+            <img
+              src="/assets/avatar.jpg"
+              class="h-14 w-14 sm:h-12 sm:w-12 sm:rounded-md shadow-sm sm:border border-black/20"
+            />
+          </span>
+          <span class="block w-[1px] h-10 mx-2">
+            <span class="block w-full h-full bg-white/20"></span>
+          </span>
+          <span>Ezequiel Schwartzman</span>
+        </a>
+      </h1>
+    </div>
+    <div
+      class="absolute pointer-events-none inset-0 z-40"
+      style={{ background: `linear-gradient(to bottom, #0001, #0000)` }}
+    >
+    </div>
+    <div
+      class="absolute pointer-events-none z-30 inset-x-0 bottom-0 h-[3px] bg-black/20 border-b-1"
+    >
+    </div>
   </div>
-  <div
-    class="absolute pointer-events-none inset-0 z-40"
-    style={{ background: `linear-gradient(to bottom, #0001, #0000)` }}
-  >
-  </div>
-  <div class="absolute pointer-events-none z-30 inset-x-0 bottom-0 h-[3px] bg-black/20 border-b-1">
-  </div>
-</div>
-<nav class="z-20 absolute top-14 inset-x-0 flex justify-center">
-  <div class="mx-auto flex justify-center font-serif rounded-b-md">
-    {
-      [
-        ["About", "/", "60"],
-        ["Creations", "/creations", "95"],
-        ["Collaboration", "/collaboration", "120"],
-        ["Contact", "/contact", "170"],
-      ].map(([title, href, color]) => {
-        const pathname = new URL(Astro.request.url).pathname;
-        const active = pathname.slice(1) === href.replace(/^\//, "");
+  <nav class="z-20 flex justify-center">
+    <div class="mx-auto flex justify-center font-serif rounded-b-md text-xs sm:text-base">
+      {
+        [
+          ["About", "/", "60"],
+          ["Creations", "/creations", "95"],
+          ["Collaboration", "/collaboration", "120"],
+          ["Contact", "/contact", "170"],
+        ].map(([title, href, color]) => {
+          const pathname = new URL(Astro.request.url).pathname;
+          const active = pathname.slice(1) === href.replace(/^\//, "");
 
-        return (
-          <a
-            href={href}
-            class="block px-2 py-1 border border-black/20 first:rounded-bl-md last:rounded-br-md border-b-2 last:border-r-2 first:border-l-2"
-            style={{ background: `oklch(75% 0.30 ${color})` }}
-          >
-            <span class:list={["text-white text-shadow-sm hover:underline", { underline: active }]}>
-              {title}
-            </span>
-          </a>
-        );
-      })
-    }
-  </div>
-</nav>
+          return (
+            <a
+              href={href}
+              class="block px-2 py-1 border border-black/20 first:rounded-bl-md last:rounded-br-md border-b-2 last:border-r-2 first:border-l-2"
+              style={{ background: `oklch(75% 0.30 ${color})` }}
+            >
+              <span
+                class:list={["text-white text-shadow-sm hover:underline", { underline: active }]}
+              >
+                {title}
+              </span>
+            </a>
+          );
+        })
+      }
+    </div>
+  </nav>
+</div>
