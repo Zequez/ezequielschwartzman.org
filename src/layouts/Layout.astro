@@ -43,7 +43,9 @@ const color = colors[section as keyof typeof colors] || colors.about;
     <HeaderBar />
     <!-- <div class="relative z-10"> -->
     <div
-      class={`pt-32 pb-12 px-8 text-black/80 ${frontmatter ? "markdown max-w-3xl mx-auto" : ""}`}
+      class={`pt-32 pb-4 px-4 sm:px-8 text-black/80 ${
+        frontmatter ? "markdown max-w-3xl mx-auto" : ""
+      }`}
     >
       <slot />
     </div>
