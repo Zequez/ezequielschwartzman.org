@@ -1,19 +1,31 @@
 ---
-import { bgColor } from "@/lib/chroma";
-import NavItem from "./NavItem.astro";
+const basePathname = new URL(Astro.request.url).pathname.slice(1).match(/^[^/]*/)?.[0] ?? null;
 ---
 
-<div
-  class="fixed z-20 bottom-0 inset-x-0 h-8 flex items-stretch justify-center text-white/80 uppercase text-xs sm:text-sm tracking-wider border-t-2"
-  style={{
-    backgroundColor: bgColor(25, -30),
-    boxShadow: "0 0 4px #0003",
-    borderColor: bgColor(25, -23),
-  }}
->
-  <!-- <a href="/" class="flex items-center px-1 text-shadow-sm">🏠</a> -->
-  <NavItem href="/">About</NavItem>
-  <NavItem href="/creations">Creations</NavItem>
-  <NavItem href="/collaboration">Collaboration</NavItem>
-  <NavItem href="/contact">Contact</NavItem>
-</div>
+<nav class="relative z-20 flex justify-center">
+  <div class="mx-auto flex justify-center font-serif rounded-b-md text-xs sm:text-base">
+    {
+      [
+        ["About", "/", "60"],
+        ["Creations", "/creations", "95"],
+        ["Collaboration", "/collaboration", "120"],
+        ["Contact", "/contact", "170"],
+      ].map(([title, href, color]) => {
+        const active = basePathname === href.replace(/^\//, "");
+        console.log("HREF", basePathname, href, active);
+
+        return (
+          <a
+            href={href}
+            class="block px-2 py-1 border border-black/20 first:rounded-bl-md last:rounded-br-md border-b-2 last:border-r-2 first:border-l-2"
+            style={{ background: `oklch(75% 0.30 ${color})` }}
+          >
+            <span class:list={["text-white text-shadow-sm hover:underline", { underline: active }]}>
+              {title}
+            </span>
+          </a>
+        );
+      })
+    }
+  </div>
+</nav>

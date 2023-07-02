@@ -31,7 +31,6 @@ function resolveDate (e: CollectionEntry<"creations">) {
 }
 
 const sortedCreations = creations.sort((a, b) => {
-  console.log(b.data.title, resolveDate(b));
   return resolveDate(b).getTime() - resolveDate(a).getTime();
 });
 

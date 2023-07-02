@@ -1,4 +1,5 @@
 ---
+import NavBar from "./NavBar.astro";
 ---
 
 <div class="font-serif absolute top-0 inset-x-0">
@@ -31,33 +32,5 @@
     >
     </div>
   </div>
-  <nav class="relative z-20 flex justify-center">
-    <div class="mx-auto flex justify-center font-serif rounded-b-md text-xs sm:text-base">
-      {
-        [
-          ["About", "/", "60"],
-          ["Creations", "/creations", "95"],
-          ["Collaboration", "/collaboration", "120"],
-          ["Contact", "/contact", "170"],
-        ].map(([title, href, color]) => {
-          const pathname = new URL(Astro.request.url).pathname;
-          const active = pathname.slice(1) === href.replace(/^\//, "");
-
-          return (
-            <a
-              href={href}
-              class="block px-2 py-1 border border-black/20 first:rounded-bl-md last:rounded-br-md border-b-2 last:border-r-2 first:border-l-2"
-              style={{ background: `oklch(75% 0.30 ${color})` }}
-            >
-              <span
-                class:list={["text-white text-shadow-sm hover:underline", { underline: active }]}
-              >
-                {title}
-              </span>
-            </a>
-          );
-        })
-      }
-    </div>
-  </nav>
+  <NavBar />
 </div>
