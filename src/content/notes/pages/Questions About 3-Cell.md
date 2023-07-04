@@ -1,0 +1,7 @@
+- There is too many people to choose from. Who do I choose?
+- Do I pick from the PM context or from my born cultural context? A brother? A good friend? An acquaintance? A partner? Someone I have never met personally that just wants to be on a 3 cell also?
+- What if I'm not good enough to hold space and I cannot create what is needed? Should I team up with a more experienced spaceholder?
+- I get only 2; are 3 cells mean to be a lifelong commitment?
+- What's the right balance between men and women?
+- How often and for how long do we meet? Should I just pick a weekday and time and commit before I know with whom?
+- Do I pick both people, or do I pick one and then together we decide the next? Or maybe I just create a group call room at a convenient time, share the link saying I'm holding space for a new 3cell and wait for other 2 to pop up and update the message when the team is full?

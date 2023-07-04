@@ -27,8 +27,16 @@ export const creationsCollection = defineCollection({
   }),
 });
 
+export const notesCollection = defineCollection({
+  type: "content",
+  schema: z.object({}),
+});
+
 // 3. Export a single `collections` object to register your collection(s)
 //    This key should match your collection directory name in "src/content"
 export const collections = {
   creations: creationsCollection,
+  notes: {
+    pages: notesCollection,
+  },
 };

@@ -1,0 +1,32 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const notesEntries = await getCollection("notes");
+  return notesEntries
+    .filter(({ slug }) => {
+      return slug.startsWith("pages/");
+    })
+    .map((note) => {
+      console.log(note.slug);
+      return {
+        params: { slug: note.slug.replace(/^pages\//, "") },
+        props: { note },
+      };
+    });
+}
+
+const { note } = Astro.props;
+
+const title = note.id.replace(/^pages\//, "").replace(/\.md$/, "");
+
+const { Content } = await note.render();
+---
+
+<Layout title="Notes">
+  <div class="markdown max-w-3xl mx-auto">
+    <h1>{title}</h1>
+    <Content />
+  </div>
+</Layout>

@@ -71,7 +71,7 @@
 }
 
 .markdown li {
-  @apply mb-0;
+  @apply mb-2;
 }
 
 .markdown img {
