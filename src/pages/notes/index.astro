@@ -7,13 +7,6 @@ const notesEntries = await getCollection("notes");
 const onlyNotes = notesEntries.filter(({ slug, id }) => {
   return id.startsWith("pages/") && id !== "pages/contents.md";
 });
-// .map((note) => {
-//   console.log(note.slug);
-//   return {
-//     params: { slug: note.slug.replace(/^pages\//, "") },
-//     props: { note },
-//   };
-// });
 ---
 
 <Layout title="Notes">

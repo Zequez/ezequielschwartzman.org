@@ -9,7 +9,6 @@ export async function getStaticPaths() {
       return slug.startsWith("pages/");
     })
     .map((note) => {
-      console.log(note.slug);
       return {
         params: { slug: note.slug.replace(/^pages\//, "") },
         props: { note },

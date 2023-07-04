@@ -12,7 +12,6 @@ const basePathname = new URL(Astro.request.url).pathname.slice(1).match(/^[^/]*/
         ["Contact", "/contact", "170"],
       ].map(([title, href, color]) => {
         const active = basePathname === href.replace(/^\//, "");
-        console.log("HREF", basePathname, href, active);
 
         return (
           <a

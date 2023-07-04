@@ -19,10 +19,14 @@ const { Content } = await creation.render();
     <h1 class="text-4xl text-center mb-8 font-light px-4 font-serif">{creation.data.title}</h1>
     {
       creation.data.iframe ? (
-        <div class:list={["w-full flex-shrink-0 flex items-center justify-center mb-8"]}>
+        <div
+          id="iframe-container"
+          class:list={["w-full flex-shrink-0 flex items-center justify-center mb-8"]}
+          style={{ display: "none" }}
+        >
           <div class="w-full">
             <iframe
-              src={creation.data.iframe}
+              maybe-src={creation.data.iframe}
               class:list={[
                 "w-full rounded-md border border-black/10 mx-auto aspect-video flex-shrink-0",
               ]}
@@ -38,6 +42,30 @@ const { Content } = await creation.render();
         </div>
       ) : null
     }
+    <script>
+      const iframeContainer = document.getElementById("iframe-container");
+      const iframe = document.querySelector("iframe");
+      let showing = false;
+      if (iframeContainer) {
+        function processIframeShowing() {
+          if (window.innerWidth < 768) {
+            if (showing) {
+              showing = false;
+              iframeContainer.style.display = "none";
+              iframe.setAttribute("src", "");
+            }
+          } else {
+            if (!showing) {
+              showing = true;
+              iframeContainer.style.display = "flex";
+              iframe.setAttribute("src", iframe.getAttribute("maybe-src"));
+            }
+          }
+        }
+        window.addEventListener("resize", processIframeShowing);
+        processIframeShowing();
+      }
+    </script>
     {
       creation.data.link || creation.data.sourceLink ? (
         <div class="flex flex-wrap mb-4 items-center justify-center">
@@ -49,18 +77,24 @@ const { Content } = await creation.render();
               <a
                 href={link}
                 target="_blank"
-                class="mb-4 bg-blue-100 border border-blue-300 rounded-md text-blue-500 group mx-2 mb-4"
+                class="mb-4 bg-blue-100 border border-blue-300 rounded-md text-blue-500 group mx-2 mb-4 flex flex-col sm:flex-row"
               >
-                <strong class="inline-block text-center text-xl font-semibold bg-blue-200 rounded-l-md text-blue-500 py-2 px-8 border-r border-blue-300">
+                <strong class="inline-block text-center text-base sm:text-xl font-semibold bg-blue-200 sm:rounded-l-md text-blue-500 px-2 py-1 sm:py-2 sm:px-8 sm:border-r border-blue-300">
                   {text}
                 </strong>
-                <span class="px-2 group-hover:underline">{link}</span>
+                <span class="px-2 py-1 group-hover:underline text-xs sm:text-base">{link}</span>
               </a>
             ) : null
           )}
         </div>
       ) : null
     }
+
+    <div class="text-lg font-light max-w-screen-lg mx-auto px-4 pb-8">
+      <div class="markdown">
+        <Content />
+      </div>
+    </div>
     {
       creation.data.tags.length ? (
         <div class="flex justify-center items-center flex-wrap mb-4 w-full">
@@ -72,10 +106,5 @@ const { Content } = await creation.render();
         </div>
       ) : null
     }
-    <div class="text-lg font-light max-w-screen-lg mx-auto px-4 pb-8">
-      <div class="markdown">
-        <Content />
-      </div>
-    </div>
   </div>
 </Layout>
