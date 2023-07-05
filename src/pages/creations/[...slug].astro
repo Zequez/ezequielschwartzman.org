@@ -82,7 +82,9 @@ const { Content } = await creation.render();
                 <strong class="inline-block text-center text-base sm:text-xl font-semibold bg-blue-200 sm:rounded-l-md text-blue-500 px-2 py-1 sm:py-2 sm:px-8 sm:border-r border-blue-300">
                   {text}
                 </strong>
-                <span class="px-2 py-1 group-hover:underline text-xs sm:text-base">{link}</span>
+                <span class="px-2 py-1 group-hover:underline text-xs sm:text-base flex items-center">
+                  {link}
+                </span>
               </a>
             ) : null
           )}
@@ -90,11 +92,10 @@ const { Content } = await creation.render();
       ) : null
     }
 
-    <div class="text-lg font-light max-w-screen-lg mx-auto px-4 pb-8">
-      <div class="markdown">
-        <Content />
-      </div>
+    <div class="markdown mx-auto">
+      <Content />
     </div>
+
     {
       creation.data.tags.length ? (
         <div class="flex justify-center items-center flex-wrap mb-4 w-full">

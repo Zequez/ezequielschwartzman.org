@@ -4,21 +4,36 @@ import { Content as About } from "./_about.md";
 ---
 
 <Layout>
-  <div class="text-black/90">
-    <div class="relative z-10 sm:mx-auto sm:max-w-screen-lg -mt-20 sm:mt-0 -mx-4">
-      <div
+  <div class="markdown mx-auto -mt-20 sm-(flex mt-0)">
+    <div
+      class="mb-4 aspect-square overflow-hidden -mx-4 sm-(w-1/2 mr-8 aspect-auto overflow-auto mx-0 rounded-md flex items-center)"
+    >
+      <img
+        src="/assets/my-photo-1.jpg"
+        alt="A picture of myself in the woods"
+        class="sm:rounded-md shadow-sm -mt-52 sm:mt-0"
+      />
+    </div>
+    <div class="sm:w-1/2 sm:-mt-4">
+      <About />
+    </div>
+  </div>
+  <!-- <div class="text-black/90"> -->
+  <!-- <div class="relative z-10 sm:mx-auto sm:max-w-screen-lg -mt-20 sm:mt-0 -mx-4"> -->
+  <!-- <div
         class="flex-shrink-0 overflow-hidden sm:overflow-auto sm:h-auto aspect-square sm:aspect-auto float-left sm:mr-8 mb-4"
       >
+
+      </div> -->
+  <!-- <div class="markdown text-xl font-light p-8 sm:p-0">
         <img
           src="/assets/my-photo-1.jpg"
           alt="A picture of myself in the woods"
           class="sm:max-w-[270px] md:max-w-[400px] sm:rounded-md shadow-sm -mt-52 sm:mt-0"
         />
-      </div>
-      <div class="markdown text-xl font-light p-8 sm:p-0">
         <About />
-      </div>
-      <div class="clear-both"></div>
+      </div> -->
+  <!-- <div class="clear-both"></div>
     </div>
-  </div>
+  </div> -->
 </Layout>

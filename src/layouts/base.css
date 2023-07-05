@@ -1,32 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 :root {
   --main-color-hue: 25;
   --main-color: oklch(50% 0.18 25);
   --main-color-shadow: oklch(45% 0.18 var(--main-color-hue));
   --main-color-light: oklch(62% 0.18 var(--main-color-hue));
-}
-
-.markdown {
-  letter-spacing: 0.25px;
-}
-
-.markdown strong {
-  @apply font-bold;
-}
-
-.markdown em {
-  @apply italic;
-}
-
-.markdown a {
-  @apply outline outline-blue-300 bg-blue-100 text-blue-500 rounded-sm px-1;
-}
-
-.markdown a:hover {
-  @apply bg-blue-400 text-white outline-blue-500;
 }
 
 .markdown a[href^="http"]:after {
@@ -44,42 +20,6 @@
   line-height: 13px;
   font-size: 18px;
   transform: scaleY(-0.75) scaleX(0.75);
-}
-
-.markdown p {
-  @apply mb-4;
-}
-
-.markdown h1 {
-  @apply mb-8 text-4xl font-bold tracking-wider font-serif text-center;
-}
-
-.markdown h2 {
-  @apply mb-4 text-3xl font-bold tracking-wider font-serif;
-}
-
-.markdown h3 {
-  @apply mb-4 text-2xl font-bold tracking-wider font-serif;
-}
-
-.markdown h4 {
-  @apply mb-4 text-xl font-bold tracking-wider font-serif;
-}
-
-.markdown ul {
-  @apply mb-4 pl-4 list-disc;
-}
-
-.markdown li {
-  @apply mb-2;
-}
-
-.markdown img {
-  @apply rounded-md border border-black/10 mx-auto;
-}
-
-.markdown iframe {
-  @apply block mx-auto;
 }
 
 .text-shadow-sm {

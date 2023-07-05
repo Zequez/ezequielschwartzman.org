@@ -1,4 +1,4 @@
-## Story
+# Story
 
 Ezequiel is at the edge of being a web technology specialist and a regenerative archiarchal culture edgeworker.
 
