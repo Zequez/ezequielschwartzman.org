@@ -1,15 +1,17 @@
 ---
 import "./base.css";
 import HeaderBar from "@/components/HeaderBar.astro";
-import NavBar from "@/components/NavBar.astro";
-import Rainbow from "@/components/Rainbow.astro";
+import FluidNavBar from "@/components/FluidNavBar";
+import Navigation from "@/components/Navigation";
 import { colors } from "@/lib/chroma";
 
 // export interface Props {
 //   title: string;
 // }
 
-const { title, frontmatter, noPadding } = Astro.props;
+const { title, frontmatter, noPadding, markdown } = Astro.props;
+
+const wrapForMarkdown = frontmatter?.markdown || markdown;
 
 let baseTitle = "Ezequiel Schwartzman";
 let givenTitle = title || frontmatter?.title;
@@ -18,6 +20,18 @@ let resolvedTitle = givenTitle ? `${givenTitle} | ${baseTitle}` : baseTitle;
 const pathname = new URL(Astro.request.url).pathname;
 const section = pathname.slice(1).split("/")[0];
 const color = colors[section as keyof typeof colors] || colors.about;
+
+const basePathname = new URL(Astro.request.url).pathname.slice(1).match(/^[^/]*/)?.[0] ?? null;
+const fluidNavigation = [
+  ["About", "/"],
+  ["Creations", "/creations"],
+  ["Collaboration", "/collaboration"],
+  ["Notes", "/notes"],
+  ["Video Room", "/video-room"],
+  ["Availability", "/availability"],
+  ["Contact", "/contact"],
+] as [string, string][];
+const initialActive = fluidNavigation.map(([_, href]) => href).indexOf(`/` + basePathname);
 ---
 
 <!DOCTYPE html>
@@ -39,14 +53,31 @@ const color = colors[section as keyof typeof colors] || colors.about;
     </style> -->
   </head>
   <body class="bg-gray-50">
-    <HeaderBar />
-    <!-- <div class="relative z-10"> -->
-    <div
-      class={` text-black/80 ${frontmatter ? "markdown max-w-3xl mx-auto" : ""} ${
-        noPadding ? "" : "pt-32 pb-4 px-4 sm:px-8"
-      }`}
-    >
-      <slot />
+    <div class="flex w-full min-h-screen">
+      <Navigation items={fluidNavigation} initialActive={initialActive} client:load />
+      <FluidNavBar client:only items={fluidNavigation} initialActive={initialActive} />
+      <div class={`text-black/80  flex-grow order-1 sm:pr-56 pb-12 sm:pb-0 relative`}>
+        {
+          wrapForMarkdown ? (
+            <div class="markdown mx-auto p-4 sm:p-8">
+              <slot />
+            </div>
+          ) : (
+            <slot />
+          )
+        }
+
+        <!-- <HeaderBar /> -->
+        <!-- <slot /> -->
+        <!-- <div class="relative z-10"> -->
+        <!-- <div
+          class={` text-black/80 ${frontmatter ? "markdown max-w-3xl mx-auto" : ""} ${
+            noPadding ? "" : "pt-32 pb-4 px-4 sm:px-8"
+          }`}
+        >
+          <slot />
+        </div> -->
+      </div>
     </div>
     <!-- </div> -->
     <!-- <NavBar /> -->

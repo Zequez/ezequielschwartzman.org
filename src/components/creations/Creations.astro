@@ -126,7 +126,10 @@ function withLatestVersion (creation: CollectionEntry<"creations">, cb: (version
 
 ---
 
-<div class=" max-w-4xl mx-auto">
+<div class="p-4 sm:p-8">
+  <div class="markdown">
+    <h1>Creations</h1>
+  </div>
   {Object.entries(groupedByTimeAgoInWords).map(([group, creations], i) =>
     <div class="text-4xl italic font-thin tracking-wider mb-12">...{group}</div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">

@@ -1,10 +1,15 @@
 import { defineConfig } from "astro/config";
-import react from "@astrojs/react";
 import UnoCSS from "unocss/astro";
 import vercel from "@astrojs/vercel/static";
+import preact from "@astrojs/preact";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react(), UnoCSS({ injectReset: true })],
+  integrations: [
+    UnoCSS({
+      injectReset: true,
+    }),
+    preact(),
+  ],
   adapter: vercel(),
 });

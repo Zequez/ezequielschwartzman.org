@@ -23,9 +23,7 @@ const title = note.id.replace(/^pages\//, "").replace(/\.md$/, "");
 const { Content } = await note.render();
 ---
 
-<Layout title="Notes">
-  <div class="markdown max-w-3xl mx-auto">
-    <h1>{title}</h1>
-    <Content />
-  </div>
+<Layout title="Notes" markdown={true}>
+  <h1>{title}</h1>
+  <Content />
 </Layout>

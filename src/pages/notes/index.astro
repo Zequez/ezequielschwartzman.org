@@ -9,20 +9,18 @@ const onlyNotes = notesEntries.filter(({ slug, id }) => {
 });
 ---
 
-<Layout title="Notes">
-  <div class="markdown max-w-3xl mx-auto">
-    <h1 class="text-4xl font-serif text-center mb-8">Notes</h1>
+<Layout title="Notes" markdown={true}>
+  <h1>Notes</h1>
 
-    {
-      onlyNotes.map((note) => {
-        const slug = note.slug.replace(/^pages\//, "");
-        const title = note.id.replace(/^pages\//, "").replace(/\.md$/, "");
-        return (
-          <div>
-            <a href={`/notes/${slug}`}>{title}</a>
-          </div>
-        );
-      })
-    }
-  </div>
+  {
+    onlyNotes.map((note) => {
+      const slug = note.slug.replace(/^pages\//, "");
+      const title = note.id.replace(/^pages\//, "").replace(/\.md$/, "");
+      return (
+        <div>
+          <a href={`/notes/${slug}`}>{title}</a>
+        </div>
+      );
+    })
+  }
 </Layout>
