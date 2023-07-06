@@ -1,0 +1,14 @@
+- ## TODOs
+	- DONE Wants to access SupaBase to see who signed up
+	- TODO Feedback button that embeds the AirTable form
+	- TODO Change limit to 25MB
+	- TODO Caching issue; caching busting
+	- TODO See the users; admin panel
+	- TODO Login & Sign up separate page
+		- Send to sign up page
+		- Rewrite the form to take more info from the users
+	- TODO See how to connect Supabase with MailChimp or something
+	- TODO Research tracking
+	- TODO Improve styling give options of color of buttons and font
+	-
+-
