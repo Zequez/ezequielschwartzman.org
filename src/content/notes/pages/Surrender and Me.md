@@ -1,0 +1,5 @@
+- [[Surrender]] has recently become a hot topic in my mind
+- I've  accumulated knowledge about it and build a conceptual framework around it.
+	- Most of my conceptual framework comes from [[Josh]], from [[Kyle Cease]] and from [[David Hawkins]]
+- It has attained a sort of [[Glamour]] for my mind, there is a shine about it that triggers a want.
+- There is grasping towards it, there is a part of me saying "I need to surrender".

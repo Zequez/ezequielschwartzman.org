@@ -1,0 +1,9 @@
+- Surrender is done by [[Grace]], not by [[Ego]]
+- Surrender cannot be understood
+- Cannot be taught
+- If you want to surrender in order to attain something, it doesn't work, because the attaining and the wanting come from the ego, and is the ego itself that needs to be surrendered.
+- It has been described by [[Kyle Cease]] as someone desperately flailing in the ocean; and surrender is what happens when the person stops struggling and just floats there.
+- Surrender happens when I drop resistance to what is
+- You are essentially surrendering to God, to divine will, to higher powers. It's an acknowledging that there is  something beyond the limitations of the human form, something like "Even if I don't understand why all this is happening, I trust and know that God knows what he's doing" or "My higher self knows what he's doing"
+- Surrender is not something that can be "done" by itself, there is always an object of surrender, something that is being grasped at.
+- There are [[Opportunities for Surrender]] that happen through the day.
