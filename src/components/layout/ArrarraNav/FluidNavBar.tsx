@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "preact/hooks";
 import cx from "classnames";
+import type { Colors } from "./colors";
 
 const spacing = 4;
 const closedCircleRadius = 60;
@@ -36,16 +37,12 @@ function calculateHoveringIndex(touching: null | { x: number; y: number }, itemD
 export default function FluidNavBar({
   items,
   initialActive,
+  colors,
 }: {
   items: [string, string][];
   initialActive: number;
+  colors: Colors;
 }) {
-  const pathFill = "";
-  const itemsColors = items.map((_, i) => `hsl(${i * (360 / items.length)}, 50%, 50%)`);
-  const itemsColorsDimmer = items.map((_, i) => `hsl(${i * (360 / items.length)}, 20%, 50%)`);
-  const itemsColorsDarker = items.map((_, i) => `hsl(${i * (360 / items.length)}, 50%, 40%)`);
-  const itemsColorsDarkerDimmer = items.map((_, i) => `hsl(${i * (360 / items.length)}, 20%, 40%)`);
-
   const [touching, setIsTouching] = useState<null | { x: number; y: number }>(null);
   const [selected, setSelected] = useState(initialActive);
   const itemsContainer = useRef<HTMLDivElement>(null);
@@ -113,9 +110,7 @@ export default function FluidNavBar({
 
   return (
     <div
-      class={cx("fixed h-full w-full z-60 pointer-events-none transform duration-500", {
-        "bg-black/50": touching,
-      })}
+      class={cx("sm:invisible fixed h-full w-full z-30 pointer-events-none")}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
       onTouchStart={handleTouchStart}
@@ -128,9 +123,9 @@ export default function FluidNavBar({
           width: `${closedCircleRadius}px`,
           height: `${closedCircleRadius}px`,
           transform: touching ? `scale(${openCircleRadius / closedCircleRadius})` : null,
-          backgroundColor: touching ? itemsColorsDimmer[selected] : itemsColors[selected],
-          borderLeft: `solid 2px ${itemsColorsDarkerDimmer[selected]}`,
-          borderTop: `solid 2px ${itemsColorsDarkerDimmer[selected]}`,
+          backgroundColor: touching ? colors.dimmer(selected) : colors.base(selected),
+          borderLeft: `solid 2px ${colors.darkerDimmer(selected)}`,
+          borderTop: `solid 2px ${colors.darkerDimmer(selected)}`,
         }}
         class={cx(
           "pointer-events-auto absolute bottom-0 right-0 duration-500 rounded-tl-full  transition shadow-lg w-16 aspect-square transform-origin-br",
@@ -170,10 +165,7 @@ export default function FluidNavBar({
           const bottom = Math.sin(rad) * (radius + (touching ? 0 : -50));
           const right = Math.cos(rad) * (radius + (touching ? 0 : -50));
 
-          const transformStyle =
-            !isSelected || touching
-              ? `translateX(-${right}px) translateY(-${bottom}px) rotate(${deg}deg)`
-              : `translateX(-${closedCircleRadius + 8}px) translateY(0) rotate(0)`;
+          const transformStyle = `translateX(-${right}px) translateY(-${bottom}px) rotate(${deg}deg)`;
 
           return (
             <a
@@ -184,17 +176,15 @@ export default function FluidNavBar({
                 "delay-200": touching && !isSelected,
                 "delay-0": touching && isSelected,
                 "duration-300": !touching,
-                "opacity-0": !touching && !isSelected,
-                "rounded-bl-0 rounded-br-0 shadow-md outline-2 outline-solid pointer-events-auto opacity-0 xs:opacity-100":
-                  !touching && isSelected,
+                "opacity-0": !touching,
                 "outline-2 outline-solid": hoveringIndex === i,
               })}
               onTouchStart={(ev) => (isSelected ? ev.stopPropagation() : null)}
               style={{
                 transitionProperty: "transform, opacity",
-                backgroundColor: hoveringIndex === i || isSelected ? itemsColors[i] : "",
+                backgroundColor: hoveringIndex === i || isSelected ? colors.base(i) : "",
                 transform: transformStyle,
-                outlineColor: itemsColorsDarker[i],
+                outlineColor: colors.darker(i),
               }}
             >
               {title}

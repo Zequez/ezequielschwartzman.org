@@ -5,8 +5,7 @@ avatar: /assets/avatar2.jpg
 avatarDescription: A portrait of Ezequiel looking at the camera with a garden in the background
 favicon: /assets/favicon.jpg
 layoutComponents:
-  - SideNavigation
-  - FluidNavBar
+  - ArrarraNav
 navigation:
   -
     title: About

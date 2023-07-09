@@ -13,21 +13,14 @@ const activeNavigation = navigationItems.map(([_, href]) => href).indexOf(`/` + 
 {
   (() => {
     const renderComponents = {
-      SideNavigation: () => (
-        <layoutComponents.SideNavigation
+      ArrarraNav: () => (
+        <layoutComponents.ArrarraNav
           items={navigationItems}
           initialActive={activeNavigation}
           avatar={config.avatar}
           avatarDescription={config.avatar}
           title={config.baseTitle}
           client:load
-        />
-      ),
-      FluidNavBar: () => (
-        <layoutComponents.FluidNavBar
-          client:only
-          items={navigationItems}
-          initialActive={activeNavigation}
         />
       ),
       PlainHeader: () => <div class="fixed top-0 inset-x-0 h-20 bg-red-400 z-50">Testing</div>,

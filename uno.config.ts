@@ -4,6 +4,15 @@ import presetWebFonts from "@unocss/preset-web-fonts";
 import transformerVariantGroup from "@unocss/transformer-variant-group";
 
 export default defineConfig({
+  rules: [
+    ["text-shadow-light-sm", { "text-shadow": "0 1px 0 #fff" }],
+    [
+      /^text-shadow-dark-sm(\/([\d]+))?$/,
+      ([_1, _2, num]) => ({
+        "text-shadow": `0 1px 0 rgba(0,0,0,${num ? parseInt(num) * 0.01 : 1})`,
+      }),
+    ],
+  ],
   theme: {
     breakpoints: {
       xs: "420px",
