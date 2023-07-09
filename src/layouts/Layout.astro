@@ -1,48 +1,30 @@
 ---
 import "./base.css";
-import HeaderBar from "@/components/HeaderBar.astro";
-import FluidNavBar from "@/components/FluidNavBar";
-import Navigation from "@/components/Navigation";
 import { colors } from "@/lib/chroma";
+import LayoutComponents from "./LayoutComponents.astro";
+import config from "../config.yml";
 
-// export interface Props {
-//   title: string;
-// }
-
-const { title, frontmatter, noPadding, markdown } = Astro.props;
+const { title, frontmatter, markdown } = Astro.props;
 
 const wrapForMarkdown = frontmatter?.markdown || markdown;
 
-let baseTitle = "Ezequiel Schwartzman";
 let givenTitle = title || frontmatter?.title;
-let resolvedTitle = givenTitle ? `${givenTitle} | ${baseTitle}` : baseTitle;
+let resolvedTitle = givenTitle ? `${givenTitle} | ${config.baseTitle}` : config.baseTitle;
 
 const pathname = new URL(Astro.request.url).pathname;
 const section = pathname.slice(1).split("/")[0];
 const color = colors[section as keyof typeof colors] || colors.about;
-
-const basePathname = new URL(Astro.request.url).pathname.slice(1).match(/^[^/]*/)?.[0] ?? null;
-const fluidNavigation = [
-  ["About", "/"],
-  ["Creations", "/creations"],
-  ["Collaboration", "/collaboration"],
-  ["Notes", "/notes"],
-  ["Video Room", "/video-room"],
-  ["Availability", "/availability"],
-  ["Contact", "/contact"],
-] as [string, string][];
-const initialActive = fluidNavigation.map(([_, href]) => href).indexOf(`/` + basePathname);
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang={config.language}>
   <head>
     <style define:vars={{ mainColor: color }}></style>
     <meta charset="UTF-8" />
-    <meta name="description" content="Ezequiel's website" />
+    <meta name="description" content={config.baseDescription} />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/jpg" href="/assets/favicon.jpg" />
-    <meta property="og:image" content="/assets/avatar.jpg" />
+    <link rel="icon" type="image/jpg" href={config.favicon} />
+    <meta property="og:image" content={config.avatar} />
     <meta name="generator" content={Astro.generator} />
     <title>{resolvedTitle}</title>
     <!-- <style set:html={`:root {--main-color: ${color};}`}></style>
@@ -54,8 +36,7 @@ const initialActive = fluidNavigation.map(([_, href]) => href).indexOf(`/` + bas
   </head>
   <body class="bg-gray-50">
     <div class="flex w-full min-h-screen">
-      <Navigation items={fluidNavigation} initialActive={initialActive} client:load />
-      <FluidNavBar client:only items={fluidNavigation} initialActive={initialActive} />
+      <LayoutComponents />
       <div class={`text-black/80  flex-grow order-1 sm:pr-56 pb-12 sm:pb-0 relative`}>
         {
           wrapForMarkdown ? (
@@ -66,24 +47,8 @@ const initialActive = fluidNavigation.map(([_, href]) => href).indexOf(`/` + bas
             <slot />
           )
         }
-
-        <!-- <HeaderBar /> -->
-        <!-- <slot /> -->
-        <!-- <div class="relative z-10"> -->
-        <!-- <div
-          class={` text-black/80 ${frontmatter ? "markdown max-w-3xl mx-auto" : ""} ${
-            noPadding ? "" : "pt-32 pb-4 px-4 sm:px-8"
-          }`}
-        >
-          <slot />
-        </div> -->
       </div>
     </div>
-    <!-- </div> -->
-    <!-- <NavBar /> -->
-    <!-- <div class="absolute z-0 h-30 w-full top-0 pointer-events-none opacity-10">
-      <Rainbow />
-    </div> -->
   </body>
 </html>
 <style is:global></style>

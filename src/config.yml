@@ -1,0 +1,41 @@
+language: 'en'
+baseDescription: Ezequiel's website
+baseTitle: Ezequiel Schwartzman
+avatar: /assets/avatar2.jpg
+favicon: /assets/avatar2.jpg
+layoutComponents:
+  - SideNavigation
+  - FluidNavBar
+navigation:
+  -
+    title: About
+    path: '/'
+  -
+    title: Creations
+    path: '/creations'
+  -
+    title: Collaboration
+    path: '/collaboration'
+  -
+    title: Notes
+    path: '/notes'
+  -
+    title: Video Room
+    path: '/video-room'
+  -
+    title: Availability
+    path: '/availability'
+  -
+    title: Contact
+    path: '/contact'
+socialLinks:
+  -
+    name: GitHub
+    url: https://github.com/zequez
+  -
+    name: YouTube
+    url: https://www.youtube.com/channel/UCXhH5g4vDaci5EcqYaYv1kw
+  -
+    name: Telegram
+    url: https://t.me/zequez
+

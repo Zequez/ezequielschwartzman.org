@@ -24,6 +24,7 @@
     "preact": "^10.6.5"
   },
   "devDependencies": {
+    "@rollup/plugin-yaml": "^4.1.1",
     "@types/node": "^20.2.1",
     "unocss": "^0.53.4"
   }

@@ -1,12 +1,14 @@
 import cx from "classnames";
 import { useEffect, useState } from "preact/hooks";
 
-export default function Navigation({
+export default function SideNavigation({
   items,
   initialActive,
+  avatar,
 }: {
   items: [string, string][];
   initialActive: number;
+  avatar: string;
 }) {
   const [bigScreen, setBigScreen] = useState(true);
   const itemsColors = items.map((_, i) => `hsl(${i * (360 / items.length)}, 50%, 50%)`);
@@ -32,7 +34,7 @@ export default function Navigation({
       <header class="fixed h-10 bottom-0 inset-x-0 bg-gray-100 border-t border-gray-200 z-40 sm:hidden">
         <a class="flex items-center" href="/">
           <div class="h-10 w-10 mr-4">
-            <img src="/assets/avatar2.jpg" alt="A picture of myself in the woods" />
+            <img src={avatar} alt="A picture of myself in the woods" />
           </div>
           <h1 class="text-base font-serif text-black/70" style={{ textShadow: "0 1px 0 #fff" }}>
             Ezequiel Schwartzman
@@ -43,7 +45,7 @@ export default function Navigation({
         <a class="block" href="/">
           <div class="p-4">
             <img
-              src="/assets/avatar2.jpg"
+              src={avatar}
               alt="A picture of myself in the woods"
               class="rounded-full border-2 border-gray-300"
             />

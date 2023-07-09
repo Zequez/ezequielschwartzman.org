@@ -1,0 +1,36 @@
+---
+import config from "../config.yml";
+import * as layoutComponents from "@/components/layout";
+
+const basePathname = new URL(Astro.request.url).pathname.slice(1).match(/^[^/]*/)?.[0] ?? null;
+
+const navigationItems = config.navigation.map(
+  ({ title, path }) => [title, path] as [string, string]
+);
+const activeNavigation = navigationItems.map(([_, href]) => href).indexOf(`/` + basePathname);
+---
+
+{
+  (() => {
+    const renderComponents = {
+      SideNavigation: () => (
+        <layoutComponents.SideNavigation
+          items={navigationItems}
+          initialActive={activeNavigation}
+          avatar={config.avatar}
+          client:load
+        />
+      ),
+      FluidNavBar: () => (
+        <layoutComponents.FluidNavBar
+          client:only
+          items={navigationItems}
+          initialActive={activeNavigation}
+        />
+      ),
+      PlainHeader: () => <div class="fixed top-0 inset-x-0 h-20 bg-red-400 z-50">Testing</div>,
+    } as { [key: string]: () => Element };
+
+    return config.layoutComponents.map((componentName) => renderComponents[componentName]());
+  })()
+}
