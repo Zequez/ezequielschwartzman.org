@@ -1,15 +1,17 @@
 ---
-import Layout from "@/layouts/Layout.astro";
+import ContentLayout from "@/layouts/ContentLayout.astro";
 import { getCollection } from "astro:content";
 const notesEntries = await getCollection("notes");
 const note = notesEntries.find((note) => note.id === "pages/My Services.md");
 if (!note) throw new Error("Note not found");
 const { Content } = await note.render();
+
+console.log(Content);
 ---
 
-<Layout title="Services">
-  <div class="markdown mx-auto">
+<ContentLayout title="Services">
+  <div class="unlist-first">
     <h1>Services</h1>
     <Content />
   </div>
-</Layout>
+</ContentLayout>
