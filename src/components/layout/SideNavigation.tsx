@@ -5,10 +5,14 @@ export default function SideNavigation({
   items,
   initialActive,
   avatar,
+  avatarDescription,
+  title,
 }: {
   items: [string, string][];
   initialActive: number;
   avatar: string;
+  avatarDescription: string;
+  title: string;
 }) {
   const [bigScreen, setBigScreen] = useState(true);
   const itemsColors = items.map((_, i) => `hsl(${i * (360 / items.length)}, 50%, 50%)`);
@@ -34,10 +38,10 @@ export default function SideNavigation({
       <header class="fixed h-10 bottom-0 inset-x-0 bg-gray-100 border-t border-gray-200 z-40 sm:hidden">
         <a class="flex items-center" href="/">
           <div class="h-10 w-10 mr-4">
-            <img src={avatar} alt="A picture of myself in the woods" />
+            <img src={avatar} alt={avatarDescription} />
           </div>
           <h1 class="text-base font-serif text-black/70" style={{ textShadow: "0 1px 0 #fff" }}>
-            Ezequiel Schwartzman
+            {title}
           </h1>
         </a>
       </header>
@@ -46,7 +50,7 @@ export default function SideNavigation({
           <div class="p-4">
             <img
               src={avatar}
-              alt="A picture of myself in the woods"
+              alt={avatarDescription}
               class="rounded-full border-2 border-gray-300"
             />
           </div>
@@ -55,7 +59,7 @@ export default function SideNavigation({
             class="text-2xl font-serif text-center mb-4 text-black/70"
             style={{ textShadow: "0 1px 0 #fff" }}
           >
-            Ezequiel Schwartzman
+            {title}
           </h1>
         </a>
         <div class="text-white font-serif text-center">

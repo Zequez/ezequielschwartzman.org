@@ -18,6 +18,8 @@ const activeNavigation = navigationItems.map(([_, href]) => href).indexOf(`/` + 
           items={navigationItems}
           initialActive={activeNavigation}
           avatar={config.avatar}
+          avatarDescription={config.avatar}
+          title={config.baseTitle}
           client:load
         />
       ),

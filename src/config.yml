@@ -2,6 +2,7 @@ language: 'en'
 baseDescription: Ezequiel's website
 baseTitle: Ezequiel Schwartzman
 avatar: /assets/avatar2.jpg
+avatarDescription: A picture of myself in the woods
 favicon: /assets/avatar2.jpg
 layoutComponents:
   - SideNavigation
