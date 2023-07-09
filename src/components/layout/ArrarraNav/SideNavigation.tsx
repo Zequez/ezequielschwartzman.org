@@ -37,7 +37,7 @@ export default function SideNavigation({
           <>
             <a
               href={activeItem[1]}
-              class="mx-2 text-sm xs:text-base text-white text-shadow-dark-sm/40 px-2 py-1 rounded-l-md font-serif whitespace-nowrap"
+              class="mx-1 text-sm xs:text-base text-white text-shadow-dark-sm/40 px-2 py-1 rounded-l-md font-serif whitespace-nowrap"
               style={{
                 background: `linear-gradient(to bottom, ${colors.slightlyDarker(
                   initialActive
@@ -59,7 +59,7 @@ export default function SideNavigation({
       </header>
       {initialActive !== -1 ? (
         <div
-          class="fixed right-0 top-0 border-l-1 border-solid w-2 h-screen z-30"
+          class="fixed right-0 top-0 border-l-1 border-solid w-1 h-screen z-30"
           style={{
             background: colors.base(initialActive),
             borderColor: colors.darker(initialActive),

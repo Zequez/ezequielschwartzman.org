@@ -26,6 +26,9 @@ navigation:
     title: Availability
     path: '/availability'
   -
+    title: Services
+    path: '/services'
+  -
     title: Contact
     path: '/contact'
 socialLinks:

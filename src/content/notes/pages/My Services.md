@@ -1,38 +1,30 @@
-- Discovery of Possibilities Call
+- ## Consultation Call
+	- We can meet, explore possibilities, ask questions, gain clarity, draw some sketches, establish priorities and decide next steps.
 	- Duration: 45 minutes
-	- Price: Free the first one, $25 to schedule more
-	- Purpose:
-		- Meet each other for the first time
-		- Create possibilities
-		- Create clarity about what wants to be created
-			- Sketch together
-			- Define goals
-			- Break down project into parts
-		- General purpose consultations
-		- Commit to next steps
-- Live Collaborative Programming
-	- Duration: 90minutes or 3hs sessions
-	- Price: $50 and $100
-	- Description:
-		- We are both connected simultaneously
-		- One person is the driver (me) and the other is the navigator
-			- The driver takes care of implementing the needed code and configuring the computer
-			- The navigator takes a strategic role and makes decisions about priorities and what's next
-		- Eliminates the friction between
-		- A space of possibilities is created
-		- A screen and collaborative coding environment is shared
-	- Purpose:
-		- Create something together in communication
-		- Learning about how the development process works
-		-
-	-
--
-- 45 minutes discovery where we can meet and sketch up an app together and I can offer you possibilities.
-- Discovery consultation for each person is free. Afterwards it's $25 to schedule a meeting.
-- Afterwards discovery call I offer 2 options.
-	- 1. Live pair development experience where we are both connected simultaneously, sharing the screen and we work on something live. You are navigator and I'm the driver. It can be an app, a website, a widget, a script, anything. It helps to have clarity beforehand about what we will be cooking, so I can prep the kitchen with the tools and ingredients that we will need.
-	  90 minutes or 3hs sessions. $50 and $100.
-	- 2. Or we can agree on a project milestone and you pay for the set of requirements. Sort of like commissioning a table from a woodworker, or a painting from a painter. Payment is 25% as commitment, and 75% once it's finished.
-	  Price varies by project.
-	- 3. Soft investment; slow development. If what you are looking is to build a public service, an option is to show your commitment by setting a monthly investment. I take responsibility for improving the tools or apps that are
-- Then I can also hold space for you for an EHP (Emotional Healing Process). I'm offering this service for free until I reach 50 EHP delivered, as is the tradition of the EHP Collaboration Gameworld.
+	- Free for the first one and for long term supporters; otherwise I ask for a $25 investment.
+- ## Live Collaborative Exploration
+	- Work side-by-side with me and build something together on a live programming session.
+	- Like hiring a creation-ship pilot; you decide where we go next, I drive the spaceship.
+		- You can also learn how the spaceship is driven, and drive yourself, if you so desire.
+	- Or like hiring a chef to help you cook.
+	- I encourage you to contact me beforehand so we establish a general direction of where we'll be going, this is so I can prepare the tools and prep the ingredients before our session, and we can dive right into the juice.
+	- Duration: 90min or 3hs sessions
+	- Pricing: $50 for short sessions, $100 for long ones
+- ## Fixed Project
+	- Entrust me to build a system with a finite set of requirements.
+		- It can be a remix of something I've done before (such as setting you up with a customized website system)
+		- An improvement on an existing system.
+		- Or any crazy idea you can think of. If you can imagine it, it can be built.
+	- A fixed sum for a set of requirements.
+	- Like paying a carpenter to build you a table. A surface, 4 legs, that's it; you can be as specific as you want.
+	- Price and time varies by project; better discussed over a consultation call.
+- ## Open System Development
+	- Entrust me with the development of a system you want to see grow and improve over time. No specific goals, you trust me with the creative direction I take the project. I listen to requests and feedback from investors very carefully.
+	- A regular scheduled investment.
+	- Like supporting a gardener that nurtures and improves a park over time. Or an experimenter that researches and develop new technologies.
+	- You decide how much and often you invest; I prioritize my focus based on which projects are most wanted.
+- ## Emotional Healing Process Session
+	- I will hold a safe space where we'll journey together into your emotional portals.
+	- We'll review the new thoughtmap of feelings and emotions, and I will do my best to assist you in navigating your inner world.
+	- Session duration: 90 minutes
+	- I'm playing on the Emotional Healing Process Collaboration Team. According to the traditional Gameworld codex, the first 50 EHP are held for free; this applies to me at this moment. So the price is $0.
