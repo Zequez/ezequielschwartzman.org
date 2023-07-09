@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import Layout from "@/layouts/Layout.astro";
+import ContentLayout from "@/layouts/ContentLayout.astro";
 
 export async function getStaticPaths() {
   const notesEntries = await getCollection("notes");
@@ -23,7 +23,7 @@ const title = note.id.replace(/^pages\//, "").replace(/\.md$/, "");
 const { Content } = await note.render();
 ---
 
-<Layout title="Notes" markdown={true}>
+<ContentLayout title={`${title} | Notes`}>
   <h1>{title}</h1>
   <Content />
-</Layout>
+</ContentLayout>

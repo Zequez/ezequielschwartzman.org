@@ -1,6 +1,5 @@
 ---
-layout: "../layouts/Layout.astro"
-markdown: true
+layout: "../layouts/ContentLayout.astro"
 title: "Collaboration"
 ---
 

@@ -2,8 +2,8 @@ language: 'en'
 baseDescription: Ezequiel's website
 baseTitle: Ezequiel Schwartzman
 avatar: /assets/avatar2.jpg
-avatarDescription: A picture of myself in the woods
-favicon: /assets/avatar2.jpg
+avatarDescription: A portrait of Ezequiel looking at the camera with a garden in the background
+favicon: /assets/favicon.jpg
 layoutComponents:
   - SideNavigation
   - FluidNavBar

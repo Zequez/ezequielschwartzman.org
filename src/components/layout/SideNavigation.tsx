@@ -1,6 +1,8 @@
 import cx from "classnames";
 import { useEffect, useState } from "preact/hooks";
 
+SideNavigation.contentPaddingClass = "pt-12 pr-0 sm-(pr-56 pt-0)";
+
 export default function SideNavigation({
   items,
   initialActive,
@@ -35,12 +37,12 @@ export default function SideNavigation({
 
   return bigScreen ? (
     <>
-      <header class="fixed h-10 bottom-0 inset-x-0 bg-gray-100 border-t border-gray-200 z-40 sm:hidden">
+      <header class="fixed h-12 top-0 inset-x-0 bg-gray-100 border-b border-gray-200 z-40 sm:hidden">
         <a class="flex items-center" href="/">
-          <div class="h-10 w-10 mr-4">
+          <div class="h-12 w-12 mr-4">
             <img src={avatar} alt={avatarDescription} />
           </div>
-          <h1 class="text-base font-serif text-black/70" style={{ textShadow: "0 1px 0 #fff" }}>
+          <h1 class="text-lg font-serif text-black/70" style={{ textShadow: "0 1px 0 #fff" }}>
             {title}
           </h1>
         </a>

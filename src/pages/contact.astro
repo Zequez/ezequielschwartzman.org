@@ -3,11 +3,12 @@ import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout title="Contact">
-  <div class="markdown text-center mx-auto">
-    <h1>Contact me</h1>
-  </div>
-  <div class="max-w-4xl mx-auto text-xl pt-20">
-    <!-- <div class="flex flex-col sm:flex-row h-[300px]">
+  <div class="overflow-hidden">
+    <div class="markdown text-center mx-auto">
+      <h1>Contact me</h1>
+    </div>
+    <div class="max-w-4xl mx-auto text-xl">
+      <!-- <div class="flex flex-col sm:flex-row h-[300px]">
       <div class="mr-4 contents sm:block">
         <label class="flex mb-4">
           <div
@@ -45,55 +46,56 @@ import Layout from "@/layouts/Layout.astro";
         >Send</button
       >
     </div> -->
-    <div class="flex items-center justify-center text-base sm:text-xl h-[400px]">
-      <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"
-      ></script>
+      <div class="flex items-center justify-center text-base sm:text-xl h-[600px]">
+        <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"
+        ></script>
+        <script>
+          hbspt.forms.create({
+            region: "na1",
+            portalId: "40113029",
+            formId: "56a695d2-f8a1-4433-9729-f1abb1b16d9f",
+          });
+        </script>
+      </div>
+      <hr class="max-w-xl h-[1px] bg-black mx-auto my-16" />
+      <div class="markdown mb-16 px-4 text-center">
+        <p>
+          If you are looking to meet with me, check my <a href="/availability">time availability</a>
+          and just make me a proposal.
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center justify-center mb-12 text-base">
+        <a
+          href="https://t.me/zequez"
+          class="px-4 py-2 rounded-md bg-blue-400 hover:opacity-80 uppercase whitespace-nowrap font-semibold tracking-wider text-white text-shadow-sm mb-4"
+          >Message on Telegram</a
+        >
+        <span class="mx-4 italic mb-4 sm:w-auto w-full text-center">or</span>
+        <a
+          href="mailto:moc.liamg@zeuqez"
+          class="px-4 py-2 rounded-md bg-blue-400 hover:opacity-80 uppercase whitespace-nowrap font-semibold tracking-wider text-white text-shadow-sm mb-4"
+          >Send me an email</a
+        >
+      </div>
       <script>
-        hbspt.forms.create({
-          region: "na1",
-          portalId: "40113029",
-          formId: "56a695d2-f8a1-4433-9729-f1abb1b16d9f",
-        });
+        const a = document.querySelector('[href^="mailto:"]');
+        let fixed = false;
+        function fixEmail() {
+          if (fixed) return;
+          a.setAttribute(
+            "href",
+            a
+              .getAttribute("href")
+              .replace(
+                /^mailto\:(.*)/,
+                (_, email) => `mailto:${Array.from(email).reverse().join("")}`
+              )
+          );
+          fixed = true;
+        }
+        a.addEventListener("mouseover", fixEmail);
+        a.addEventListener("focus", fixEmail);
       </script>
     </div>
-    <hr class="max-w-xl h-[1px] bg-black mx-auto my-16" />
-    <div class="markdown mb-16 px-4">
-      <p>
-        If you are looking to meet with me, check my <a href="/availability">time availability</a> and
-        just make me a proposal.
-      </p>
-    </div>
-    <div class="flex flex-wrap items-center justify-center mb-12 text-base">
-      <a
-        href="https://t.me/zequez"
-        class="px-4 py-2 rounded-md bg-blue-400 hover:opacity-80 uppercase whitespace-nowrap font-semibold tracking-wider text-white text-shadow-sm mb-4"
-        >Message on Telegram</a
-      >
-      <span class="mx-4 italic mb-4 sm:w-auto w-full text-center">or</span>
-      <a
-        href="mailto:moc.liamg@zeuqez"
-        class="px-4 py-2 rounded-md bg-blue-400 hover:opacity-80 uppercase whitespace-nowrap font-semibold tracking-wider text-white text-shadow-sm mb-4"
-        >Send me an email</a
-      >
-    </div>
-    <script>
-      const a = document.querySelector('[href^="mailto:"]');
-      let fixed = false;
-      function fixEmail() {
-        if (fixed) return;
-        a.setAttribute(
-          "href",
-          a
-            .getAttribute("href")
-            .replace(
-              /^mailto\:(.*)/,
-              (_, email) => `mailto:${Array.from(email).reverse().join("")}`
-            )
-        );
-        fixed = true;
-      }
-      a.addEventListener("mouseover", fixEmail);
-      a.addEventListener("focus", fixEmail);
-    </script>
   </div>
 </Layout>

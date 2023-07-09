@@ -1,23 +1,5 @@
 ---
 import { CollectionEntry, getCollection } from "astro:content";
-import { bgColor } from "../../lib/chroma";
-import ActionLink from "./ActionLink.astro";
-
-// const images = (
-//   await Astro.glob("/src/assets/*").then((files) => {
-//     return files.map((file) => {
-//       const name = file.default as string;
-//       const key = name
-//         .slice(name.lastIndexOf("/") + 1)
-//         .replace(/\.[a-z0-9]{8}(\.[a-z0-9]+)$/, "$1");
-
-//       return [key, file.default];
-//     });
-//   })
-// ).reduce((arr, [k, v]) => {
-//   arr[k] = v;
-//   return arr;
-// }, {} as { [key: string]: string });
 
 const creations = await getCollection("creations");
 
@@ -34,26 +16,6 @@ const sortedCreations = creations.sort((a, b) => {
   return resolveDate(b).getTime() - resolveDate(a).getTime();
 });
 
-const parsedCreations = sortedCreations.map((creation) => {
-  return creation;
-});
-
-const linkStyle = { background: bgColor(85 + 180) };
-
-const creationTypeToEmoji = (creationType: string) => {
-  switch (creationType) {
-    case "video":
-      return "▶️";
-    case "collaboration":
-      return "🤝";
-    case "software":
-      return '💻'
-    case "writing":
-      return '📄'
-    default:
-      return "📷";
-  }
-};
 
 const creationTypeToText = (creationType: string) => {
   switch (creationType) {
@@ -152,10 +114,6 @@ function withLatestVersion (creation: CollectionEntry<"creations">, cb: (version
             </a>
             <div class="h-4 px-2 hidden">
               <div class="flex -mt-4 h-8 text-black/70 tracking-wider">
-                {/*<div class="flex items-center justify-start text-sm bg-white shadow-sm rounded-md py-1 px-2 border border-gray-200 font-semibold uppercase" title={resolveDate(creation).toString()}>
-                  <span class="text-xl mr-2">⏳</span>
-                  {timeAgoInWords(resolveDate(creation))}
-                </div>*/}
                 <div class="flex justify-end flex-grow space-x-2">
                   {creation.data.language.map((lang) =>
                     <div class="flex items-center bg-gray-50 shadow-sm rounded-md py-1 px-2 border border-gray-200 font-semibold uppercase">
@@ -169,21 +127,6 @@ function withLatestVersion (creation: CollectionEntry<"creations">, cb: (version
               <div class="font-light line-clamp-2 overflow-hidden text-black/50">
                 {creation.data.description}
               </div>
-              {/*<div class="absolute bottom-4 inset-x-4 flex items-center justify-center space-x-2">
-                {(() => {
-                  const d = creation.data;
-                  switch(d.creationType) {
-                    case "software":
-                      return <>
-                        {d.sourceLink ? <ActionLink href={d.sourceLink} target="_blank">Source code</ActionLink> : null}
-                        {d.link ? <ActionLink href={d.link} target="_blank">Visit</ActionLink> : null}
-                      </>
-                    case "writing":
-                      return <ActionLink href={d.link}>Read</ActionLink>
-                    default: return null;
-                  }
-                })()}
-              </div>*/}
             </div>
           </div>
         </div>
@@ -191,25 +134,4 @@ function withLatestVersion (creation: CollectionEntry<"creations">, cb: (version
     }
   </div>
   )}
-
-  <!-- {
-    creations.length > 8 ? (
-      <div class="mt-4 text-right">
-        <button class="px-4 py-2 transition rounded-md bg-white/80 hover:scale-105 active:scale-95">
-          Explore all (${creations.length}) &rarr;
-        </button>
-      </div>
-    ) : null
-  } -->
-  <!-- <div class="max-w-screen-sm mx-auto tracking-wider text-white">
-    There are more, is just that I haven't added them to the site yet. Check <a
-      style={linkStyle}
-      href="https://github.com/zequez"
-    >
-      my Github</a
-    >. Or <a href="https://zequez.space/" style={linkStyle}>my old website</a>. Or <a
-      href="http://oldsite.zequez.space/"
-      style={linkStyle}>my older website</a
-    >
-  </div> -->
 </div>

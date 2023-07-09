@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import Layout from "@/layouts/Layout.astro";
+import ContentLayout from "@/layouts/ContentLayout.astro";
 
 const notesEntries = await getCollection("notes");
 
@@ -9,7 +9,7 @@ const onlyNotes = notesEntries.filter(({ slug, id }) => {
 });
 ---
 
-<Layout title="Notes" markdown={true}>
+<ContentLayout title="Notes">
   <h1>Notes</h1>
 
   {
@@ -23,4 +23,4 @@ const onlyNotes = notesEntries.filter(({ slug, id }) => {
       );
     })
   }
-</Layout>
+</ContentLayout>
