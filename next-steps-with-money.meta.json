@@ -1,0 +1,35 @@
+{
+  "bodies": {
+    "main": {
+      "box": {
+        "x": -9,
+        "y": 18,
+        "w": 17,
+        "h": 13
+      },
+      "visible": true
+    },
+    "code": {
+      "box": {
+        "x": -14,
+        "y": 33,
+        "w": 17,
+        "h": 13
+      },
+      "visible": false
+    },
+    "inner": {
+      "box": {
+        "x": -9,
+        "y": 32,
+        "w": 17,
+        "h": 13
+      },
+      "visible": false
+    }
+  },
+  "updatedAt": 1746865459175,
+  "data": {
+    "text": ""
+  }
+}

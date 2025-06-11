@@ -1,0 +1,35 @@
+{
+  "bodies": {
+    "main": {
+      "box": {
+        "x": -64,
+        "y": 42,
+        "w": 35,
+        "h": 8
+      },
+      "visible": true
+    },
+    "code": {
+      "box": {
+        "x": -56,
+        "y": 51,
+        "w": 19,
+        "h": 10
+      },
+      "visible": false
+    },
+    "inner": {
+      "box": {
+        "x": -64,
+        "y": 43,
+        "w": 35,
+        "h": 8
+      },
+      "visible": false
+    }
+  },
+  "updatedAt": 1746865802755,
+  "data": {
+    "text": "Editing these notes from the UI changes the {name}.meta.json  object data attribute on the filesystem. And then it's fed back to the component."
+  }
+}
