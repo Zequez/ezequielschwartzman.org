@@ -6,10 +6,11 @@
   >
     <div class="underline mb4">Road to holding space for 50 EHP</div>
     {#snippet ehp(num, name, date)}
-      <div
-        ><span class="opacity-50">#{num}</span>
-        {name} <span class="opacity-50">- {date}</span></div
-      >
+      <div>
+        <span class="opacity-50">#{num}</span>
+        {name}
+        <span class="opacity-50">- {date}</span>
+      </div>
     {/snippet}
     {@render ehp(1, 'Sandra', '18 Apr 2025')}
     {@render ehp(2, 'Karol', '21 Apr 2025')}
