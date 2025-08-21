@@ -1,27 +1,39 @@
 <script lang="ts">
+  import { getContext, onMount } from 'svelte'
   import { cx } from '@/center/utils'
-  import { getContext } from 'svelte'
   import { type Context } from './index.svelte'
-  const { id, w, x, y, children } = $props<{
-    id: string
-    w: number
+  import { getFramesContext, type Frontmatter } from './lib/frames-store.svelte'
+  import IconMove from '~icons/fa6-solid/arrows-up-down-left-right'
+
+  const { id, title, x, y, z, children, draft, bg, hidden } = $props<{
+    id?: string
+    title?: string
     x: number
     y: number
+    z: number
+    bg?: boolean
     children: any
+    draft?: boolean
+    hidden?: boolean
     onclick?: () => void
   }>()
 
   const C = getContext('main') as Context
+  const FC = getFramesContext()
 
-  let moving = $state<{ x: number; y: number; didMove: boolean } | null>(null)
-  let justMoved = $state<{ x: number; y: number } | null>(null)
+  let moving = $state<{
+    x: number
+    y: number
+    didMove: boolean
+    z: number
+  } | null>(null)
+  let justMoved = $state<{ x: number; y: number; z: number } | null>(null)
 
   function handleMouseDown(ev: MouseEvent) {
     if (ev.button === 0) {
-      console.log('Moving!', id)
       ev.stopPropagation()
       ev.preventDefault()
-      moving = { x, y, didMove: false }
+      moving = { x, y, z: FC.topZ() + 1, didMove: false }
     }
   }
 
@@ -30,6 +42,7 @@
       moving = {
         x: moving.x + ev.movementX,
         y: moving.y + ev.movementY,
+        z: moving.z,
         didMove: true,
       }
     }
@@ -40,7 +53,12 @@
     if (moving) {
       if (moving.didMove) {
         cancelNextClick = true
-        C.setFrameXY(id, moving.x, moving.y)
+        // C.setFrameXY(id, moving.x, moving.y)
+        FC.updateFrameFrontmatter(id, {
+          x: moving.x,
+          y: moving.y,
+          z: moving.z,
+        })
         justMoved = moving
       }
       moving = null
@@ -55,34 +73,145 @@
     }
   }
 
-  let xy = $derived(moving || justMoved || { x, y })
+  function toggleHidden() {
+    FC.updateFrameFrontmatter(id, { hidden: !hidden })
+  }
+
+  let xy = $derived(moving || justMoved || { x, y, z })
+
+  let container = $state<HTMLDivElement>(null!)
+
+  onMount(() => {
+    const { left, top, width, height } = container!.getBoundingClientRect()
+    C.registerFrame({
+      id,
+      title,
+      x: left,
+      y: top,
+      w: width,
+      h: height,
+    })
+  })
+
+  let isSelected = $derived(C.focus === id)
+  const isDevMode = import.meta.env.DEV
+
+  let posStyle = $derived(
+    bg
+      ? `left: ${xy.x}px; top: ${xy.y}px; transform: translate(-50%, -50%); z-index: 19;`
+      : `left: ${xy.x}px; top: ${xy.y}px; transform: translateX(-50%); z-index: ${20 + xy.z};`,
+  )
+  let c = '#60a5fa'
 </script>
 
-<svelte:window on:mousemove={handleMouseMove} on:mouseup={handleMouseUp} />
+<svelte:window
+  on:mousemove={moving && handleMouseMove}
+  on:mouseup={moving && handleMouseUp}
+/>
 
-<div
-  {id}
-  style={`width: ${w}rem; padding: 1rem; left: ${xy.x}px; top: ${xy.y}px; `}
-  onmousedown={handleMouseDown}
-  onclick={handleClick}
-  role="presentation"
-  class={cx(
-    `block text-left absolute z-20 max-w-none bg-white/90 max-w-full -translate-x-1/2 -translate-y-1/2
-    w-100 rounded-md hover:bg-gray-200 shadow-[0_1.5px_0px_2px_#888]`,
-  )}
->
-  {#if C.focus !== id}
-    <a
-      class="z-20 block absolute left-0 top-0 size-full bg-white/50 opacity-50 rounded-md bg-[url('/noise20.png')]"
-      aria-label="Focus frame"
-      href={`#${id}`}
-    ></a>
+{#snippet handlingBar()}
+  {#if isDevMode && C.editMode}
+    <div
+      style={`z-index: ${200 + xy.z}`}
+      ondblclick={toggleHidden}
+      role="presentation"
+      class={cx(
+        'h10 absolute peer top-0 left-0 w-full min-w-200px flexcs px2 text-xs rounded-md space-x-2 b-black/10 pointer-events-auto',
+        {
+          'bg-gray-400 shadow-[0_1.1px_0px_2px_#6B7381]': draft,
+          'bg-blue-400 shadow-[0_1.1px_0px_2px_#437CC3]': !draft,
+          '-mt12': bg,
+        },
+      )}
+    >
+      <span class="font-mono">{id}</span>
+      <div class="line-height-2 font-mono text-[8px]">
+        <div>X {x.toFixed(0)}</div>
+        <div>Y {y.toFixed(0)}</div>
+      </div>
+      <div class="flex-grow"></div>
+      <label>
+        <input
+          type="checkbox"
+          class="peer w0 h0 opacity-0"
+          checked={draft}
+          onchange={(ev) => {
+            console.log(ev.currentTarget.checked)
+            FC.updateFrameFrontmatter(id, { draft: ev.currentTarget.checked })
+          }}
+        />
+        <span
+          class="bg-gray-300 b-2 b-black/10 b-dashed text-black/20 rounded-md px1 py.5 peer-checked:(bg-blue-400 b-solid text-white) cursor-pointer"
+        >
+          Draft
+        </span>
+      </label>
+      <div
+        onmousedown={handleMouseDown}
+        onclick={handleClick}
+        role="presentation"
+        class="text-white/70 text-lg cursor-move hover:(text-white/100 scale-110) transition-transform"
+      >
+        <IconMove />
+      </div>
+    </div>
   {/if}
-  <div class={cx('relative z-10', { '': C.focus !== id })}>
-    {@render children()}
-  </div>
+{/snippet}
 
-  <!-- <slot name="tl" />
+{#if !draft || isDevMode}
+  {#if !bg}
+    <div
+      {id}
+      bind:this={container}
+      style={posStyle}
+      class={cx('absolute w-360px', {
+        'pt12 -mt12': C.editMode,
+      })}
+    >
+      {@render handlingBar()}
+      {#if !hidden}
+        <div
+          class={cx(
+            `relative p4 md w-full
+        bg-gray-100 rounded-md shadow-[0_1.5px_0px_2px_#888]`,
+            {
+              'saturate-0 hover:brightness-120': !isSelected,
+            },
+          )}
+        >
+          {#if !isSelected}
+            <a
+              class="z-20 block absolute left-0 top-0 size-full bg-white/50 opacity-0 rounded-md bg-[url('/noise20.png')]"
+              aria-label="Focus frame"
+              href={`#${id}`}
+            ></a>
+          {/if}
+
+          <div class={cx('relative z-10')}>
+            {@render children()}
+          </div>
+        </div>
+      {/if}
+    </div>
+  {:else}
+    <div
+      {id}
+      bind:this={container}
+      style={posStyle}
+      role="presentation"
+      class={cx(`absolute pointer-events-none`)}
+    >
+      {@render handlingBar()}
+      {#if !hidden}
+        <div
+          class="hidden peer-hover:block absolute -inset-3px b-3 b-blue-400 rounded-md b-dashed"
+        ></div>
+        {@render children()}
+      {/if}
+    </div>
+  {/if}
+{/if}
+<!-- <slot name="tl" />
   <slot name="tt" />
   <slot name="tr" />
   <slot name="rt" />
@@ -94,4 +223,3 @@
   <slot name="lb" />
   <slot name="ll" />
   <slot name="lt" /> -->
-</div>

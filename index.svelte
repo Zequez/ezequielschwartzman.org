@@ -1,5 +1,4 @@
 <script lang="ts" module>
-  import favicon from './favicon.png'
   export type Structure = {
     id: string
     tl?: Structure
@@ -16,27 +15,55 @@
     lt?: Structure
   }
 
+  type FrameOutput = {
+    id?: string
+    title?: string
+    x: number
+    y: number
+    w: number
+    h: number
+  }
+
   export type Context = {
     focus: string
     structure: Structure
-    setFrameXY: (id: string, x: number, y: number) => void
+    birdsEye: boolean
+    editMode: boolean
+    registerFrame: (frame: FrameOutput) => void
   }
 </script>
 
 <script lang="ts">
   import { onMount, setContext } from 'svelte'
+  import favicon from './favicon.png'
+
+  import './markdown.css'
 
   import { cx } from '@/center/utils'
   import Frames from './Frames.svelte'
-  import { SERVER_FILES_PORT } from '@/center/ports'
-  import type { BackMsg, FrontMsg } from '@/back/servers/files-server'
+  import BgFrames from './BgFrames.svelte'
+  import api from './lib/api.svelte'
+  import noise from './noise.png'
+  import MdxFrames from './MdxFrames.svelte'
 
   const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
   let focus = $state('origin')
   let zoom = $state(1)
+  let birdsEye = $state(false)
   let scrollContainer = $state<HTMLDivElement>(null!)
   let cavitationContainer = $state<HTMLDivElement>(null!)
   let originContainer = $state<HTMLDivElement>(null!)
+  let editMode = $state(localStorage.getItem('edit-mode') === 'true')
+  $effect(() => {
+    localStorage.setItem('edit-mode', editMode ? 'true' : 'false')
+  })
+
+  let framesOverview: FrameOutput[] = $state([])
+
+  function registerFrame(output: FrameOutput) {
+    framesOverview.push(output)
+    console.log(output)
+  }
 
   const STRUCTURE: Structure = {
     id: 'origin',
@@ -54,59 +81,15 @@
     },
   }
 
-  let socket = $state<WebSocket>(null!)
-  let framesContent = $state('')
+  const API = api()
 
-  function sendMsg(msg: FrontMsg) {
-    socket.send(JSON.stringify(msg))
-  }
-
-  function setFrameXY(id: string, x: number, y: number) {
-    if (framesContent) {
-      const newContent = setXYOnFramesFile(framesContent, id, x, y)
-      framesContent = newContent
-      sendMsg(['write-file', 'repos/ezequiel/Frames.svelte', newContent])
-    }
-  }
-
-  function setXYOnFramesFile(
-    content: string,
-    id: string,
-    x: number,
-    y: number,
-  ) {
-    const frameRegex = new RegExp(
-      `<Frame([^>]*id=["']${id}["'][^>]*)x=\\{[^}]*\\}\\s*y=\\{[^}]*\\}`,
-      'g',
-    )
-
-    return content.replace(frameRegex, (_match, preAttrs) => {
-      return `<Frame${preAttrs}x={${x}} y={${y}}`
-    })
-  }
+  setContext('api', API)
 
   onMount(() => {
     if (window.location.hash) {
       const focus = window.location.hash.slice(1)
       scrollTo(focus, true)
     }
-
-    socket = new WebSocket(`ws://localhost:${SERVER_FILES_PORT}?repo=ezequiel`)
-
-    socket.addEventListener('message', (event) => {
-      const data = JSON.parse(event.data) as BackMsg
-      console.log('EVENT!', data)
-      if (data[0] === 'file-content') {
-        if (data[1] === 'repos/ezequiel/Frames.svelte') {
-          framesContent = data[2]
-        }
-      }
-    })
-
-    socket.addEventListener('open', () => {
-      console.log('Socket open!')
-      sendMsg(['read-file', 'repos/ezequiel/Frames.svelte'])
-    })
   })
 
   function focusOn(id: string) {
@@ -128,24 +111,24 @@
     const elX = (left + right) / 2
     const elY = (top + bottom) / 2
 
-    if (!instant && !isTouchDevice) {
-      attractToPoint(elX, elY)
-    } else {
-      document.getElementById(id)!.scrollIntoView({
-        behavior: instant ? 'instant' : 'smooth',
-        block: 'center',
-        inline: 'center',
-      })
-    }
+    // if (!instant && !isTouchDevice) {
+    //   attractToPoint(elX, elY)
+    // } else {
+    document.getElementById(id)!.scrollIntoView({
+      behavior: instant ? 'instant' : 'smooth',
+      block: 'start',
+      inline: 'center',
+    })
+    // }
   }
 
   function captureLinksClick(ev: MouseEvent) {
     if (ev.target instanceof HTMLAnchorElement) {
-      console.log(ev.target.href)
       const url = new URL(ev.target.href)
       if (url.hash) {
         ev.preventDefault()
         ev.stopPropagation()
+        birdsEye = false
         focusOn(ev.target.hash.slice(1))
       }
     }
@@ -263,8 +246,9 @@
   } | null>(null)
 
   function handleWindowMousedown(ev: MouseEvent) {
-    if (ev.target === cavitationContainer) {
-      if (isTouchDevice) return
+    if (isTouchDevice) return
+    if (ev.button === 2) return
+    if (cavitationContainer.contains(ev.target as HTMLElement)) {
       ev.preventDefault()
       pan = {
         scrollStartX: scrollContainer.scrollLeft,
@@ -309,8 +293,58 @@
     }
   }
 
-  function handleContainerWheel(ev: Event) {
+  let accumulatedDelta = 0
+  let isThrottling = false
+  function handleContainerWheel(ev: WheelEvent) {
     haltAttraction()
+    if (ev.ctrlKey) {
+      ev.preventDefault()
+      accumulatedDelta += ev.deltaY
+
+      if (!isThrottling) {
+        isThrottling = true
+
+        setTimeout(() => {
+          const zoomDelta = accumulatedDelta > 0 ? 0.05 : -0.05
+          zoom += zoomDelta
+          accumulatedDelta = 0
+          isThrottling = false
+          console.log('zoom', zoom)
+          // Optionally call updateTransform()
+        }, 50)
+      }
+    }
+  }
+
+  let shiftCount = 0
+  function handleWindowKeydown(ev: KeyboardEvent) {
+    if (ev.key === 'Shift') {
+      shiftCount++
+      if (shiftCount === 3) {
+        console.log('TOGGLING EDIT MODE!')
+        editMode = !editMode
+      }
+      setTimeout(() => {
+        shiftCount = 0
+      }, 1000)
+    }
+  }
+
+  let lastZoomSetAt = 0
+  function throttledSetZoom(newZoom: number) {
+    if (lastZoomSetAt + 100 < Date.now()) {
+      lastZoomSetAt = Date.now()
+      zoom = newZoom
+    } else {
+      setTimeout(() => {
+        throttledSetZoom(newZoom)
+      }, 100)
+    }
+  }
+
+  const visualCenter = {
+    x: document.body.clientWidth / 2,
+    y: document.body.clientHeight / 4,
   }
 
   const C: Context = {
@@ -320,7 +354,13 @@
     get structure() {
       return STRUCTURE
     },
-    setFrameXY: setFrameXY,
+    get birdsEye() {
+      return birdsEye
+    },
+    get editMode() {
+      return editMode
+    },
+    registerFrame,
   }
 
   setContext('main', C)
@@ -341,6 +381,7 @@
   onmouseup={handleWindowMouseup}
   onmousemove={handleWindowMousemove}
   onmousedown={handleWindowMousedown}
+  onkeydown={handleWindowKeydown}
 />
 
 <svelte:head>
@@ -371,36 +412,46 @@
 {/if} -->
 
 <!-- bg-[hsl(100deg_100%_100%)] -->
+<button
+  class="fixed z-999 bottom-0 left-1/2 -translate-x-1/2 bg-black/90 text-white px2 py1 rounded-t-md uppercase text-xs font-bold"
+  onclick={() => (birdsEye = !birdsEye)}
+>
+  {focus}
+</button>
 <div
   bind:this={scrollContainer}
   onwheel={handleContainerWheel}
-  class="relative h-full w-full bg-gray-800 overflow-auto no-scrollbar"
+  class="relative h-full w-full bg-black overflow-auto no-scrollbar"
 >
-  <div
-    class="fixed z-999 bottom-0 left-1/2 -translate-x-1/2 bg-black/90 text-white px2 py1 rounded-t-md uppercase text-xs font-bold"
-  >
-    {focus}
-  </div>
+  <!--  -->
   <div
     bind:this={cavitationContainer}
     class="relative w-5000px h-5000px max-w-none max-h-none"
   >
-    <div bind:this={originContainer} class="absolute w-0 h-0 left-1/2 top-1/2">
+    <div
+      bind:this={originContainer}
+      onwheel={(ev) => ev.stopPropagation()}
+      style={`transform: scale(${zoom})`}
+      class={cx('absolute w-0 h-0 left-1/2 top-1/2 transition', {
+        'perspective-2000px scale-1/2': birdsEye,
+      })}
+    >
+      <div
+        style={`background-image: url(${noise});`}
+        class="w-5000px h-5000px bg-repeat absolute -left-2500px -top-2500px pointer-events-none"
+      ></div>
       <!-- <div class="absolute z-10 inset-0 bg-[url('/noise20.png')] opacity-30"></div> -->
-      <Frames />
+      <!-- <Frames /> -->
+      <MdxFrames />
     </div>
   </div>
 </div>
 
-<style>
+<style global>
   .no-scrollbar {
     scrollbar-width: 0;
   }
   .no-scrollbar::-webkit-scrollbar {
     display: none;
-  }
-
-  a {
-    text-decoration: underline;
   }
 </style>

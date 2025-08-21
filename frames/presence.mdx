@@ -1,0 +1,44 @@
+---
+x: 151
+y: -161
+title: Presence
+draft: false
+z: 63
+hidden: false
+---
+
+import PresenceLink from './components/PresenceLink'
+export const ListStuff = ({title, items}) => (
+  <div class="b b-sky-600 rounded-md mb2 text-xs overflow-hidden no-md">
+    <div class="bg-sky-500 text-white px1 py.5">{title}</div>
+    <div class="bg-sky-200 py1">
+      {items.map(([left, right, href]) => <div class="flex px1">
+            <a class="text-sky-900! hover:text-white! flex-grow" href={href} target="_blank">{left}</a><span class="text-[10px] opacity-75">{right}</span>
+      </div>)}
+    </div>
+  </div>
+)
+
+# Presence
+
+<ListStuff title="Public Telegram groups" items={[
+  ['Possibility Creation Village', '~643 people', 'https://t.me/+ViEuN7pEHlcSDlCv'],
+  ['Pueblo de las Posibilidades', '~125 people', 'https://t.me/+Uo7heZ1LwxkxZWI0'],
+  ['Heart Gym Village', '~439 people', 'https://t.me/+uTvcrFb8Xis2MGU0'],
+  ['EHP Apprentices (PM Healing Village)', '~793 people', 'https://t.me/+rvhNZFiV0Cw1NjIx']
+]}/>
+
+<ListStuff title="Public weekly videocalls" items={[
+  ['Clean up Team', '11:00, Monday', 'https://teamup.com/ksv2xq34sxiagcuei1/events/1819626058-rid-1754920800'],
+  ['Heart Gym  from Turtle Island', '12:00 - Monday & Friday', 'https://teamup.com/ksv2xq34sxiagcuei1/events/1881396461-rid-1754924400'],
+  ['ITAA Saturday Sanity',  '19:00 - Saturday', 'https://internetaddictsanonymous.org/online-meetings/']
+]}/>
+
+
+<PresenceLink icon="github" text="Code on Github" href="https://github.com/zequez" color="bg-gradient-to-r from-purple-500 to-purple-400 mb2"/>
+<PresenceLink icon="medium" text="Articles on Medium" href="https://medium.com/@ezequiel.schwartzman" color="bg-gradient-to-r from-gray-800 to-gray-700 mb2"/>
+<PresenceLink icon="youtube" text="Videos on YouTube" href="https://www.youtube.com/@EzequielSchwartzman/videos" color="bg-gradient-to-r from-red-600 to-red-500 mb2"/>
+<PresenceLink icon="instagram" text="Pictures with text on Instagram" href="https://www.instagram.com/ezequiel.servicio/" color="bg-gradient-to-r from-pink-600 to-orange-500 mb2"/>
+<PresenceLink icon="substack" text="Newsletters on Substack" href="https://ezequielschwartzman.substack.com/" color="bg-gradient-to-r from-orange-600 to-orange-500 mb2"/>
+
+<iframe src="https://ezequielschwartzman.substack.com/embed" class="w-full h-90 rounded-md b b-black/10"></iframe>

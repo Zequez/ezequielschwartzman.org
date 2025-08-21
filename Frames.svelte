@@ -1,5 +1,8 @@
 <script lang="ts">
-  import fearImg from './fear.jpg'
+  import { Markdown } from 'svelte-rune-markdown'
+  import bg from './bg.svg'
+  import miniGarden from './photos/mini-garden.jpg'
+  import faces from './photos/faces/stitched.jpg'
   import Frame from './Frame.svelte'
 </script>
 
@@ -7,79 +10,116 @@
   <div class="text-xl text-black/75 font-bold mb-1.5">{text}</div>
 {/snippet}
 
-<Frame id="origin" w={30} x={-7} y={-45}>
-  <div class="flex mb4">
-    <img
-      src={fearImg}
-      alt="Fear"
-      class="w-30 h-30 flex-shrink-0 -mt-4 -ml-4 mr4 rounded-tl-md saturate-0 contrast-130 rounded-br-md shadow-[1.5px_1.5px_0px_2px_#888]"
-    />
-    <div class="flexsc flex-col text-left flex-grow">
-      <div class="text-2xl text-black/75 font-bold mb-1.5">
-        Ezequiel A. Schwartzman
-      </div>
-      <div class="-mt-1.5 mb-1.5 opacity-50 text-xs">
-        Researcher & Artist & Inventor & Web-Technologist &
-        EHP-Spaceholder-Apprentice & Mage-Apprentice & ...
-      </div>
-      <div class="text-xs">
-        Taking a stand for Aliveness, Simplicity and Authenticity
-      </div>
-    </div>
-  </div>
-
-  <div class="text-sm flex flex-col space-y-1.5">
-    <p>
-      You don't get to tell me what I create or how. You are welcome to inspire
-      me to take action with outrageous proposals. What I create and how I do it
-      it's for my own delight.
-    </p>
-    <p></p>
-    <p>
-      I only sell one thing. It's credits for my <a href="#presencial-service">
-        Presencial Service
-      </a>
-      . You can buy them and schedule meetings with me. What I create is a service
-      for everybody, not for you in particular.
-    </p>
-    <p>
-      You are welcome to buy a lifetime worth of meetings with me, and you can
-      schedule them at your leisure by using the Calendar Link. No more than
-      once or twice per week. You may also use the Calendar Link to join
-      group-sized Presencial Service offerings that I publish. You can stay in
-      touch with my offerings by subscribing on my Presence Link.
-    </p>
-    <p>
-      You can see your credits with me on the Credits Link. You may buy credits
-      with any currency and form of material and non-material value. There is a
-      credits vending machine at the Protocols Link. For negotiation PM me.
-      Mutual Credit is an option. And there is still plenty of spaces on my EHP
-      training credits line. If we haven't met each other make sure to contact
-      me before scheduling on the Calendar Link.
-    </p>
-    <p>
-      You can find the most effective protocols for contacting me at my
-      Protocols Link.
-    </p>
-  </div>
-</Frame>
-<Frame id="protocols-link" w={20} x={-23} y={480}>
-  {@render title('Protocols Link')}
-  <div>Instant messages:</div>
-  EzequielSchwartzman @ Telegram Whatsapp
+<Frame id="archan-reference" x={-1219} y={-331} title="Archan Reference">
+  {@render title('Archan Reference')}
+  <Markdown
+    content={`
+Since I use some words that might be unfamiliar to people I've decided to create
+reference notes right here on the website.
+  `}
+  />
 </Frame>
 
-<Frame id="presence-link" w={30} x={-546} y={503}>
-  {@render title('Presence Link')}
-  <a class="block" href="https://github.com/zequez">Github activity</a>
-  <a class="block" href="https://medium.com/@ezequiel.schwartzman">
-    Articles on Medium
-  </a>
+<Frame id="gameworld" x={-1043} y={-97} title="Gameworld">
+  {@render title('Gameworld')}
+  <Markdown
+    content={`
+I won't go into details as to what a Gameworld is. There is plenty written about
+it on the Startover website.
+
+[Gameworld Theory](http://gameworldtheory.mystrikingly.com/)
+[Gameworld Builder](http://gameworldbuilder.mystrikingly.com/)
+[Gameworld Consulting](http://gameworldconsulting.mystrikingly.com/)
+[Gaian Gameworlds](http://gaiangameworlds.mystrikingly.com/)
+[Gameworld Incubator](http://gameworldincubator.mystrikingly.com/)
+[Gameworld Traditions](http://gameworldtraditions.mystrikingly.com/)
+[Gameworld Builder School](http://gameworldbuilderschool.mystrikingly.com/)
+[Gameworld Demolition](http://gameworlddemolition.mystrikingly.com/)
+[Gap in Gameworlds](http://gapingameworlds.mystrikingly.com/)
+  `}
+  />
 </Frame>
-<Frame id="presencial-service" w={30} x={-14} y={731}>
+
+<Frame id="startover-game" x={-1428} y={-102} title="Startover Game">
+  {@render title('Startover Game')}
+  <Markdown
+    content={`
+At [Startover.xyz](http://startover.xyz/), it's a network of interconnected websites originated by Clinton Callahan with
+the purpose of upgrading human thoughtware around the world with radical
+knowledge obtained on the Possibility Management Gameworld.
+
+Each page holds new distinctions and experiments to land these distinctions
+on your bodies.
+
+As you do the experiments you are invited to log the Matrix points from doing them
+along with some kind of proof. The part of logging the Matrix points does not work for
+me (because I find it dull, clunky and pointless). But the part of being a homungous
+(and I mean more than 500 pages homungus) repository
+of radical paradigm shifting knowledge is extremely valuable and engaging. The first time
+I discovered the Startover websites I became obsessed and stayed until morning reading
+with a ridiculous number of opened tabs.
+
+It's like finding a doorway to a wizards Wikipedia that it's actually humans from the
+future that came back in time to teach you all about your untapped human powers.
+
+As I see it, it's a huge doorway to archan culture.
+  `}
+  />
+</Frame>
+
+<Frame
+  id="presencial-service"
+  x={4}
+  y={933}
+  title="Presencial Service"
+  draft={true}
+>
   {@render title('Presencial Service')}
+
+  <div>
+    All meetings are subject to negotiation. Money or the lack of thereof is not
+    an impediment.
+  </div>
+
+  <ul>
+    <li>Emotional Healing Process</li>
+    <li>Web Technology Consulting And Possibilities Service</li>
+    <li>Group Spaceholding for Experimental Worktalks</li>
+    <li>Interviews</li>
+  </ul>
 </Frame>
 
-<Frame id="calendar-link" w={24} x={531} y={464}>
-  {@render title('Calendar Link')}
+{#snippet ehp(num: number, person: string, time: string)}
+  <div>{num} - {person} - {time}</div>
+{/snippet}
+
+<Frame id="ehp-credits" x={1085} y={537} title="EHP Credits">
+  {@render title('EHP Credits')}
+
+  {@render ehp(1, 'Sandra', '18 Apr 2025')}
+  {@render ehp(2, 'Karol', '21 Apr 2025')}
+  {@render ehp(3, 'Yair', '23 Apr 2025')}
+  {@render ehp(4, 'Sandra', '2 May 2025')}
+  {@render ehp(5, 'Karol', '5 May 2025')}
+  {@render ehp(6, 'Karol', '19 May 2025')}
+  {@render ehp(7, 'Sandra', '25 May 2025')}
+  {@render ehp(8, 'Francisco', '25 May 2025')}
+  {@render ehp(9, 'Karol', '4 Jun 2025')}
+  {@render ehp(10, 'Francisco', '12 Jun 2025')}
+  {@render ehp(11, 'Sandra', '27 Jun 2025')}
+  {@render ehp(12, 'Nina', '21 Jun 2025')}
+  {@render ehp(13, 'Francisco', '30 Jun 2025')}
+  {@render ehp(14, 'Ian', '1 Jul 2025')}
+  {@render ehp(15, 'Mar', '5 Jul 2025')}
+  {@render ehp(16, 'Karol', '28 Jul 2025')}
+  {@render ehp(17, 'Sandra', '31 Jul 2025')}
+  {@render ehp(18, 'Karol', '16 Aug 2025')}
+</Frame>
+
+<Frame x={800} y={-50} bg={true}>
+  <img
+    class="w-500px max-w-none rounded-xl"
+    src={miniGarden}
+    alt="Miniature moss garden growing on a brick"
+  />
 </Frame>

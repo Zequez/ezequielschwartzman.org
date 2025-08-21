@@ -1,0 +1,24 @@
+.md h1 {
+  @apply text-xl font-bold mb4;
+}
+
+.md h2 {
+  @apply text-lg font-bold mb4;
+}
+
+
+.md p {
+  @apply text-sm;
+}
+
+.md a {
+  @apply text-blue-500 underline;
+}
+
+.md a:hover {
+  @apply text-blue-400;
+}
+
+.md p {
+  @apply mb2;
+}
