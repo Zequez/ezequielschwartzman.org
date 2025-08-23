@@ -3,14 +3,16 @@
   import { cx } from '@/center/utils'
   import { type Context } from './index.svelte'
   import framesStore from './lib/frames-store.svelte'
+  import rootStore from './lib/root-store.svelte'
+  import canvasStore from './canvas/canvas-store.svelte'
   import IconMove from '~icons/fa6-solid/arrows-up-down-left-right'
 
   const { id, title, x, y, z, children, draft, bg, hidden } = $props<{
     id?: string
     title?: string
+    z: number
     x: number
     y: number
-    z: number
     bg?: boolean
     children: any
     draft?: boolean
@@ -18,8 +20,9 @@
     onclick?: () => void
   }>()
 
-  const C = getContext('main') as Context
+  const RS = rootStore.getContext()
   const FC = framesStore.getContext()
+  const CS = canvasStore.getContext()
 
   let moving = $state<{
     x: number
@@ -82,24 +85,24 @@
   let container = $state<HTMLDivElement>(null!)
 
   onMount(() => {
-    const { left, top, width, height } = container!.getBoundingClientRect()
-    C.registerFrame({
-      id,
-      title,
-      x: left,
-      y: top,
-      w: width,
-      h: height,
-    })
+    // const { left, top, width, height } = container!.getBoundingClientRect()
+    // RS.registerFrame({
+    //   id,
+    //   title,
+    //   x: left,
+    //   y: top,
+    //   w: width,
+    //   h: height,
+    // })
   })
 
-  let isSelected = $derived(C.focus === id)
+  let isSelected = $derived(CS.focus === id)
   const isDevMode = import.meta.env.DEV
 
   let posStyle = $derived(
     bg
-      ? `left: ${xy.x}px; top: ${xy.y}px; transform: translate(-50%, -50%); z-index: 18;`
-      : `left: ${xy.x}px; top: ${xy.y}px; transform: translateX(-50%); z-index: ${20 + xy.z};`,
+      ? `transform: translate(-50%, -50%); z-index: 18;`
+      : `transform: translateX(-50%); z-index: ${20 + xy.z};`,
   )
   let c = '#60a5fa'
 </script>
@@ -110,7 +113,7 @@
 />
 
 {#snippet handlingBar()}
-  {#if isDevMode && C.editMode}
+  {#if isDevMode && RS.editMode}
     <div
       style={`z-index: ${200 + xy.z}`}
       ondblclick={toggleHidden}
@@ -164,9 +167,9 @@
       {id}
       bind:this={container}
       style={posStyle}
-      class={cx('absolute w-360px', {
-        'pt12 -mt12': C.editMode,
-        'pt4 -mt4': !C.editMode,
+      class={cx('w-360px pointer-events-auto', {
+        'pt12 -mt12': RS.editMode,
+        'pt4 -mt4': !RS.editMode,
       })}
     >
       {@render handlingBar()}
@@ -207,7 +210,7 @@
       bind:this={container}
       style={posStyle}
       role="presentation"
-      class={cx(`absolute pointer-events-none`)}
+      class={cx(`pointer-events-none`)}
     >
       {@render handlingBar()}
       {#if !hidden}
@@ -219,15 +222,3 @@
     </div>
   {/if}
 {/if}
-<!-- <slot name="tl" />
-  <slot name="tt" />
-  <slot name="tr" />
-  <slot name="rt" />
-  <slot name="rr" />
-  <slot name="rb" />
-  <slot name="br" />
-  <slot name="bb" />
-  <slot name="bl" />
-  <slot name="lb" />
-  <slot name="ll" />
-  <slot name="lt" /> -->

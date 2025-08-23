@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { onMount } from 'svelte'
+
   const {
     ondetect,
     thickness,
@@ -9,9 +11,15 @@
     hue: number
   } = $props()
 
+  let winSize = $state({ w: window.innerWidth, h: window.innerHeight })
+
+  function handleResize() {
+    winSize.w = window.innerWidth
+    winSize.h = window.innerHeight
+  }
+
   function generateSvgPath(innerMargin = 100, cornerRadius = 50) {
-    const w = window.innerWidth
-    const h = window.innerHeight
+    const { w, h } = winSize
 
     const path = `
       M0,0
@@ -64,6 +72,8 @@
     ondetect(direction)
   }
 </script>
+
+<svelte:window onresize={handleResize} />
 
 <div class="absolute inset-0 pointer-events-none z-200">
   <svg width="100vw" height="100vh" class="absolute inset-0">
