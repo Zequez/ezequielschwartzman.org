@@ -40,6 +40,7 @@
   style="left: {x}px; top: {y}px;"
   bind:this={el}
 >
+  <div class="absolute -top-100px left-0" {id}></div>
   {#if children}
     {@render children()}
   {/if}

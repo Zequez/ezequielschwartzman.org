@@ -49,6 +49,14 @@
   }
 
   let canvasRef: Canvas
+
+  function fullscreen() {
+    if (document.fullscreenElement) {
+      document.exitFullscreen()
+    } else {
+      document.documentElement.requestFullscreen()
+    }
+  }
 </script>
 
 <svelte:window onkeydown={handleWindowKeydown} />
@@ -64,6 +72,7 @@
 {#if canvasRef}
   <button
     class="fixed z-999 bottom-0 left-1/2 -translate-x-1/2 bg-black/90 text-white px2 py1 rounded-t-md uppercase text-xs font-bold"
+    onclick={(ev) => fullscreen()}
   >
     {canvasRef.context.focus}
   </button>

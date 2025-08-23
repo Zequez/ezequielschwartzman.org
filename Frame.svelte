@@ -24,6 +24,8 @@
   const FC = framesStore.getContext()
   const CS = canvasStore.getContext()
 
+  const FOCUS_PAD_TOP = 150
+
   let moving = $state<{
     x: number
     y: number
@@ -119,11 +121,10 @@
       ondblclick={toggleHidden}
       role="presentation"
       class={cx(
-        'h10 absolute peer top-0 left-0 w-full min-w-200px flexcs px2 text-xs rounded-md space-x-2 b-black/10 pointer-events-auto',
+        'h10 absolute peer top-0 left-0 w-full -mt12 min-w-200px flexcs px2 text-xs rounded-md space-x-2 b-black/10 pointer-events-auto',
         {
           'bg-gray-400 shadow-[0_1.1px_0px_2px_#6B7381]': draft,
           'bg-blue-400 shadow-[0_1.1px_0px_2px_#437CC3]': !draft,
-          '-mt12': bg,
         },
       )}
     >
@@ -164,13 +165,9 @@
 {#if !draft || isDevMode}
   {#if !bg}
     <div
-      {id}
       bind:this={container}
       style={posStyle}
-      class={cx('w-360px pointer-events-auto', {
-        'pt12 -mt12': RS.editMode,
-        'pt4 -mt4': !RS.editMode,
-      })}
+      class={cx('w-360px pointer-events-auto', {})}
     >
       {@render handlingBar()}
       {#if !hidden}
@@ -187,10 +184,10 @@
             ></a>
           {:else}
             <div
-              class="absolute -inset-2 b-3 blur-sm b-yellow-300 b-dashed rounded-lg z-9 bg-yellow-300/20"
+              class="absolute -inset-2 b-3 blur-sm b-yellow-300 b-dashed rounded-lg z-9 bg-yellow-300/20 pointer-events-none"
             ></div>
             <div
-              class="absolute -inset-2 b-3 b-yellow-300 b-dashed rounded-lg z-9"
+              class="absolute -inset-2 b-3 b-yellow-300 b-dashed rounded-lg z-9 pointer-events-none"
             ></div>
           {/if}
 
