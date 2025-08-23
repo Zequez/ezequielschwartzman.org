@@ -1,6 +1,7 @@
 import type { MDXContent } from 'mdx/types'
 import { getContext, setContext } from 'svelte'
 import type api from './api.svelte'
+import createContextedStore from './contexted-store'
 
 export type Frontmatter = {
   x: number
@@ -18,7 +19,7 @@ export type Frame = {
   component: MDXContent
 }
 
-function init() {
+export default createContextedStore('frames', () => {
   const allFramesRaw = import.meta.glob('../frames/*.mdx', {
     eager: true,
   })
@@ -64,16 +65,18 @@ function init() {
     },
     topZ,
   }
-}
+})
 
-export type FramesContext = ReturnType<typeof init>
+// function init()
 
-export function initFramesContext() {
-  const store = init()
-  setContext('frames', store)
-  return store
-}
+// export type FramesContext = ReturnType<typeof init>
 
-export function getFramesContext() {
-  return getContext('frames') as FramesContext
-}
+// export function initFramesContext() {
+//   const store = init()
+//   setContext('frames', store)
+//   return store
+// }
+
+// export function getFramesContext() {
+//   return getContext('frames') as FramesContext
+// }

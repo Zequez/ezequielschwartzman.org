@@ -1,9 +1,9 @@
 <script lang="ts">
   import FrameEl from './Frame.svelte'
   import PreactWrapper from './PreactWrapper.svelte'
-  import { initFramesContext } from './lib/frames-store.svelte'
+  import framesStore from './lib/frames-store.svelte'
 
-  const FC = initFramesContext()
+  const FC = framesStore.initContext({})
 </script>
 
 {#each FC.frames as frame}

@@ -2,7 +2,7 @@
   import { getContext, onMount } from 'svelte'
   import { cx } from '@/center/utils'
   import { type Context } from './index.svelte'
-  import { getFramesContext, type Frontmatter } from './lib/frames-store.svelte'
+  import framesStore from './lib/frames-store.svelte'
   import IconMove from '~icons/fa6-solid/arrows-up-down-left-right'
 
   const { id, title, x, y, z, children, draft, bg, hidden } = $props<{
@@ -19,7 +19,7 @@
   }>()
 
   const C = getContext('main') as Context
-  const FC = getFramesContext()
+  const FC = framesStore.getContext()
 
   let moving = $state<{
     x: number
@@ -98,7 +98,7 @@
 
   let posStyle = $derived(
     bg
-      ? `left: ${xy.x}px; top: ${xy.y}px; transform: translate(-50%, -50%); z-index: 19;`
+      ? `left: ${xy.x}px; top: ${xy.y}px; transform: translate(-50%, -50%); z-index: 18;`
       : `left: ${xy.x}px; top: ${xy.y}px; transform: translateX(-50%); z-index: ${20 + xy.z};`,
   )
   let c = '#60a5fa'
@@ -166,18 +166,15 @@
       style={posStyle}
       class={cx('absolute w-360px', {
         'pt12 -mt12': C.editMode,
+        'pt4 -mt4': !C.editMode,
       })}
     >
       {@render handlingBar()}
       {#if !hidden}
         <div
-          class={cx(
-            `relative p4 md w-full
-        bg-gray-100 rounded-md shadow-[0_1.5px_0px_2px_#888]`,
-            {
-              'saturate-0 hover:brightness-120': !isSelected,
-            },
-          )}
+          class={cx(`relative md w-full`, {
+            'saturate-100 hover:brightness-120': !isSelected,
+          })}
         >
           {#if !isSelected}
             <a
@@ -185,9 +182,20 @@
               aria-label="Focus frame"
               href={`#${id}`}
             ></a>
+          {:else}
+            <div
+              class="absolute -inset-2 b-3 blur-sm b-yellow-300 b-dashed rounded-lg z-9 bg-yellow-300/20"
+            ></div>
+            <div
+              class="absolute -inset-2 b-3 b-yellow-300 b-dashed rounded-lg z-9"
+            ></div>
           {/if}
 
-          <div class={cx('relative z-10')}>
+          <div
+            class={cx(
+              'relative z-10 p4 md bg-gray-100 rounded-md shadow-[0_1.5px_0px_2px_#888]',
+            )}
+          >
             {@render children()}
           </div>
         </div>

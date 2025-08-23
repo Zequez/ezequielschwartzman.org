@@ -31,6 +31,8 @@
     editMode: boolean
     registerFrame: (frame: FrameOutput) => void
   }
+
+  import { Canvas } from './canvas'
 </script>
 
 <script lang="ts">
@@ -62,7 +64,6 @@
 
   function registerFrame(output: FrameOutput) {
     framesOverview.push(output)
-    console.log(output)
   }
 
   const STRUCTURE: Structure = {
@@ -374,6 +375,7 @@
   })
 </script>
 
+<!--
 <svelte:window
   onhashchange={(ev) => handleHashChange(ev, window.location.hash.slice(1))}
   onclick={handleWindowClick}
@@ -382,7 +384,7 @@
   onmousemove={handleWindowMousemove}
   onmousedown={handleWindowMousedown}
   onkeydown={handleWindowKeydown}
-/>
+/> -->
 
 <svelte:head>
   <title>Ezequiel A. Schwartzman</title>
@@ -418,12 +420,15 @@
 >
   {focus}
 </button>
-<div
+<Canvas>
+  <div class="bg-red-500">Hello there</div>
+</Canvas>
+
+<!-- <div
   bind:this={scrollContainer}
   onwheel={handleContainerWheel}
   class="relative h-full w-full bg-black overflow-auto no-scrollbar"
 >
-  <!--  -->
   <div
     bind:this={cavitationContainer}
     class="relative w-5000px h-5000px max-w-none max-h-none"
@@ -440,18 +445,7 @@
         style={`background-image: url(${noise});`}
         class="w-5000px h-5000px bg-repeat absolute -left-2500px -top-2500px pointer-events-none"
       ></div>
-      <!-- <div class="absolute z-10 inset-0 bg-[url('/noise20.png')] opacity-30"></div> -->
-      <!-- <Frames /> -->
       <MdxFrames />
     </div>
   </div>
-</div>
-
-<style global>
-  .no-scrollbar {
-    scrollbar-width: 0;
-  }
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-</style>
+</div> -->
