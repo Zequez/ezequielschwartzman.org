@@ -50,7 +50,6 @@
       const el = document.getElementById(id)
       if (el) {
         CS.cmd.focus(id)
-        console.log('Srolling intov view!')
         setTimeout(() => {
           scrollIntoView(id, true)
           loader = false
@@ -70,7 +69,6 @@
 
   function scrollIntoView(id: string, instant = false) {
     const el = document.getElementById(id)
-    console.log('EL', el)
     if (el) {
       el.scrollIntoView({
         behavior: instant ? 'instant' : 'smooth',
@@ -109,7 +107,7 @@
       if (url.hash) {
         ev.preventDefault()
         ev.stopPropagation()
-        if (justPanned) return
+        if (justPanned > 5) return
         focusOn(ev.target.hash.slice(1))
       }
     }
@@ -136,20 +134,20 @@
     }
   }
 
-  let justPanned = $state(false)
+  let justPanned = $state(0)
   function handleMouseMove(ev: MouseEvent) {
     if (pan) {
-      justPanned = true
+      justPanned += Math.abs(ev.movementX) + Math.abs(ev.movementY)
       scrollContainer.scrollLeft -= ev.movementX
       scrollContainer.scrollTop -= ev.movementY
     }
   }
 
   function handleMouseUp(ev: MouseEvent) {
-    if (ev.button === 0) {
+    if (ev.button === 0 && pan) {
       pan = false
       setTimeout(() => {
-        justPanned = false
+        justPanned = 0
       }, 100)
     }
   }

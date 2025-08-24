@@ -5,10 +5,19 @@
 
   const { component }: { component: MDXContent } = $props()
   let el = $state<HTMLDivElement | null>(null)
+  let err = $state<unknown | null>(null)
 
   onMount(() => {
-    render(component({}), el!)
+    try {
+      render(component({}), el!)
+      err = null
+    } catch (e) {
+      err = e
+    }
   })
 </script>
 
 <div bind:this={el}></div>
+{#if err}
+  <pre>{err}</pre>
+{/if}

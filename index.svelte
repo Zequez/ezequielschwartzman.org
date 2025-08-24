@@ -26,7 +26,7 @@
 
   import api from './lib/api.svelte'
   import noise from './noise.png'
-  import MdxFrames from './MdxFrames.svelte'
+  import MdxFrames from './eframes/MdxFrames.svelte'
   import rootStore from './lib/root-store.svelte'
 
   let RS = rootStore.initContext({})
@@ -36,15 +36,20 @@
   setContext('api', API)
 
   let shiftCount = 0
+  let shiftTimeout: any = null
   function handleWindowKeydown(ev: KeyboardEvent) {
     if (ev.key === 'Shift') {
       shiftCount++
-      if (shiftCount === 3) {
+      if (shiftCount >= 3) {
         RS.cmd.toggleEditMode()
-      }
-      setTimeout(() => {
         shiftCount = 0
-      }, 1000)
+        clearTimeout(shiftTimeout)
+      } else {
+        clearTimeout(shiftTimeout)
+        shiftTimeout = setTimeout(() => {
+          shiftCount = 0
+        }, 1000)
+      }
     }
   }
 
@@ -77,6 +82,14 @@
     {canvasRef.context.focus}
   </button>
 {/if}
+<div
+  class="absolute top-4 left-1/2 -translate-x-1/2 bg-gray-100 shadow-[inset_0_0_3px_#fff] b b-black/10 shadow-sm rounded-lg flex space-x-1 z-999 p1 text-white font-mono text-shadow-[0_1px_0_#000f]"
+>
+  <button class="w10 h10 rounded-lg bg-yellow">FO</button>
+  <button class="w10 h10 rounded-lg bg-blue">ED</button>
+  <button class="w10 h10 rounded-lg bg-green">SC</button>
+  <button class="w10 h10 rounded-lg bg-slate">FC</button>
+</div>
 <Canvas background={noise} bind:this={canvasRef}>
   <MdxFrames />
 </Canvas>

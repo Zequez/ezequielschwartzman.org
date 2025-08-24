@@ -19,3 +19,16 @@ export default function createContextedStore<TConfig, KStoreContext>(
     getContext: getStoreContext,
   }
 }
+
+export function proxifyCmd<
+  K extends Record<string | symbol, (...args: any[]) => any>,
+>(prefix: string, cmd: K) {
+  return new Proxy(cmd, {
+    get: (target, prop: keyof typeof cmd, receiver) => {
+      return (...args: Parameters<(typeof cmd)[keyof typeof cmd]>) => {
+        console.log(prefix, prop, args)
+        return (target[prop] as any)(...args)
+      }
+    },
+  })
+}
