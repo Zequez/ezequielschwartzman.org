@@ -69,7 +69,9 @@
     <!-- svelte-ignore a11y_click_events_have_key_events -->
     <div
       bind:this={container}
-      class={cx('w-360px pointer-events-auto relative')}
+      class={cx('w-360px pointer-events-auto relative', {
+        'opacity-50': p.draft && !isSelected,
+      })}
       onmouseenter={() => (!DRAG.dragging ? FS.cmd.hovering(id) : null)}
       onmousedown={(ev) => ev.shiftKey && DRAG.handleDragOnMouseDown(ev)}
       style={posStyle}

@@ -24,13 +24,13 @@
   import framesStore from './eframes/frames-store.svelte'
   import canvasStore from './canvas/canvas-store.svelte'
 
-  let RS = rootStore.initContext({})
-  let FS = framesStore.initContext({})
-  let CS = canvasStore.initContext({})
-
   const API = api()
 
   setContext('api', API)
+
+  let RS = rootStore.initContext({})
+  let FS = framesStore.initContext({})
+  let CS = canvasStore.initContext({})
 
   // const structuredFrames = $derived(
   //   Object.entries(FS.extendedFmById)

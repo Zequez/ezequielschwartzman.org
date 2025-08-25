@@ -8,13 +8,16 @@ function framePath(id: string) {
 }
 
 export default function api() {
-  let socket = $state<WebSocket>(null!)
+  let socket = $state<WebSocket | null>(null)
 
   onMount(() => {
+    if (!import.meta.env.DEV) return
     socket = new WebSocket(`ws://localhost:${SERVER_FILES_PORT}?repo=ezequiel`)
   })
 
-  async function readFrameById(frameId: string): Promise<string> {
+  async function readFrameById(frameId: string): Promise<string | null> {
+    if (!socket) return null
+
     return new Promise((resolve, reject) => {
       const filePath = framePath(frameId)
 
@@ -22,10 +25,10 @@ export default function api() {
         const data = JSON.parse(ev.data) as BackMsg
         if (data[0] === 'file-content' && data[1] === filePath) {
           resolve(data[2])
-          socket.removeEventListener('message', grabFileContent)
+          socket!.removeEventListener('message', grabFileContent)
         }
       }
-      socket.addEventListener('message', grabFileContent)
+      socket!.addEventListener('message', grabFileContent)
 
       sendMsg(['read-file', filePath])
     })
@@ -34,6 +37,7 @@ export default function api() {
   }
 
   function sendMsg(msg: FrontMsg) {
+    if (!socket) return
     socket.send(JSON.stringify(msg))
   }
 
@@ -41,10 +45,13 @@ export default function api() {
     id: string,
     frontmatter: Record<string, any>,
   ) {
+    if (!socket) return
     const content = await readFrameById(id)
-    const newFileContent = updateFileFrontmatter(content, frontmatter)
+    if (content) {
+      const newFileContent = updateFileFrontmatter(content, frontmatter)
 
-    sendMsg(['write-file', framePath(id), newFileContent])
+      sendMsg(['write-file', framePath(id), newFileContent])
+    }
   }
 
   function updateFileFrontmatter(

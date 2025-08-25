@@ -1,5 +1,5 @@
 .md h1 {
-  @apply text-xl font-bold mb4;
+  @apply text-4xl font-bold mb4;
 }
 
 .md h2 {
@@ -7,9 +7,6 @@
 }
 
 
-.md p {
-  @apply text-sm;
-}
 
 .md a {
   @apply text-blue-500 underline;
@@ -20,5 +17,21 @@
 }
 
 .md p {
+  @apply text-sm mb2;
+}
+
+.md ol li {
+  @apply mb.5 text-sm;
+  list-style-type: decimal;
+  list-style-position: inside
+}
+
+.md ul, .md ol {
   @apply mb2;
+}
+
+.md ul li {
+  @apply mb.5 text-sm;
+  list-style-type: disc;
+  list-style-position: inside
 }
