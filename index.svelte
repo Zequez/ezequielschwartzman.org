@@ -156,7 +156,6 @@
     })
   })
 
-  console.log(FS.framesTitlesById)
   let framesByAphabeticalOrder = $derived.by(() => {
     return FS.frames
       .filter((f) => f.fm.layer === 'fg' && !f.fm.hidden && !f.fm.draft)

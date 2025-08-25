@@ -1,0 +1,25 @@
+---
+x: -1522.4320987654319
+y: -1108.037037037035
+z: 394
+layer: bg
+positions: [[282.6913580246917,86.72839506172805],[459.0617283950618,309.7283950617285],[312.98765432098725,361.925925925924],[543.9753086419755,29.283950617283978],[816.1358024691361,92.45679012345695],[184.39506172839555,586.9135802469141],[955.691358024693,387.1234567901233],[529.9382716049386,769.7777777777787],[86.7654320987654,370.0246913580247],[838.8148148148141,682.4691358024678]]
+sizes: [0.6999999999999997,1.3000000000000003,0.3999999999999998,0.7000000000000001,0.8999999999999997,1,0.7999999999999997,0.8,0.5999999999999998,0.8]
+hidden: false
+---
+
+export const images = import.meta.glob('../photos/composicion-macro/*.jpg', {eager: true,})
+import Composition from './components/Composition.tsx'
+
+<Composition positions={frontmatter.positions} images={images} sizes={frontmatter.sizes}/>
+
+{/* <div>
+{Object.entries(images).map(([path, img]) =>
+  <img class="absolute w300px max-w-none rounded-[60px]" src={img.default} alt={img.default.split('/').pop().replace('.jpg', '')}/>
+)}
+</div> */}
+{/* <img
+  class="w-500px max-w-none rounded-xl"
+  src={miniGarden}
+  alt="Miniature moss garden growing on a brick"
+/> */}

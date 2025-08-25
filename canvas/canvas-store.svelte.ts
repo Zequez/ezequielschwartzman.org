@@ -114,6 +114,9 @@ export default createContextedStore('canvas', () => {
     get zoom() {
       return zoom
     },
+    getZoom() {
+      return zoom
+    },
     get focus() {
       return focus
     },

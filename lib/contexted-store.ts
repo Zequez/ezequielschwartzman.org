@@ -1,11 +1,17 @@
 import { getContext, setContext } from 'svelte'
 
+const contexts = new Map<string, any>()
+export function getContexts() {
+  return contexts
+}
+
 export default function createContextedStore<TConfig, KStoreContext>(
   contextName: string,
   init: (config: TConfig) => KStoreContext,
 ) {
   function initStoreContext(config: TConfig) {
     const store = init(config)
+    contexts.set(contextName, store)
     setContext(contextName, store)
     return store
   }

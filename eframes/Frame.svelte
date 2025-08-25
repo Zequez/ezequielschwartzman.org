@@ -131,12 +131,15 @@
         draggingHandler={DRAG.handleDragOnMouseDown}
         isDragging={!!DRAG.dragging}
       />
-      {#if !p.hidden}
-        <div
-          class="hidden peer-hover:block absolute -inset-3px b-3 b-blue-400 rounded-md b-dashed"
-        ></div>
+      <div
+        class={cx(
+          'hidden peer-hover:block absolute -inset-3px b-3 b-blue-400 rounded-md b-dashed',
+          {},
+        )}
+      ></div>
+      <div class={cx({ 'invisible pointer-events-none': p.hidden })}>
         {@render children()}
-      {/if}
+      </div>
     </div>
   {/if}
 {/if}
