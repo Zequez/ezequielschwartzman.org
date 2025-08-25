@@ -5,7 +5,7 @@
   import { Pin } from '../canvas'
   import rootStore from '../lib/root-store.svelte'
 
-  const FS = framesStore.initContext({})
+  const FS = framesStore.getContext()
   const RS = rootStore.getContext()
 
   export const context = FS

@@ -20,18 +20,41 @@
   import EdgeScrollIcon from '~icons/fa6-solid/border-none'
   import PlusIcon from '~icons/fa6-solid/plus'
   import MinusIcon from '~icons/fa6-solid/minus'
+  import BarsIcon from '~icons/fa6-solid/bars'
+  import framesStore from './eframes/frames-store.svelte'
+  import canvasStore from './canvas/canvas-store.svelte'
 
   let RS = rootStore.initContext({})
+  let FS = framesStore.initContext({})
+  let CS = canvasStore.initContext({})
 
   const API = api()
 
   setContext('api', API)
+
+  // const structuredFrames = $derived(
+  //   Object.entries(FS.extendedFmById)
+  //     .filter(([id, fm]) => fm.layer === 'fg')
+  //     .map(([id, fm]) => ({
+  //       id,
+  //       x: fm.x * 0.1,
+  //       y: fm.y * 0.2,
+  //       linksTo: Object.values(fm.tunnels).filter((v) => v),
+  //       title: fm.title,
+  //     })),
+  // )
 
   type SecondTunnel = {
     n?: string
     e?: string
     s?: string
     w?: string
+  }
+
+  let menuOpen = $state<boolean>(false)
+
+  function toggleMenu() {
+    menuOpen = !menuOpen
   }
 
   let nextTunneling: SecondTunnel | null = null
@@ -98,14 +121,6 @@
     )
   }
 
-  function tunnel1(tunnels: Tunnels, direction: string) {}
-
-  // function selectTunnel(tunnels: Tunnels, direction: string) {
-  //   if (direction.length === 2) {
-
-  //   }
-  // }
-
   function keyToTunnelDirection(key: string) {
     switch (key) {
       case 'ArrowLeft':
@@ -140,6 +155,19 @@
       }
     })
   })
+
+  console.log(FS.framesTitlesById)
+  let framesByAphabeticalOrder = $derived.by(() => {
+    return FS.frames
+      .filter((f) => f.fm.layer === 'fg' && !f.fm.hidden && !f.fm.draft)
+      .sort(({ fm: { title: aa } }, { fm: { title: bb } }) => {
+        return aa.toLocaleLowerCase().localeCompare(bb.toLocaleLowerCase())
+      })
+  })
+  let sortedFramesIds = $derived(framesByAphabeticalOrder.map((f) => f.id))
+  let focusFrameIndex = $derived(
+    CS.focus ? sortedFramesIds.indexOf(CS.focus) : null,
+  )
 </script>
 
 <svelte:window onkeydown={handleWindowKeydown} />
@@ -153,16 +181,58 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href={favicon} />
 </svelte:head>
+<!--
+<div class="absolute top-0 left-0 w-600px h-600px z-999999">
+  <StructuredIndex frames={structuredFrames} />
+</div> -->
 
 <!-- bg-[hsl(100deg_100%_100%)] -->
 {#if canvasRef}
   {#if canvasRef.context.focus}
-    <button
-      class="fixed z-999 bottom-0 left-1/2 -translate-x-1/2 bg-black/90 text-white px2 py1 rounded-t-md uppercase text-xs font-bold"
-      onclick={(ev) => canvasRef.focusOn(canvasRef.context.focus!)}
+    <!-- <button onclick={() => toggleMenu()}></button> -->
+    <div
+      class={cx(
+        'fixed z-999 bottom-0 left-1/2 -translate-x-1/2 flex flex-col bg-gray-900 rounded-t-md overflow-hidden',
+      )}
     >
-      {canvasRef.context.focus}
-    </button>
+      <div
+        class="transition-[transform,height] w-full transition-duration-700"
+        style={`transform: translateY(${menuOpen ? 0 : -focusFrameIndex! * 24}px); height: ${menuOpen ? 24 * framesByAphabeticalOrder.length : 24}px;`}
+      >
+        {#each framesByAphabeticalOrder as { id, fm: { title } }, i (id)}
+          <button
+            class={cx(
+              'relative hover:bg-gray-800 text-white px2 py1 uppercase text-xs font-bold flexcc px7 w-full whitespace-nowrap',
+            )}
+            onclick={(ev) => {
+              if (menuOpen) {
+                canvasRef.focusOn(id)
+              }
+              toggleMenu()
+            }}
+          >
+            {#if i === focusFrameIndex}
+              <div class="absolute top-0 left-.5 flexcc h6 w5">
+                <BarsIcon class="text-[14px]" />
+              </div>
+            {/if}
+            {title}
+          </button>
+        {/each}
+      </div>
+      <!-- <button
+        class=" hover:bg-gray-800 text-white px2 py1 uppercase text-xs font-bold flexcc"
+        onclick={(ev) => toggleMenu()}
+      >
+        <BarsIcon class="text-lg mr2" />
+        {canvasRef.context.focus}
+      </button> -->
+      <!-- <div
+        class={cx('0', {
+          'h-20': menuOpen,
+        })}
+      ></div> -->
+    </div>
   {/if}
 
   <div

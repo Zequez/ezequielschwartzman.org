@@ -231,6 +231,7 @@ export default createContextedStore('frames', () => {
   return {
     cmd: cmdProxy,
     get frames() { return outputFrames }, //prettier-ignore
+    get extendedFmById() { return extendedFmById }, //prettier-ignore
     get hoveringId() { return hoveringId }, //prettier-ignore
     get draggingId() { return draggingId }, //prettier-ignore
     get topZ() { return topZ }, //prettier-ignore

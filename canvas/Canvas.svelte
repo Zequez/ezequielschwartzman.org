@@ -9,7 +9,7 @@
   const { children, background }: { children: Snippet; background: string } =
     $props()
 
-  const CS = store.initContext({})
+  const CS = store.getContext()
 
   export const context = CS
 
