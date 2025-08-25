@@ -22,12 +22,12 @@ export default function draggable(
       onStart()
 
       function onMouseMove(ev: MouseEvent) {
-        const dx = ev.movementX
-        const dy = ev.movementY
+        const dx = ev.movementX / CS.zoom
+        const dy = ev.movementY / CS.zoom
 
         dragging = {
-          x: dragging!.x + dx / CS.zoom,
-          y: dragging!.y + dy / CS.zoom,
+          x: dragging!.x + dx,
+          y: dragging!.y + dy,
           didMove: true,
         }
 
@@ -57,7 +57,9 @@ export default function draggable(
   }
 
   return {
-    dragging,
+    get dragging() {
+      return dragging
+    },
     handleDragOnMouseDown,
   }
 }

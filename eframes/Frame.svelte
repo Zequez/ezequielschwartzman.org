@@ -22,36 +22,39 @@
   const RS = rootStore.getContext()
   const FS = framesStore.getContext()
   const CS = canvasStore.getContext()
+  const isDevMode = import.meta.env.DEV
 
-  let topZ = $state<null | number>(null)
-  const { dragging, handleDragOnMouseDown } = draggable(
+  // let topZ = $state<null | number>(null)
+  const DRAG = draggable(
     () => {
-      topZ = FS.topZ() + 1
+      FS.cmd.setDraggingId(id)
     },
     ({ dx, dy }) => {
       FS.cmd.updateProps(id, {
         x: p.x + dx,
         y: p.y + dy,
-        z: topZ!,
       })
     },
     () => {
+      FS.cmd.setDraggingId(null)
+      FS.cmd.updateProps(id, {
+        z: FS.topZ + 1,
+      })
       FS.cmd.commitProps(id)
-      topZ = null
     },
   )
 
   let container = $state<HTMLDivElement>(null!)
-
   let isSelected = $derived(CS.focus === id)
-  const isDevMode = import.meta.env.DEV
 
   let zIndex = $derived(
-    FS.hoveringId === id
-      ? 9999 + 1
-      : p.layer === 'bg'
-        ? 18
-        : 20 + (topZ || p.z),
+    p.layer === 'bg'
+      ? 18
+      : FS.draggingId === id
+        ? 20 + FS.topZ + 2
+        : FS.hoveringId === id
+          ? 20 + FS.topZ + 1
+          : 20 + p.z,
   )
   let positioning = $derived(
     p.layer === 'bg' ? 'translate(-50%, -50%)' : 'translateX(-50%)',
@@ -67,15 +70,15 @@
     <div
       bind:this={container}
       class={cx('w-360px pointer-events-auto relative')}
-      onmouseover={() => (!dragging ? FS.cmd.hovering(id) : null)}
-      onmousedown={(ev) => ev.shiftKey && handleDragOnMouseDown(ev)}
+      onmouseenter={() => (!DRAG.dragging ? FS.cmd.hovering(id) : null)}
+      onmousedown={(ev) => ev.shiftKey && DRAG.handleDragOnMouseDown(ev)}
       style={posStyle}
     >
       <HandlingBar
         {p}
         {id}
-        draggingHandler={handleDragOnMouseDown}
-        isDragging={!!dragging}
+        draggingHandler={DRAG.handleDragOnMouseDown}
+        isDragging={!!DRAG.dragging}
       />
       {#if !p.hidden}
         <div
@@ -119,8 +122,8 @@
       <HandlingBar
         {p}
         {id}
-        draggingHandler={handleDragOnMouseDown}
-        isDragging={!!dragging}
+        draggingHandler={DRAG.handleDragOnMouseDown}
+        isDragging={!!DRAG.dragging}
       />
       {#if !p.hidden}
         <div

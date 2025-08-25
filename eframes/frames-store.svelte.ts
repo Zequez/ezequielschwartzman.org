@@ -72,7 +72,9 @@ export default createContextedStore('frames', () => {
 
   const API = getContext('api') as ReturnType<typeof api>
 
+  let draggingId = $state<string | null>(null)
   let hoveringId = $state<string | null>(null)
+  let topZ = $state(generateTopZ())
 
   const cmd = {
     updateProps(id: string, frontmatter: Partial<Frontmatter>) {
@@ -87,17 +89,23 @@ export default createContextedStore('frames', () => {
       if (fmUpdates[id]) {
         const rawFm = rawFramesById[id].fm
         const newFm = { ...rawFm, ...fmUpdates[id] }
+        if (fmUpdates[id].z) {
+          topZ = generateTopZ()
+        }
         API.setFrameFrontmatter(id, newFm)
       }
     },
     hovering(id: string) {
       hoveringId = id
     },
+    setDraggingId(id: string | null) {
+      draggingId = id
+    },
   }
 
   const cmdProxy = proxifyCmd(chalk.cyan('[CMD]'), cmd)
 
-  function topZ() {
+  function generateTopZ() {
     return Math.max(...outputFrames.map((f) => f.fm.z || 0))
   }
 
@@ -105,6 +113,7 @@ export default createContextedStore('frames', () => {
     cmd: cmdProxy,
     get frames() { return outputFrames }, //prettier-ignore
     get hoveringId() { return hoveringId }, //prettier-ignore
-    topZ,
+    get draggingId() { return draggingId }, //prettier-ignore
+    get topZ() { return topZ }, //prettier-ignore
   }
 })
