@@ -1,0 +1,63 @@
+import canvasStore from '../canvas/canvas-store.svelte'
+
+export default function draggable(
+  onStart: () => void,
+  onDragging: ({ dx, dy }: { dx: number; dy: number }) => void,
+  onDone: () => void,
+) {
+  const CS = canvasStore.getContext()
+
+  let dragging = $state<{
+    x: number
+    y: number
+    didMove: boolean
+  } | null>(null)
+
+  function handleDragOnMouseDown(ev: MouseEvent) {
+    if (ev.button === 0 && !dragging) {
+      ev.stopPropagation()
+      ev.preventDefault()
+      dragging = { x: 0, y: 0, didMove: false }
+
+      onStart()
+
+      function onMouseMove(ev: MouseEvent) {
+        const dx = ev.movementX
+        const dy = ev.movementY
+
+        dragging = {
+          x: dragging!.x + dx / CS.zoom,
+          y: dragging!.y + dy / CS.zoom,
+          didMove: true,
+        }
+
+        onDragging({ dx, dy })
+      }
+
+      function onMouseUp(ev: MouseEvent) {
+        if (dragging!.didMove) {
+          const el = ev.currentTarget as HTMLElement
+          el.addEventListener('click', cancelNextClick)
+          function cancelNextClick(clickEv: MouseEvent) {
+            clickEv.stopPropagation()
+            clickEv.preventDefault()
+          }
+        }
+
+        onDone()
+        dragging = null
+
+        window.removeEventListener('mousemove', onMouseMove)
+        window.removeEventListener('mouseup', onMouseUp)
+      }
+
+      window.addEventListener('mousemove', onMouseMove)
+      window.addEventListener('mouseup', onMouseUp)
+    }
+  }
+
+  return {
+    dragging,
+    handleDragOnMouseDown,
+  }
+}

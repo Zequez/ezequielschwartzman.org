@@ -1,26 +1,62 @@
 ---
-x: 1411.5555555555597
-y: 48.00000000000011
-z: 190
+x: 1977.0000000000043
+y: -11.333333333333286
+z: 216
 ---
 
-<div>{num} - {person} - {time}</div>
+import HeartIcon from '~icons/fa6-solid/heart?raw'
+import Icon from './components/Icon'
 
-ehp(1, 'Sandra', '18 Apr 2025')
-ehp(2, 'Karol', '21 Apr 2025')
-ehp(3, 'Yair', '23 Apr 2025')
-ehp(4, 'Sandra', '2 May 2025')
-ehp(5, 'Karol', '5 May 2025')
-ehp(6, 'Karol', '19 May 2025')
-ehp(7, 'Sandra', '25 May 2025')
-ehp(8, 'Francisco', '25 May 2025')
-ehp(9, 'Karol', '4 Jun 2025')
-ehp(10, 'Francisco', '12 Jun 2025')
-ehp(11, 'Sandra', '27 Jun 2025')
-ehp(12, 'Nina', '21 Jun 2025')
-ehp(13, 'Francisco', '30 Jun 2025')
-ehp(14, 'Ian', '1 Jul 2025')
-ehp(15, 'Mar', '5 Jul 2025')
-ehp(16, 'Karol', '28 Jul 2025')
-ehp(17, 'Sandra', '31 Jul 2025')
-ehp(18, 'Karol', '16 Aug 2025')
+export const Ehp = ({num, person, date}) => (
+  <div class="flex">
+    <span class="text-white flexcc font-bold h8 w8 rounded-full relative mr1">
+      <span class="absolute h-full w-full flexcc text-[10px] z-7 text-shadow-[0_1px_0_#0005]">{num}</span>
+      <Icon icon={HeartIcon} class="text-red-500 text-xl relative z-6"/>
+      <span class="absolute flexcc inset-0 z-5">
+        <Icon icon={HeartIcon} class="text-red-700 text-xl mt.5 ml.2"/>
+      </span>
+    </span>
+    <span class="flex-grow flexcs">{person}</span>
+    <span class="flexcc opacity-50">{date}</span>
+  </div>
+)
+
+# EHP Log
+
+EHP stands for [Emotional Healing Process](https://emotionalhealingprocess.mystrikingly.com/)
+
+I'm training myself at this spaceholding skill to become extremely effective at it. This makes me valuable to everybody around me.
+
+The opportunity to practice is enough of a payment for this service for now.
+
+An EHP is an intimate and vulnerable process in which you are navigated into a liquid state in order
+to transform yourself. Can be both painful and ecstatic. I've gone through dozens of EHPs, and I've never
+regretted any of them.
+
+
+<Ehp num={1} person={'Sandra'} date={'18 Apr 2025'}/>
+<Ehp num={2} person={'Karol'} date={'21 Apr 2025'}/>
+<Ehp num={3} person={'Yair'} date={'23 Apr 2025'}/>
+<Ehp num={4} person={'Sandra'} date={'2 May 2025'}/>
+<Ehp num={5} person={'Karol'} date={'5 May 2025'}/>
+<Ehp num={6} person={'Karol'} date={'19 May 2025'}/>
+<Ehp num={7} person={'Sandra'} date={'25 May 2025'}/>
+<Ehp num={8} person={'Francisco'} date={'25 May 2025'}/>
+<Ehp num={9} person={'Karol'} date={'4 Jun 2025'}/>
+<Ehp num={10} person={'Francisco'} date={'12 Jun 2025'}/>
+<Ehp num={11} person={'Sandra'} date={'27 Jun 2025'}/>
+<Ehp num={12} person={'Nina'} date={'21 Jun 2025'}/>
+<Ehp num={13} person={'Francisco'} date={'30 Jun 2025'}/>
+<Ehp num={14} person={'Ian'} date={'1 Jul 2025'}/>
+<Ehp num={15} person={'Mar'} date={'5 Jul 2025'}/>
+<Ehp num={16} person={'Karol'} date={'28 Jul 2025'}/>
+<Ehp num={17} person={'Sandra'} date={'31 Jul 2025'}/>
+<Ehp num={18} person={'Karol'} date={'16 Aug 2025'}/>
+<Ehp num={19} person={'Isa'} date={'24 Aug 2025'}/>
+<Ehp num={20} person={'Gabriel'} date={'24 Aug 2025'}/>
+<Ehp num={21} person={''} date={''}/>
+
+<br/>
+
+If you would like me to hold space for you, [contact me](#protocols) and then either use the [automatic scheduler](#scheduler) to coordinate a time
+or manually negotiate a time with me.
