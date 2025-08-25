@@ -1,28 +1,10 @@
-<script lang="ts" module>
-  type FrameOutput = {
-    id?: string
-    title?: string
-    x: number
-    y: number
-    w: number
-    h: number
-  }
-
-  export type Context = {
-    focus: string
-    birdsEye: boolean
-    editMode: boolean
-    registerFrame: (frame: FrameOutput) => void
-  }
-
-  import { Canvas } from './canvas'
-</script>
-
 <script lang="ts">
-  import { onMount, setContext } from 'svelte'
+  import { onMount, setContext, type Component } from 'svelte'
   import favicon from './favicon.png'
 
   import './markdown.css'
+
+  import { Canvas } from './canvas'
 
   import api from './lib/api.svelte'
   import noise from './noise.png'
@@ -30,6 +12,14 @@
   import rootStore from './lib/root-store.svelte'
   import { cx } from '@/center/utils'
   import type { Tunnels } from './eframes/frames-store.svelte'
+  import LinkIcon from '~icons/fa6-solid/link'
+  import ExpandIcon from '~icons/fa6-solid/expand'
+  import CompressIcon from '~icons/fa6-solid/compress'
+  import PenIcon from '~icons/fa6-solid/pen'
+  import ImageIcon from '~icons/fa6-solid/image'
+  import EdgeScrollIcon from '~icons/fa6-solid/border-none'
+  import PlusIcon from '~icons/fa6-solid/plus'
+  import MinusIcon from '~icons/fa6-solid/minus'
 
   let RS = rootStore.initContext({})
 
@@ -129,8 +119,8 @@
     }
   }
 
-  let canvasRef: Canvas
-  let framesRef: MdxFrames
+  let canvasRef = $state<Canvas>(null!)
+  let framesRef = $state<MdxFrames>(null!)
 
   function fullscreen() {
     if (document.fullscreenElement) {
@@ -139,6 +129,17 @@
       document.documentElement.requestFullscreen()
     }
   }
+
+  let onFullscreen = $state(false)
+  onMount(() => {
+    document.addEventListener('fullscreenchange', () => {
+      if (document.fullscreenElement) {
+        onFullscreen = true
+      } else {
+        onFullscreen = false
+      }
+    })
+  })
 </script>
 
 <svelte:window onkeydown={handleWindowKeydown} />
@@ -152,29 +153,104 @@
 
 <!-- bg-[hsl(100deg_100%_100%)] -->
 {#if canvasRef}
-  <button
-    class="fixed z-999 bottom-0 left-1/2 -translate-x-1/2 bg-black/90 text-white px2 py1 rounded-t-md uppercase text-xs font-bold"
-    onclick={(ev) => fullscreen()}
+  {#if canvasRef.context.focus}
+    <button
+      class="fixed z-999 bottom-0 left-1/2 -translate-x-1/2 bg-black/90 text-white px2 py1 rounded-t-md uppercase text-xs font-bold"
+      onclick={(ev) => canvasRef.focusOn(canvasRef.context.focus!)}
+    >
+      {canvasRef.context.focus}
+    </button>
+  {/if}
+
+  <div
+    class="absolute top-4 right-4 bg-gray-900 b b-white/20 shadow-sm rounded-lg space-x-1.5 z-999 p1.5 hidden sm:flex"
   >
-    {canvasRef.context.focus}
-  </button>
-{/if}
-<div
-  class="absolute top-4 right-4 bg-gray-100 shadow-[inset_0_0_3px_#fff] b b-black/10 shadow-sm rounded-lg flex space-x-1 z-999 p1 text-white font-mono text-shadow-[0_1px_0_#000f]"
->
-  <button
-    class={cx('w10 h10 rounded-lg bg-black b-4 b-yellow font-bold', {
-      'bg-yellow text-black': RS.tunnelingOverlay,
-    })}
-    onclick={() => RS.cmd.toggleTunnelingOverlay()}
-  >
-    TO
-  </button>
-  <button class="w10 h10 rounded-lg bg-yellow">FO</button>
+    {#snippet MegaBtn(
+      Icon: Component,
+      title: string,
+      active: boolean,
+      onClick: () => void,
+      klass: string,
+    )}
+      <button
+        {title}
+        class={cx(
+          'w10 h10 active:(shadow-[inset_0_1px_0_#fffa,inset_0_-1px_0_#0005] mt1.5px mb0) mb1.5px relative rounded-lg bg-gradient-to-b from-white/10 to-white/0 shadow-[0_1.5px_0_1px_var(--shadow-color),inset_0_1px_0_#fffa] font-bold flexcc text-gray-100',
+          klass,
+          {
+            'opacity-100': active,
+            'opacity-75 hover:saturate-50 saturate-0': !active,
+          },
+        )}
+        onclick={() => onClick()}
+      >
+        <div class="relative z-10"><Icon /></div>
+        <div class="text-black absolute inset-0 flexcc z-9 mt.5">
+          <Icon />
+        </div>
+      </button>
+    {/snippet}
+
+    <div class="text-white flex flex-col space-y-1">
+      <button
+        class="w4.5 h4.5 rounded-full bg-slate-300 text-slate-800 b-2 b-black/10 shadow-[0_1px_0_#0009] hover:(bg-slate-600 text-slate-300 scale-120) flexcc"
+        onclick={() => canvasRef.context.cmd.shiftZoom(-1)}
+      >
+        <PlusIcon />
+      </button>
+      <button
+        class="w4.5 h4.5 rounded-full bg-slate-300 text-slate-800 b-2 b-black/10 shadow-[0_1px_0_#0009] hover:(bg-slate-600 text-slate-300 scale-120) flexcc"
+        onclick={() => canvasRef.context.cmd.shiftZoom(1)}
+      >
+        <MinusIcon />
+      </button>
+    </div>
+
+    {@render MegaBtn(
+      PenIcon,
+      'Edit mode',
+      RS.editMode,
+      () => RS.cmd.toggleEditMode(),
+      "bg-blue-400 [--shadow-color:theme('colors.blue.600')]",
+    )}
+
+    {@render MegaBtn(
+      LinkIcon,
+      'Tunneling overlay',
+      RS.tunnelingOverlay,
+      () => RS.cmd.toggleTunnelingOverlay(),
+      "bg-yellow-400 [--shadow-color:theme('colors.yellow.600')]",
+    )}
+
+    {@render MegaBtn(
+      ImageIcon,
+      'Background mode',
+      RS.backgroundMode,
+      () => RS.cmd.toggleBackgroundMode(),
+      "bg-pink-400 [--shadow-color:theme('colors.pink.600')]",
+    )}
+
+    {@render MegaBtn(
+      EdgeScrollIcon,
+      'Edge Scroll Mode',
+      canvasRef.context.edgeScrollMode,
+      () => canvasRef.context.cmd.toggleEdgeScrollMode(),
+      "bg-green-400 [--shadow-color:theme('colors.green.600')]",
+    )}
+
+    {@render MegaBtn(
+      onFullscreen ? CompressIcon : ExpandIcon,
+      'Fullscreen',
+      onFullscreen,
+      () => fullscreen(),
+      "bg-teal-400 [--shadow-color:theme('colors.teal.600')]",
+    )}
+    <!-- <button class="w10 h10 rounded-lg bg-yellow">FO</button>
   <button class="w10 h10 rounded-lg bg-blue">ED</button>
   <button class="w10 h10 rounded-lg bg-green">SC</button>
-  <button class="w10 h10 rounded-lg bg-slate">FC</button>
-</div>
+  <button class="w10 h10 rounded-lg bg-slate">FC</button> -->
+  </div>
+{/if}
 <Canvas background={noise} bind:this={canvasRef}>
   <MdxFrames bind:this={framesRef} />
 </Canvas>

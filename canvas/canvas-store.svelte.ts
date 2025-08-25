@@ -64,7 +64,9 @@ export default createContextedStore('canvas', () => {
     focus(target: string | null) {
       focus = target
     },
-    shiftZoom(zoomShift: number, clientX: number, clientY: number) {
+    shiftZoom(zoomShift: number, clientX?: number, clientY?: number) {
+      const resolvedClientX = clientX ?? window.innerWidth / 2
+      const resolvedClientY = clientY ?? window.innerHeight / 2
       const zoomIndex = zoomLevels.indexOf(zoom)
       const newZoomIndex = zoomIndex + zoomShift
       if (newZoomIndex >= 0 && newZoomIndex < zoomLevels.length) {
@@ -78,8 +80,8 @@ export default createContextedStore('canvas', () => {
 
         // If cursor is at the right of originX, scroll left
         // If cursor is at the left of originX, scroll right
-        const dx = clientX - originX
-        const dy = clientY - originY
+        const dx = resolvedClientX - originX
+        const dy = resolvedClientY - originY
 
         zoom = newZoom
         scrollContainer.scrollBy(-dx * zoomDelta, -dy * zoomDelta)

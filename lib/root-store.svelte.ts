@@ -12,6 +12,7 @@ export default createContextedStore('root', () => {
   let editMode = $state(localStorage.getItem('edit-mode') === 'true')
   let tunnelingOverlay = $state(false)
   let tentativeTunnel = $state<string | null>(null)
+  let backgroundMode = $state(false)
 
   $effect(() => {
     localStorage.setItem('edit-mode', editMode ? 'true' : 'false')
@@ -26,6 +27,9 @@ export default createContextedStore('root', () => {
     },
     temptTunnel(direction: string | null) {
       tentativeTunnel = direction
+    },
+    toggleBackgroundMode() {
+      backgroundMode = !backgroundMode
     },
   }
 
@@ -48,6 +52,9 @@ export default createContextedStore('root', () => {
     },
     get tentativeTunnel() {
       return tentativeTunnel
+    },
+    get backgroundMode() {
+      return backgroundMode
     },
   }
 })
