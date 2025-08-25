@@ -146,7 +146,10 @@
 
 <svelte:head>
   <title>Ezequiel A. Schwartzman</title>
-  <meta name="viewport" content="width=device-width, initial-scale=0.5" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"
+  />
   <!-- Favicon -->
   <link rel="icon" type="image/png" href={favicon} />
 </svelte:head>
@@ -175,7 +178,8 @@
       <button
         {title}
         class={cx(
-          'w10 h10 active:(shadow-[inset_0_1px_0_#fffa,inset_0_-1px_0_#0005] mt1.5px mb0) mb1.5px relative rounded-lg bg-gradient-to-b from-white/10 to-white/0 shadow-[0_1.5px_0_1px_var(--shadow-color),inset_0_1px_0_#fffa] font-bold flexcc text-gray-100',
+          'flexcc',
+          'w10 h10 active:(shadow-[inset_0_1px_0_#fffa,inset_0_-1px_0_#0005] mt1.5px mb0) mb1.5px relative rounded-lg bg-gradient-to-b from-white/10 to-white/0 shadow-[0_1.5px_0_1px_var(--shadow-color),inset_0_1px_0_#fffa] font-bold  text-gray-100',
           klass,
           {
             'opacity-100': active,
@@ -245,10 +249,6 @@
       () => fullscreen(),
       "bg-teal-400 [--shadow-color:theme('colors.teal.600')]",
     )}
-    <!-- <button class="w10 h10 rounded-lg bg-yellow">FO</button>
-  <button class="w10 h10 rounded-lg bg-blue">ED</button>
-  <button class="w10 h10 rounded-lg bg-green">SC</button>
-  <button class="w10 h10 rounded-lg bg-slate">FC</button> -->
   </div>
 {/if}
 <Canvas background={noise} bind:this={canvasRef}>

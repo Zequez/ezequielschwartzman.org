@@ -2,9 +2,11 @@ import chalk from 'chalk'
 import createContextedStore, { proxifyCmd } from '../lib/contexted-store'
 import { onMount } from 'svelte'
 
+const zoomLevels = new Array(5).fill(1).map((_, i) => 1 * 0.75 ** i)
+
 export default createContextedStore('canvas', () => {
   let focus = $state<null | string>(null)
-  let zoom = $state(1)
+  let zoom = $state(zoomLevels[0])
   let birdsEye = $state(false)
   let edgeScrollMode = $state(false)
   let edgeScrollDirection = $state<number | null>(null) // -PI to + PI
@@ -38,8 +40,6 @@ export default createContextedStore('canvas', () => {
       scrollContainer.scrollBy(dx, dy)
     }
   }
-
-  const zoomLevels = new Array(5).fill(1).map((_, i) => 1 * 0.75 ** i)
 
   function containerTransformCenterToScreenPos() {
     const scrollX = scrollContainer.scrollLeft

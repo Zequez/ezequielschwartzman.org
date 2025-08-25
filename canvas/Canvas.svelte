@@ -45,17 +45,55 @@
   }
   onMount(() => {
     recalculateCavitationSize()
-    if (window.location.hash) {
-      const id = window.location.hash.slice(1)
-      const el = document.getElementById(id)
-      if (el) {
-        CS.cmd.focus(id)
-        setTimeout(() => {
-          scrollIntoView(id, true)
-          loader = false
-        }, 0)
-      }
+    const id = window.location.hash.slice(1) || 'origin'
+    let el = document.getElementById(id)
+    if (el) {
+      CS.cmd.focus(id)
+      setTimeout(() => {
+        scrollIntoView(id, true)
+        loader = false
+      }, 0)
     }
+
+    let startDist = 0
+    let currentScale = 1
+
+    function getDistance(touches: TouchList) {
+      const [a, b] = [touches[0], touches[1]]
+      const dx = a.clientX - b.clientX
+      const dy = a.clientY - b.clientY
+      return Math.hypot(dx, dy)
+    }
+
+    document.addEventListener(
+      'touchstart',
+      (e) => {
+        if (e.touches.length === 2) {
+          startDist = getDistance(e.touches)
+        }
+      },
+      { passive: false },
+    )
+
+    document.addEventListener(
+      'touchmove',
+      (e) => {
+        if (e.touches.length === 2) {
+          e.preventDefault() // blocks scroll, but not always system zoom
+          const newDist = getDistance(e.touches)
+          const change = Math.abs(newDist - startDist)
+          if (change > 30) {
+            if (newDist > startDist) {
+              CS.cmd.shiftZoom(-1)
+            } else {
+              CS.cmd.shiftZoom(1)
+            }
+            startDist = newDist
+          }
+        }
+      },
+      { passive: false },
+    )
   })
 
   function handleHashChange(ev: Event, id: string) {

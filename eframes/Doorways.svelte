@@ -39,12 +39,6 @@
   }
 </script>
 
-{#snippet doorway(klass: string)}
-  <div
-    class="absolute z-9 w1/3 h1/3 {klass}  transition-margin cursor-pointer opacity-50 hover:(opacity-100 bg-yellow-300) pointer-events-auto"
-  ></div>
-{/snippet}
-
 {#snippet doorwayText(position: DoorwayPosition, klass: string)}
   {@const toId = tunnels[position]}
   {@const tempted =
@@ -60,7 +54,7 @@
       class={cx(
         klass,
         baseClass,
-        'rounded-sm text-center hover:(text-yellow-400 b b-yellow-400)',
+        'rounded-[4px] text-center hover:(text-yellow-400 b b-yellow-400)',
         { 'text-yellow-400 b b-yellow-400 scale-120': tempted },
       )}
     >
