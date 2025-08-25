@@ -59,11 +59,12 @@
   })
 
   function handleHashChange(ev: Event, id: string) {
+    console.log('HASH CHANGE!')
     ev.preventDefault()
     const el = document.getElementById(id)
     if (el) {
-      CS.cmd.focus(id)
-      scrollIntoView(id)
+      // CS.cmd.focus(id)
+      // scrollIntoView(id)
     }
   }
 
@@ -113,7 +114,7 @@
     }
   }
 
-  function focusOn(id: string) {
+  export function focusOn(id: string) {
     if (document.getElementById(id)) {
       CS.cmd.focus(id)
       history.pushState(null, '', `#${id}`)
@@ -152,7 +153,15 @@
     }
   }
 
-  function handleKeyDown(ev: KeyboardEvent) {}
+  function handleKeyDown(ev: KeyboardEvent) {
+    if (ev.key.startsWith('Arrow')) {
+      // if (CS.focus) {
+      //   const frame =
+      //   if (ev.key === 'ArrowLeft') {
+      //   }
+      // }
+    }
+  }
 
   let lastMoveEv: 'canvas' | 'edge' = 'canvas'
   function handleEdgeScrollFrameDetect(direction: number) {

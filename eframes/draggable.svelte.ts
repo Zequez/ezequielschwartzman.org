@@ -14,6 +14,8 @@ export default function draggable(
   } | null>(null)
 
   function handleDragOnMouseDown(ev: MouseEvent) {
+    const clickedEl = ev.currentTarget as HTMLElement
+    console.log('STarting')
     if (ev.button === 0 && !dragging) {
       ev.stopPropagation()
       ev.preventDefault()
@@ -34,13 +36,13 @@ export default function draggable(
         onDragging({ dx, dy })
       }
 
-      function onMouseUp(ev: MouseEvent) {
+      function onMouseUp(muEvent: MouseEvent) {
         if (dragging!.didMove) {
-          const el = ev.currentTarget as HTMLElement
-          el.addEventListener('click', cancelNextClick)
+          clickedEl.addEventListener('click', cancelNextClick)
           function cancelNextClick(clickEv: MouseEvent) {
             clickEv.stopPropagation()
             clickEv.preventDefault()
+            clickedEl.removeEventListener('click', cancelNextClick)
           }
         }
 

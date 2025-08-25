@@ -1,8 +1,18 @@
 import chalk from 'chalk'
 import createContextedStore from './contexted-store'
 
+type SecondTunnel = {
+  n?: string
+  e?: string
+  s?: string
+  w?: string
+}
+
 export default createContextedStore('root', () => {
   let editMode = $state(localStorage.getItem('edit-mode') === 'true')
+  let tunnelingOverlay = $state(false)
+  let tentativeTunnel = $state<string | null>(null)
+
   $effect(() => {
     localStorage.setItem('edit-mode', editMode ? 'true' : 'false')
   })
@@ -10,6 +20,12 @@ export default createContextedStore('root', () => {
   const cmd = {
     toggleEditMode() {
       editMode = !editMode
+    },
+    toggleTunnelingOverlay() {
+      tunnelingOverlay = !tunnelingOverlay
+    },
+    temptTunnel(direction: string | null) {
+      tentativeTunnel = direction
     },
   }
 
@@ -26,6 +42,12 @@ export default createContextedStore('root', () => {
     cmd: cmdProxy,
     get editMode() {
       return editMode
+    },
+    get tunnelingOverlay() {
+      return tunnelingOverlay
+    },
+    get tentativeTunnel() {
+      return tentativeTunnel
     },
   }
 })

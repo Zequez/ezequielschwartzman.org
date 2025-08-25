@@ -90,6 +90,8 @@
             <a
               class="z-20 block absolute left-0 top-0 size-full bg-white/50 opacity-0 rounded-md bg-[url('/noise20.png')]"
               aria-label="Focus frame"
+              onmousedown={(ev) =>
+                ev.shiftKey && DRAG.handleDragOnMouseDown(ev)}
               href={`#${id}`}
             ></a>
           {:else}
@@ -111,7 +113,9 @@
         </div>
       {/if}
     </div>
-    <Doorways z={zIndex} {positioning} />
+    {#if isSelected || RS.tunnelingOverlay}
+      <Doorways z={20 + FS.topZ + 1} {positioning} {id} tunnels={p.tunnels} />
+    {/if}
   {:else}
     <div
       bind:this={container}

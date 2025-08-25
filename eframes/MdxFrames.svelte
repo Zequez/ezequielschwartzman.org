@@ -5,6 +5,8 @@
   import { Pin } from '../canvas'
 
   const FC = framesStore.initContext({})
+
+  export const context = FC
 </script>
 
 {#each FC.frames as frame (frame.id)}

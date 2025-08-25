@@ -16,11 +16,11 @@
 
   const CS = store.getContext()
 
-  onMount(() => {
-    return () => {
-      CS.cmd.unregisterPin(id)
-    }
-  })
+  // onMount(() => {
+  //   return () => {
+  //     CS.cmd.unregisterPin(id)
+  //   }
+  // })
 
   let el: HTMLElement
   // let prevPos: typeof pos | null = null

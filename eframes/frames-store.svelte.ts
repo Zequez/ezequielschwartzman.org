@@ -12,6 +12,11 @@ export type Frontmatter = {
   draft?: boolean
   z?: number
   hidden?: boolean
+  tunnels?: Tunnels
+}
+
+export type Tunnels = {
+  [K in DoorwayPosition]?: string
 }
 
 export type FullFrontmatter = {
@@ -22,6 +27,7 @@ export type FullFrontmatter = {
   draft: boolean
   z: number
   hidden: boolean
+  tunnels: Tunnels
 }
 
 export type Frame = {
@@ -29,6 +35,16 @@ export type Frame = {
   fm: Frontmatter
   component: MDXContent
 }
+
+export type DoorwayPosition =
+  | 'nn'
+  | 'ne'
+  | 'ee'
+  | 'se'
+  | 'ss'
+  | 'sw'
+  | 'ww'
+  | 'nw'
 
 export default createContextedStore('frames', () => {
   const allFramesRaw = import.meta.glob('../frames/*.mdx', {
@@ -54,11 +70,19 @@ export default createContextedStore('frames', () => {
       if (!fm2.y) fm2.y = 0
       if (!fm2.layer) fm2.layer = 'fg'
       if (!fm2.hidden) fm2.hidden = false
+      if (!fm2.tunnels) fm2.tunnels = {}
       return [id, fm2 as FullFrontmatter]
     }),
   )
 
   const fmUpdates = $state<{ [key: string]: Partial<Frontmatter> }>({})
+
+  function outputFm(id: string) {
+    const fm = fmUpdates[id]
+      ? { ...extendedFmById[id], ...fmUpdates[id] }
+      : extendedFmById[id]
+    return fm
+  }
 
   const outputFrames = $derived(
     ids.map((id) => {
@@ -72,9 +96,24 @@ export default createContextedStore('frames', () => {
 
   const API = getContext('api') as ReturnType<typeof api>
 
+  let tunnelingFrom = $state<{ position: DoorwayPosition; id: string } | null>(
+    null,
+  )
   let draggingId = $state<string | null>(null)
   let hoveringId = $state<string | null>(null)
   let topZ = $state(generateTopZ())
+  let framesTitlesById = $state<{ [key: string]: string }>(
+    generateFramesTitles(),
+  )
+
+  function findTunnelPositionById(tunnels: Tunnels, testId: string) {
+    for (const [pos, id] of Object.entries(tunnels)) {
+      if (id === testId) {
+        return pos as DoorwayPosition
+      }
+    }
+    return null
+  }
 
   const cmd = {
     updateProps(id: string, frontmatter: Partial<Frontmatter>) {
@@ -101,6 +140,76 @@ export default createContextedStore('frames', () => {
     setDraggingId(id: string | null) {
       draggingId = id
     },
+    startTunnel(fromId: string, fromPosition: DoorwayPosition) {
+      tunnelingFrom = { position: fromPosition, id: fromId }
+    },
+    endTunnel(toId: string, toPosition: DoorwayPosition) {
+      if (tunnelingFrom) {
+        if (tunnelingFrom.id !== toId) {
+          const fromFm = outputFm(tunnelingFrom.id)
+          const toFm = outputFm(toId)
+
+          const fromTunnels = { ...fromFm.tunnels }
+          const toTunnels = { ...toFm.tunnels }
+
+          const fromExistingTunnel = findTunnelPositionById(fromTunnels, toId)
+          if (fromExistingTunnel) {
+            delete fromTunnels[fromExistingTunnel]
+          }
+          fromTunnels[tunnelingFrom.position] = toId
+
+          const toExistingTunnel = findTunnelPositionById(
+            toTunnels,
+            tunnelingFrom.id,
+          )
+          if (toExistingTunnel) {
+            delete toTunnels[toExistingTunnel]
+          }
+          toTunnels[toPosition] = tunnelingFrom.id
+
+          cmd.updateProps(tunnelingFrom.id, {
+            tunnels: fromTunnels,
+          })
+
+          cmd.updateProps(toId, {
+            tunnels: toTunnels,
+          })
+
+          cmd.commitProps(tunnelingFrom.id)
+          cmd.commitProps(toId)
+        }
+        tunnelingFrom = null
+      }
+    },
+    cancelTunnel() {
+      tunnelingFrom = null
+    },
+    removeTunnel(id: string, position: DoorwayPosition) {
+      const fromFm = outputFm(id)
+      const fromTunnels = { ...fromFm.tunnels }
+      const toId = fromTunnels[position]
+      if (toId) {
+        const toId = fromTunnels[position]
+        const toFm = outputFm(toId!)
+        const toTunnels = { ...toFm.tunnels }
+        const toPosition = findTunnelPositionById(toTunnels, id)
+
+        delete fromTunnels[position]
+        cmd.updateProps(id, {
+          tunnels: fromTunnels,
+        })
+
+        if (toPosition) {
+          delete toTunnels[toPosition]
+          cmd.updateProps(toId!, {
+            tunnels: toTunnels,
+          })
+          cmd.commitProps(toId!)
+        }
+
+        cmd.commitProps(id)
+      }
+    },
   }
 
   const cmdProxy = proxifyCmd(chalk.cyan('[CMD]'), cmd)
@@ -109,11 +218,27 @@ export default createContextedStore('frames', () => {
     return Math.max(...outputFrames.map((f) => f.fm.z || 0))
   }
 
+  function generateFramesTitles() {
+    return outputFrames.reduce(
+      (acc, f) => {
+        acc[f.id] = f.fm.title
+        return acc
+      },
+      {} as { [key: string]: string },
+    )
+  }
+
   return {
     cmd: cmdProxy,
     get frames() { return outputFrames }, //prettier-ignore
     get hoveringId() { return hoveringId }, //prettier-ignore
     get draggingId() { return draggingId }, //prettier-ignore
     get topZ() { return topZ }, //prettier-ignore
+    get tunnelingFrom() {
+      return tunnelingFrom
+    },
+    get framesTitlesById() {
+      return framesTitlesById
+    },
   }
 })
