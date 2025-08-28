@@ -311,11 +311,11 @@
       id="origin-container"
       class={cx('absolute w-0 h-0', {})}
     >
-      <Pin id="center" pos={{ x: -1552, y: -1108 }}>
+      <!-- <Pin id="center" pos={{ x: -1552, y: -1108 }}>
         <div
           class="h-10 w-10 -transform-1/2 bg-red-500 rounded-full z-99999 absolute"
         ></div>
-      </Pin>
+      </Pin> -->
       {@render children()}
     </div>
   </div>
