@@ -2,20 +2,29 @@ import chalk from 'chalk'
 import createContextedStore, { proxifyCmd } from '../lib/contexted-store'
 import { onMount } from 'svelte'
 
-const zoomLevels = new Array(5).fill(1).map((_, i) => 1 * 0.75 ** i)
+const defaultZoomLevels = new Array(5).fill(1).map((_, i) => 1 * 0.75 ** i)
+
+function generateZoomLevels(
+  minZoom: number,
+  maxZoom: number,
+  amount: number = 6,
+) {
+  const r = Math.pow(minZoom / maxZoom, 1 / (amount - 1))
+  const zoomLevels = Array.from({ length: amount }, (_, i) => maxZoom * r ** i)
+  return zoomLevels
+}
 
 export default createContextedStore('canvas', () => {
   let focus = $state<null | string>(null)
-  let zoom = $state(zoomLevels[0])
+  let zoomLevels = $state(generateZoomLevels(0.3, 1))
+  let zoom = $state(defaultZoomLevels[0])
+  let cavitationSize = $state({ w: 0, h: 0 })
+  let originPosition = $state({ x: 0, y: 0 })
+  // let minZoom = $state(defaultZoomLevels[defaultZoomLevels.length - 1])
+  // let maxZoom = $state(zoomLevels[0])
   let birdsEye = $state(false)
   let edgeScrollMode = $state(false)
   let edgeScrollDirection = $state<number | null>(null) // -PI to + PI
-  let pins = $state<{
-    [key: string]: { x: number; y: number; el: HTMLElement }
-  }>({})
-  let cavitationSize = $derived.by(() => {
-    return Object.keys(pins).length
-  })
 
   type VP = {
     x: number
@@ -26,8 +35,9 @@ export default createContextedStore('canvas', () => {
   let targetVp = $state<VP>({ x: 0, y: 0, z: 1 })
 
   let scrollContainer: HTMLElement = null!
+  let cavitationContainer: HTMLElement = null!
+  let originContainer: HTMLElement = null!
   onMount(() => {
-    scrollContainer = document.getElementById('scroll')!
     setInterval(edgeScrollTick, 10)
   })
 
@@ -64,6 +74,30 @@ export default createContextedStore('canvas', () => {
     focus(target: string | null) {
       focus = target
     },
+    setCavitationSize(
+      scrollEl: HTMLDivElement,
+      cavitationEl: HTMLDivElement,
+      originEl: HTMLDivElement,
+      newSize: { w: number; h: number },
+      newOrigin: { x: number; y: number },
+    ) {
+      scrollContainer = scrollEl
+      cavitationContainer = cavitationEl
+      originContainer = originEl
+
+      cavitationSize = newSize
+      originPosition = newOrigin
+      const newMinZoom = window.innerWidth / cavitationSize.w
+
+      zoomLevels = generateZoomLevels(newMinZoom, 1)
+      // Set zoom to the closest
+      const closest = zoomLevels
+        .map((z, i) => [i, Math.abs(z - zoom)])
+        .sort((a, b) => a[1] - b[1])[0][0]
+      zoom = zoomLevels[closest]
+
+      optimizedCavitationSetter()
+    },
     shiftZoom(zoomShift: number, clientX?: number, clientY?: number) {
       const resolvedClientX = clientX ?? window.innerWidth / 2
       const resolvedClientY = clientY ?? window.innerHeight / 2
@@ -83,8 +117,31 @@ export default createContextedStore('canvas', () => {
         const dx = resolvedClientX - originX
         const dy = resolvedClientY - originY
 
+        const dx2 = cavitationSize.w * zoom - cavitationSize.w * newZoom
+        const dy2 = cavitationSize.h * zoom - cavitationSize.h * newZoom
         zoom = newZoom
-        scrollContainer.scrollBy(-dx * zoomDelta, -dy * zoomDelta)
+
+        // console.log(cavitationSize.w, dx, dx2)
+
+        optimizedCavitationSetter()
+        if (zoomDelta < 0) {
+          scrollContainer.scrollBy(
+            -dx * zoomDelta - dx2 / 2,
+            -dy * zoomDelta - dy2 / 2,
+          )
+          // console.log(cavitationContainer, 'HEY')
+          // cavitationContainer.style.transform = `translate(${-dx2 / 2}px, ${-dy2 / 2}px)`
+          // console.log(cavitationContainer.style)
+          setTimeout(() => {
+            // cavitationContainer.style.transform = ''
+            // scrollContainer.scrollBy(-dx2 / 2, -dy2 / 2)
+          }, 100)
+        } else {
+          scrollContainer.scrollBy(
+            -dx * zoomDelta - dx2 / 2,
+            -dy * zoomDelta - dy2 / 2,
+          )
+        }
         return true
       } else {
         return false
@@ -93,15 +150,16 @@ export default createContextedStore('canvas', () => {
     goTo(location: Partial<{ x: number; y: number; z: number }>) {
       targetVp = { ...targetVp, ...location }
     },
-    registerPin: (
-      id: string,
-      pinData: { x: number; y: number; el: HTMLElement },
-    ) => {
-      pins[id] = pinData
-    },
-    unregisterPin: (id: string) => {
-      delete pins[id]
-    },
+  }
+
+  function optimizedCavitationSetter() {
+    cavitationContainer.style.width = `${cavitationSize.w * zoom}px`
+    cavitationContainer.style.height = `${cavitationSize.h * zoom}px`
+
+    originContainer.style.left = `${originPosition.x * zoom}px`
+    originContainer.style.top = `${originPosition.y * zoom}px`
+    originContainer.style.transform = `scale(${zoom})`
+    // originContainer.style.left
   }
 
   const cmdProxy = proxifyCmd(chalk.yellow('[CMD]'), cmd)
@@ -131,6 +189,9 @@ export default createContextedStore('canvas', () => {
     },
     get cavitationSize() {
       return cavitationSize
+    },
+    get originPosition() {
+      return originPosition
     },
   }
 })

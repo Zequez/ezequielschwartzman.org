@@ -56,9 +56,7 @@
           ? 20 + FS.topZ + 1
           : 20 + p.z,
   )
-  let positioning = $derived(
-    p.layer === 'bg' ? 'translate(-50%, -50%)' : 'translateX(-50%)',
-  )
+  let positioning = 'translateX(-50%)'
   let posStyle = $derived(`transform: ${positioning}; z-index: ${zIndex};`)
 </script>
 

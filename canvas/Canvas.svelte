@@ -5,6 +5,7 @@
   import { cx } from '@/center/utils'
   import EdgeScrollFrame from './EdgeScrollFrame.svelte'
   import BlobDirectionIndicator from './BlobDirectionIndicator.svelte'
+  import Pin from './Pin.svelte'
 
   const { children, background }: { children: Snippet; background: string } =
     $props()
@@ -18,12 +19,18 @@
   let cavitationContainer = $state<HTMLDivElement>(null!)
   let originContainer = $state<HTMLDivElement>(null!)
 
-  let cavitationSize = $state({ w: 0, h: 0 })
   function recalculateCavitationSize() {
     const rects = Array.from(originContainer.children).map((c) => {
       const h = c as HTMLElement
+      // console.log(
+      //   (h.firstChild! as HTMLElement).id,
+      //   h.offsetTop,
+      //   h.offsetHeight,
+      //   h.offsetLeft,
+      //   h.offsetWidth,
+      // )
       return {
-        left: h.offsetLeft,
+        left: h.offsetLeft - h.offsetWidth / 2,
         top: h.offsetTop,
         right: h.offsetLeft + h.offsetWidth,
         bottom: h.offsetTop + h.offsetHeight,
@@ -35,13 +42,28 @@
     const topMost = Math.min(...rects.map((r) => r.top))
     const bottomMost = Math.max(...rects.map((r) => r.bottom))
 
-    const w = rightMost - leftMost + window.innerWidth
-    const h = bottomMost - topMost + window.innerHeight + 100 // Not sure why 100
+    // console.log(
+    //   `LEFT: ${leftMost}`,
+    //   `RIGHT: ${rightMost}`,
+    //   `TOP: ${topMost}`,
+    //   `BOTTOM: ${bottomMost}`,
+    //   `WIDTH: ${rightMost - leftMost}`,
+    //   `HEIGHT: ${bottomMost - topMost}`,
+    // )
 
-    cavitationSize = {
-      w: Math.max(w, window.innerWidth),
-      h: Math.max(h, window.innerHeight),
-    }
+    const w = rightMost - leftMost
+    const h = bottomMost - topMost
+
+    const cavitationW = Math.max(w, window.innerWidth)
+    const cavitationH = Math.max(h, window.innerHeight)
+
+    CS.cmd.setCavitationSize(
+      scrollContainer,
+      cavitationContainer,
+      originContainer,
+      { w: cavitationW, h: cavitationH },
+      { x: -leftMost, y: -topMost },
+    )
   }
   onMount(() => {
     recalculateCavitationSize()
@@ -253,9 +275,16 @@
   {/if}
 {/if}
 
+<button
+  class="fixed bottom-0 right-0 h10 w10 bg-red z99999"
+  onclick={recalculateCavitationSize}
+>
+  Rec
+</button>
+
 <div
   bind:this={scrollContainer}
-  id="scroll"
+  id="scroll-container"
   onwheel={handleContainerWheel}
   onmousemove={handleCanvasMouseMove}
   role="presentation"
@@ -263,7 +292,7 @@
 >
   <div
     class="absolute left-0 top-0"
-    style={`background-image: url(${background}); background-size: ${320 * CS.zoom}px ${200 * CS.zoom}px; width: ${cavitationSize.w}px; height: ${cavitationSize.h}px;`}
+    style={`background-image: url(${background}); background-size: ${320 * CS.zoom}px ${200 * CS.zoom}px; width: ${CS.cavitationSize.w * CS.zoom}px; height: ${CS.cavitationSize.h * CS.zoom}px;`}
   ></div>
 
   {#if loader}
@@ -274,17 +303,19 @@
   {/if}
   <div
     bind:this={cavitationContainer}
-    class="relative max-w-none max-h-none"
-    style={`
-      width: ${cavitationSize.w}px;
-      height: ${cavitationSize.h}px;
-      transform: scale(${CS.zoom});
-      `}
+    id="cavitation-container"
+    class="relative max-w-none max-h-none overflow-hidden"
   >
     <div
       bind:this={originContainer}
-      class={cx('absolute w-0 h-0 left-1/2 top-1/2', {})}
+      id="origin-container"
+      class={cx('absolute w-0 h-0', {})}
     >
+      <Pin id="center" pos={{ x: -1552, y: -1108 }}>
+        <div
+          class="h-10 w-10 -transform-1/2 bg-red-500 rounded-full z-99999 absolute"
+        ></div>
+      </Pin>
       {@render children()}
     </div>
   </div>
