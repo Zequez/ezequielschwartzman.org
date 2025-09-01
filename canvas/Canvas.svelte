@@ -6,6 +6,8 @@
   import EdgeScrollFrame from './EdgeScrollFrame.svelte'
   import BlobDirectionIndicator from './BlobDirectionIndicator.svelte'
   import Pin from './Pin.svelte'
+  import MiniMap from './MiniMap.svelte'
+  import { gatherElements, getCavitationSizeAndOrigin } from './cavitation-calc'
 
   const { children, background }: { children: Snippet; background: string } =
     $props()
@@ -19,52 +21,55 @@
   let cavitationContainer = $state<HTMLDivElement>(null!)
   let originContainer = $state<HTMLDivElement>(null!)
 
+  let fgCavitationSize = $state({ w: 0, h: 0 })
+  let fgOriginPosition = $state({ x: 0, y: 0 })
+
+  let virtualMap = $state<ActualElement[]>([])
+
+  let viewportFocus = $state<{
+    x: number
+    y: number
+    w: number
+    h: number
+  } | null>(null)
+
+  type ActualElement = {
+    el: HTMLElement
+
+    left: number
+    right: number
+    top: number
+    bottom: number
+
+    x: number
+    y: number
+    w: number
+    h: number
+
+    id: string
+    title: string
+    layer: string
+  }
+
   function recalculateCavitationSize() {
-    const rects = Array.from(originContainer.children).map((c) => {
-      const h = c as HTMLElement
-      // console.log(
-      //   (h.firstChild! as HTMLElement).id,
-      //   h.offsetTop,
-      //   h.offsetHeight,
-      //   h.offsetLeft,
-      //   h.offsetWidth,
-      // )
-      return {
-        left: h.offsetLeft - h.offsetWidth / 2,
-        top: h.offsetTop,
-        right: h.offsetLeft + h.offsetWidth,
-        bottom: h.offsetTop + h.offsetHeight,
-      }
-    })
+    const elements = gatherElements(originContainer)
 
-    const leftMost = Math.min(...rects.map((r) => r.left))
-    const rightMost = Math.max(...rects.map((r) => r.right))
-    const topMost = Math.min(...rects.map((r) => r.top))
-    const bottomMost = Math.max(...rects.map((r) => r.bottom))
+    virtualMap = elements.filter((v) => v.layer === 'fg')
+    const virtual = getCavitationSizeAndOrigin(virtualMap)
+    fgOriginPosition = virtual.origin
+    fgCavitationSize = virtual.size
 
-    // console.log(
-    //   `LEFT: ${leftMost}`,
-    //   `RIGHT: ${rightMost}`,
-    //   `TOP: ${topMost}`,
-    //   `BOTTOM: ${bottomMost}`,
-    //   `WIDTH: ${rightMost - leftMost}`,
-    //   `HEIGHT: ${bottomMost - topMost}`,
-    // )
-
-    const w = rightMost - leftMost
-    const h = bottomMost - topMost
-
-    const cavitationW = Math.max(w, window.innerWidth)
-    const cavitationH = Math.max(h, window.innerHeight)
+    const { size, origin } = getCavitationSizeAndOrigin(elements)
 
     CS.cmd.setCavitationSize(
       scrollContainer,
       cavitationContainer,
       originContainer,
-      { w: cavitationW, h: cavitationH },
-      { x: -leftMost, y: -topMost },
+      size,
+      origin,
     )
   }
+
   onMount(() => {
     recalculateCavitationSize()
     const id = window.location.hash.slice(1) || 'origin'
@@ -131,9 +136,12 @@
   function scrollIntoView(id: string, instant = false) {
     const el = document.getElementById(id)
     if (el) {
+      // const { height } = el.offsetHeight
+      const block =
+        el.parentElement!.offsetHeight > window.innerHeight ? 'start' : 'center'
       el.scrollIntoView({
         behavior: instant ? 'instant' : 'smooth',
-        block: 'start',
+        block,
         inline: 'center',
       })
     }
@@ -163,13 +171,19 @@
   }
 
   function handleClick(ev: MouseEvent) {
-    if (ev.target instanceof HTMLAnchorElement) {
-      const url = new URL(ev.target.href)
-      if (url.hash) {
+    let el = ev.target
+
+    // Accounts for SPAN inside A
+    if (!(el instanceof HTMLAnchorElement))
+      el = (el as HTMLElement).parentElement
+
+    if (el instanceof HTMLAnchorElement) {
+      const url = new URL(el.href)
+      if (url.hash && url.host === window.location.host) {
         ev.preventDefault()
         ev.stopPropagation()
         if (justPanned > 5) return
-        focusOn(ev.target.hash.slice(1))
+        focusOn(el.hash.slice(1))
       }
     }
   }
@@ -247,6 +261,14 @@
   })
 
   let loader = $state(true)
+
+  function handleScroll() {
+    const y = scrollContainer.scrollTop
+    const x = scrollContainer.scrollLeft
+    const w = window.innerWidth
+    const h = window.innerHeight
+    viewportFocus = { x, y, w, h }
+  }
 </script>
 
 <svelte:window
@@ -275,18 +297,28 @@
   {/if}
 {/if}
 
-<button
-  class="fixed bottom-0 right-0 h10 w10 bg-red z99999"
-  onclick={recalculateCavitationSize}
->
-  Rec
-</button>
+{#if CS.showMinimap}
+  <div
+    class="absolute bottom-2 left-2 z-9999 p2 bg-gray-900 b b-white rounded-md"
+  >
+    <MiniMap
+      cavitationSize={CS.cavitationSize}
+      {viewportFocus}
+      zoom={CS.zoom}
+      origin={CS.originPosition}
+      elements={virtualMap}
+      focused={CS.focus}
+      containerSize={{ w: 300, h: 300 }}
+    />
+  </div>
+{/if}
 
 <div
   bind:this={scrollContainer}
   id="scroll-container"
   onwheel={handleContainerWheel}
   onmousemove={handleCanvasMouseMove}
+  onscroll={handleScroll}
   role="presentation"
   class="relative h-full w-full bg-black overflow-auto no-scrollbar"
 >

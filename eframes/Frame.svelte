@@ -3,7 +3,9 @@
   import { cx } from '@/center/utils'
   import framesStore, { type FullFrontmatter } from './frames-store.svelte'
   import rootStore from '../lib/root-store.svelte'
-  import canvasStore from '../canvas/canvas-store.svelte'
+  import canvasStore, {
+    STANDARD_FRAME_WIDTH,
+  } from '../canvas/canvas-store.svelte'
   import IconMove from '~icons/fa6-solid/arrows-up-down-left-right'
   import Doorways from './Doorways.svelte'
   import HandlingBar from './HandlingBar.svelte'
@@ -67,12 +69,12 @@
     <!-- svelte-ignore a11y_click_events_have_key_events -->
     <div
       bind:this={container}
-      class={cx('w-360px pointer-events-auto relative', {
+      class={cx('pointer-events-auto relative', {
         'opacity-50': p.draft && !isSelected,
       })}
       onmouseenter={() => (!DRAG.dragging ? FS.cmd.hovering(id) : null)}
       onmousedown={(ev) => ev.shiftKey && DRAG.handleDragOnMouseDown(ev)}
-      style={posStyle}
+      style={posStyle + `width: ${STANDARD_FRAME_WIDTH}px;`}
     >
       <HandlingBar
         {p}

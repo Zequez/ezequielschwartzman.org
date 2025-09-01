@@ -21,6 +21,7 @@
   import PlusIcon from '~icons/fa6-solid/plus'
   import MinusIcon from '~icons/fa6-solid/minus'
   import BarsIcon from '~icons/fa6-solid/bars'
+  import MinimapIcon from '~icons/fa6-solid/map'
   import framesStore from './eframes/frames-store.svelte'
   import canvasStore from './canvas/canvas-store.svelte'
 
@@ -301,6 +302,14 @@
       RS.backgroundMode,
       () => RS.cmd.toggleBackgroundMode(),
       "bg-pink-400 [--shadow-color:theme('colors.pink.600')]",
+    )}
+
+    {@render MegaBtn(
+      MinimapIcon,
+      'Minimap',
+      canvasRef.context.showMinimap,
+      () => canvasRef.context.cmd.toggleMinimap(),
+      "bg-slate-400 [--shadow-color:theme('colors.slate.600')]",
     )}
 
     {@render MegaBtn(

@@ -13,10 +13,12 @@
 
 {#each FS.frames as frame (frame.id)}
   {#if !RS.backgroundMode || (RS.backgroundMode && frame.fm.layer === 'bg')}
-    <Pin id={frame.id} pos={frame.fm} debug={false}>
-      <FrameEl p={frame.fm} id={frame.id}>
-        <PreactWrapper component={frame.component} />
-      </FrameEl>
-    </Pin>
+    {#if import.meta.env.DEV || (!import.meta.env.DEV && !frame.fm.draft)}
+      <Pin id={frame.id} data={frame.fm} debug={false}>
+        <FrameEl p={frame.fm} id={frame.id}>
+          <PreactWrapper component={frame.component} />
+        </FrameEl>
+      </Pin>
+    {/if}
   {/if}
 {/each}

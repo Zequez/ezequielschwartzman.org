@@ -4,6 +4,8 @@ import { onMount } from 'svelte'
 
 const defaultZoomLevels = new Array(5).fill(1).map((_, i) => 1 * 0.75 ** i)
 
+export const STANDARD_FRAME_WIDTH = 360
+
 function generateZoomLevels(
   minZoom: number,
   maxZoom: number,
@@ -14,9 +16,13 @@ function generateZoomLevels(
   return zoomLevels
 }
 
+function calculateMaxZoom() {
+  return Math.min(1, window.innerWidth / STANDARD_FRAME_WIDTH)
+}
+
 export default createContextedStore('canvas', () => {
   let focus = $state<null | string>(null)
-  let zoomLevels = $state(generateZoomLevels(0.3, 1))
+  let zoomLevels = $state(generateZoomLevels(0.3, calculateMaxZoom()))
   let zoom = $state(defaultZoomLevels[0])
   let cavitationSize = $state({ w: 0, h: 0 })
   let originPosition = $state({ x: 0, y: 0 })
@@ -25,6 +31,7 @@ export default createContextedStore('canvas', () => {
   let birdsEye = $state(false)
   let edgeScrollMode = $state(false)
   let edgeScrollDirection = $state<number | null>(null) // -PI to + PI
+  let showMinimap = $state<boolean>(false)
 
   type VP = {
     x: number
@@ -89,7 +96,7 @@ export default createContextedStore('canvas', () => {
       originPosition = newOrigin
       const newMinZoom = window.innerWidth / cavitationSize.w
 
-      zoomLevels = generateZoomLevels(newMinZoom, 1)
+      zoomLevels = generateZoomLevels(newMinZoom, calculateMaxZoom())
       // Set zoom to the closest
       const closest = zoomLevels
         .map((z, i) => [i, Math.abs(z - zoom)])
@@ -129,13 +136,6 @@ export default createContextedStore('canvas', () => {
             -dx * zoomDelta - dx2 / 2,
             -dy * zoomDelta - dy2 / 2,
           )
-          // console.log(cavitationContainer, 'HEY')
-          // cavitationContainer.style.transform = `translate(${-dx2 / 2}px, ${-dy2 / 2}px)`
-          // console.log(cavitationContainer.style)
-          setTimeout(() => {
-            // cavitationContainer.style.transform = ''
-            // scrollContainer.scrollBy(-dx2 / 2, -dy2 / 2)
-          }, 100)
         } else {
           scrollContainer.scrollBy(
             -dx * zoomDelta - dx2 / 2,
@@ -150,6 +150,9 @@ export default createContextedStore('canvas', () => {
     goTo(location: Partial<{ x: number; y: number; z: number }>) {
       targetVp = { ...targetVp, ...location }
     },
+    toggleMinimap() {
+      showMinimap = !showMinimap
+    },
   }
 
   function optimizedCavitationSetter() {
@@ -159,7 +162,6 @@ export default createContextedStore('canvas', () => {
     originContainer.style.left = `${originPosition.x * zoom}px`
     originContainer.style.top = `${originPosition.y * zoom}px`
     originContainer.style.transform = `scale(${zoom})`
-    // originContainer.style.left
   }
 
   const cmdProxy = proxifyCmd(chalk.yellow('[CMD]'), cmd)
@@ -192,6 +194,9 @@ export default createContextedStore('canvas', () => {
     },
     get originPosition() {
       return originPosition
+    },
+    get showMinimap() {
+      return showMinimap
     },
   }
 })
