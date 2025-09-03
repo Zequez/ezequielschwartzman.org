@@ -1,6 +1,6 @@
 import { cx } from '@/center/utils'
 import { useState, useEffect } from 'preact/hooks'
-import { getContexts } from '../../lib/contexted-store'
+import { getContexts } from '@/center/contexted-store'
 type Positions = [number, number][]
 
 export default function Composicion(props: {
