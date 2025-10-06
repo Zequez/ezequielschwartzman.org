@@ -12,16 +12,20 @@
       >[The Edgeworker's Flowing Fund Gameworld]</a
     >
   </div>
-  <div class="flexcs">
+  <div class="flexcc mb6">
     <img
       class="rounded-full h24 w24 inline-block mr6"
       src={ezequiel}
       alt="Ezequiel's face"
     />
-    <span class="text-8 font-serif">Ezequiel Adrián Schwartzman</span>
+    <span class="text-8 font-serif flex-shrink text-center md:text-left"
+      >Ezequiel Adrián <br class="md:hidden" />Schwartzman</span
+    >
   </div>
 
-  <p>Cycle: Every new moon</p>
+  <h2>Cycle</h2>
+  <p>Every new moon</p>
+  <h2>Amount Decision</h2>
   <p>The decision is to take $1,600 from the Fund every cycle</p>
   <ul>
     <li>
@@ -52,11 +56,30 @@
     </li>
   </ul>
 
-  <p>Flowing Fund Guardian: ______________</p>
-  <p>Amount of money in the Flowing Fund</p>
+  <h3>Flowing Fund Guardian: Ezequiel Adrián Schwartzman</h3>
+  <p>
+    Yes, there is nothing on the Gameworld rules about you not being able to be
+    your own Guardian for you Flowing Fund</p
+  >
+  <p>
+    And this will be until I find somenoe who is willing to be the Guardian of
+    the money committed to my path, the Guardian of my Flowing Fund.
+  </p>
+  <h3>The Fund</h3>
+  <p>Amount of money in the Flowing Fund:</p>
+  <div class="text-center text-12 font-serif mb6"> AR$ 2000</div>
+  <p>
+    Where is the money located? It's on Argentina's Banco Nación Ezequiel's
+    account, creating the possibility of free bus drives due to an apparent bug
+    in the system. This is a most practical use of the accumulated money.
+  </p>
 
   <h2>Ongoing Loans</h2>
+  <p>$0</p>
+  <p>Money from the fund is not being used by anyone at the moment</p>
   <h2>Cycles Turnings</h2>
+  <h3>1st Cycle Turning at New Moon of 21 September 2025</h3>
+  <p>Credits available for issuing $1,600</p>
 
   <!--
 
@@ -262,5 +285,18 @@
 
   p {
     @apply mb6;
+  }
+
+  ul,
+  ol {
+    @apply mb6 pl6;
+  }
+
+  li {
+    @apply list-disc list-inside;
+  }
+
+  ol li {
+    @apply list-decimal list-inside;
   }
 </style>

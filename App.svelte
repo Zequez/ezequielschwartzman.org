@@ -14,38 +14,98 @@
 
   let container: HTMLDivElement
 
+  // PAGES NAVIGATION
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  const props: { preRenderingPathname?: string } = $props()
+
   const rawPages = import.meta.glob('./pages/*.(svx|svelte)', {
     eager: true,
   }) as { [key: string]: { default: Component } }
 
   const pages = globImportToRecord('./pages/', (v) => v.default, rawPages)
 
-  let currentPage = $state('index')
-  onMount(() => {
-    const pathname = window.location.pathname
-    currentPage = pathname === '/' ? 'index' : pathname.slice(1)
-  })
-
-  function switchPage(newPage: string) {
-    currentPage = newPage
-    window.history.pushState(null, '', `/${newPage === 'index' ? '' : newPage}`)
+  function syntheticNavigateTo(navPath: string) {
+    currentPath = navPath
+    window.history.pushState(null, '', navPath)
+    document.documentElement.scrollTop = 0
     recalculatePagesListHeight()
   }
 
-  let Page = $derived(pages[currentPage] || pages['404'])
+  let currentPath = $state(
+    props.preRenderingPathname
+      ? props.preRenderingPathname
+      : window.location.pathname,
+  )
+  const currentPageName = $derived.by(() => {
+    const page = navPathToPageName[currentPath]
+    if (page) return page
+    else return '404'
+  })
+  const CurrentPageComponent = $derived(pages[currentPageName])
+
+  function generateNavigationPaths(): { [key: string]: string } {
+    let paths: { [key: string]: string } = {}
+    for (let pageName in pages) {
+      if (pageName === '404') continue
+      if (pageName === 'index') {
+        paths['/'] = pageName
+      } else {
+        paths[`/${pageName}`] = pageName
+      }
+    }
+    return paths
+  }
+
+  const navPathToPageName = $derived(generateNavigationPaths())
+  const navPathToPage = $derived.by(() => {
+    const o: { [key: string]: Component } = {}
+    for (let path in navPathToPageName) {
+      o[path] = pages[navPathToPageName[path]]
+    }
+    return o
+  })
+  const pageNameToNavPath = $derived.by(() => {
+    const o: { [key: string]: string } = {}
+    for (let path in navPathToPageName) {
+      o[navPathToPageName[path]] = path
+    }
+    return o
+  })
+
+  function intersectLinkClicks(ev: MouseEvent) {
+    console.log('Handling click', ev)
+    if (ev.target instanceof HTMLAnchorElement) {
+      const url = new URL(ev.target.href)
+      if (url.host === window.location.host) {
+        syntheticNavigateTo(url.pathname)
+        ev.preventDefault()
+        ev.stopPropagation()
+      }
+    }
+  }
+
+  // VERTICAL RYHTHM GRID TOGGLING
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   let vGridEnabled = lsState('v-grid-enabled', { v: false })
 
-  onTripleShift(window, () => {
-    vGridEnabled.v = !vGridEnabled.v
-  })
+  if (typeof window !== 'undefined') {
+    onTripleShift(window, () => {
+      vGridEnabled.v = !vGridEnabled.v
+    })
+  }
+
+  // PAGES LIST HEIGHT CALCULATION
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   let pagesListHeight = $state(0)
 
-  $effect(() => {
-    Page
-    recalculatePagesListHeight()
-  })
+  // $effect(() => {
+  //   if (import.meta.env.SSR) return
+  //   CurrentPageComponent
+  //   recalculatePagesListHeight()
+  // })
 
   function recalculatePagesListHeight() {
     const contentHeight = container.clientHeight
@@ -64,7 +124,10 @@
   <link rel="icon" type="image/jpg" href={favicon} />
 </svelte:head>
 
-<svelte:window onresize={recalculatePagesListHeight} />
+<svelte:window
+  onclick={intersectLinkClicks}
+  onresize={recalculatePagesListHeight}
+/>
 
 <div class="flex flex-col h-screen">
   <div
@@ -72,15 +135,17 @@
     bind:this={container}
     use:onresizeobserver={recalculatePagesListHeight}
   >
-    <Page />
+    <CurrentPageComponent />
   </div>
 
   <div
     class="relative flex-grow bg-gray-950 text-white shadow-[0_-1px_0_0] shadow-black dark:shadow-white/80"
     style="{`background-image: url(${noise});`}}"
   >
-    <!-- <div class="h6 w-full bg-white/50 dark:bg-black/50"></div> -->
-    <PagesList {pages} {currentPage} onPick={(page) => switchPage(page)} />
+    {#if typeof window !== 'undefined'}
+      <!-- <div class="h6 w-full bg-white/50 dark:bg-black/50"></div> -->
+      <PagesList {pages} currentPage={currentPageName} {pageNameToNavPath} />
+    {/if}
 
     {#if vGridEnabled.v}
       <div

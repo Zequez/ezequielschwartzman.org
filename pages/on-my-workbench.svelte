@@ -6,7 +6,10 @@
       The Web Environment Gameworld
       <ul>
         <li>Writing and publishing the handbook</li>
-        <li>Extracting the multi-dimension Substrate from my website</li>
+        <li>
+          Deepening the <em>Spacious Substrate</em> from my website and eventually
+          making it available to others
+        </li>
         <li
           >Adding substrate selection and initialization to the Web Environment
           repos UI</li

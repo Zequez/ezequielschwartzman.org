@@ -1,6 +1,7 @@
 const LANGS = ['en', 'es']
 
 function detectInitialLang() {
+  if (typeof window === 'undefined') return 'en'
   const params = new URLSearchParams(window.location.search)
   const qlang = params.get('l')
   if (qlang && LANGS.includes(qlang)) return qlang

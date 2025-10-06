@@ -6,9 +6,10 @@
   let darkMode = lsState<{ v: 'dark' | 'light' | 'system' }>('dark', {
     v: 'system',
   })
-  const systemDarkMode = window.matchMedia(
-    '(prefers-color-scheme: dark)',
-  ).matches
+  const systemDarkMode =
+    typeof window !== 'undefined'
+      ? window.matchMedia('(prefers-color-scheme: dark)').matches
+      : false
 
   let currentlyDarkMode = $derived.by(() => {
     if (darkMode.v === 'system') {

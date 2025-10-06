@@ -12,7 +12,7 @@
   const props: {
     pages: Record<string, Component>
     currentPage: string
-    onPick: (page: string) => void
+    pageNameToNavPath: Record<string, string>
   } = $props()
 
   for (let nav of NAV) {
@@ -113,11 +113,7 @@
             <Page />
           </div>
           <a
-            href="/{pageName === 'index' ? '' : pageName}"
-            onclick={(ev) => {
-              ev.preventDefault()
-              props.onPick(pageName)
-            }}
+            href={props.pageNameToNavPath[pageName]}
             class={[
               'absolute inset-0 hover:bg-white/10 text-black/0',
               {

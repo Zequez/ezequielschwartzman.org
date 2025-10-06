@@ -53,35 +53,9 @@
         <IconComp {alt} />
       </a>
     {/snippet}
-    <span class="i-fa6-brands-telegram"></span>
     {@render link('Telegram', 'https://t.me/ezequielschwartzman', TelegramIcon)}
     {@render link('WhatsApp', 'https://wa.me/5492235235568', WhatsappIcon)}
     {@render link('Email', 'mailto:zequez@gmail.com', EmailIcon)}
     {@render link('Github', 'https://github.com/zequez', GithubIcon)}
   </div>
 </div>
-
-<!-- <div class="text-center mb1 mt4">
-  <span
-    class="shadow-sm bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-sm px1 py0.5"
-    >Artist-Inventor Gameworld-Builder</span
-  >
-</div>
-<div class="text-center mb1">
-  <span
-    class="shadow-sm bg-gradient-to-r from-gray-900 to-gray-800 text-green font-mono text-xs rounded-sm px1 py0.5"
-    >Subversive Pirate-Hacker</span
-  >
-</div>
-<div class="text-center mb1">
-  <span
-    class="shadow-sm bg-gradient-to-r from-sky-500 to-blue-500 text-white rounded-sm px1 py0.5"
-    >Researcher Circle-Builder</span
-  >
-</div>
-<div class="text-center">
-  <span
-    class="shadow-sm text-sm bg-gradient-to-r from-pink-500 to-red-500 font-serif text-white rounded-sm px1 py0.5"
-    >Lover-Guardian Void-Sourcerer Spaceholder</span
-  >
-</div> -->
