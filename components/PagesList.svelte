@@ -1,0 +1,133 @@
+<script lang="ts">
+  import { onMount, tick, type Component } from 'svelte'
+
+  // prettier-ignore
+  const NAV = [
+    ['index'],
+    ['on-my-workbench', 'fundraising'],
+    ['flowing-fund'],
+    ['flowing-fund-gameworld'],
+  ]
+
+  const props: {
+    pages: Record<string, Component>
+    currentPage: string
+    onPick: (page: string) => void
+  } = $props()
+
+  for (let nav of NAV) {
+    for (let page of nav) {
+      if (!props.pages[page]) {
+        throw new Error(`Page "${page}" not found`)
+      }
+    }
+  }
+
+  let container: HTMLDivElement
+
+  // const pages: typeof props.pages = {}
+
+  // for (const key of PAGES_ON_NAV) {
+  //   pages[key] = props.pages[key]
+  // }
+
+  let pagesSizes = $state<{ [key: string]: { w: number; h: number } }>({})
+  const LINE = 24
+  let spacing = (LINE / 2) * (NAV.length + 1)
+
+  let scale = $state(
+    1 / NAV.length - LINE / 2 / document.documentElement.clientWidth,
+  )
+
+  function calculateScale() {
+    scale = 1 / NAV.length - LINE / 2 / document.documentElement.clientWidth
+  }
+
+  onMount(() => {
+    calculatePageSizes()
+  })
+
+  function calculatePageSizes() {
+    calculateScale()
+    container.querySelectorAll('[data-name]').forEach((c) => {
+      const pageName = c.getAttribute('data-name')!
+      pagesSizes[pageName] = {
+        w: c.clientWidth,
+        h: c.clientHeight,
+      }
+    })
+  }
+
+  function recalculatePageSizes() {
+    pagesSizes = {}
+    tick().then(calculatePageSizes)
+  }
+
+  let isFirstRender = $derived(Object.keys(pagesSizes).length === 0)
+</script>
+
+<svelte:window onresize={recalculatePageSizes} />
+
+<div
+  class={[
+    'relative w-full',
+    {
+      'overflow-hidden h-0': isFirstRender,
+      'grid grid-cols-4 pl3': !isFirstRender,
+    },
+  ]}
+  bind:this={container}
+>
+  {#each NAV as navColumn}
+    <div
+      class={[
+        {
+          contents: isFirstRender,
+          'flex flex-col space-y-3 pt3': !isFirstRender,
+        },
+      ]}
+    >
+      {#each navColumn as pageName}
+        {@const Page = props.pages[pageName]}
+        {@const size = pagesSizes[pageName]}
+
+        <div
+          class={[
+            {
+              'absolute top-0 left-0': isFirstRender,
+              'relative overflow-hidden rounded-1 b b-white/80': !isFirstRender,
+            },
+          ]}
+          style={size
+            ? `width: ${size.w * scale}px; height: ${size.h * scale}px;`
+            : null}
+        >
+          <div
+            data-name={pageName}
+            style={`transform: scale(${scale})`}
+            class={[
+              'pointer-events-none transform-origin-tl w-screen overflow-hidden ',
+              'bg-gray-100 text-gray-950 dark:(bg-gray-950! text-gray-100!)',
+            ]}
+          >
+            <Page />
+          </div>
+          <a
+            href="/{pageName === 'index' ? '' : pageName}"
+            onclick={(ev) => {
+              ev.preventDefault()
+              props.onPick(pageName)
+            }}
+            class={[
+              'absolute inset-0 hover:bg-white/10 text-black/0',
+              {
+                'shadow-[inset_0_0_0px_3px] shadow-yellow-500':
+                  props.currentPage === pageName,
+              },
+            ]}>{pageName}</a
+          >
+        </div>
+      {/each}
+    </div>
+  {/each}
+</div>
