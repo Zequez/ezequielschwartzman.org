@@ -27,7 +27,15 @@
     <li>
       Flowing Fund Gameworld
       <ul>
-        <li>Creating web to express the Gameworld</li>
+        <li>
+          Getting feedback on the Flowing Fund Gameworld Codex and inviting 2
+          other people to start playing with me
+        </li>
+        <li>Creating a Flowing Fund Page Substrate for the Web Environment</li>
+        <li>
+          Writing and sharing a Fundraising Campaign to fill my Flowing Fund
+          with $10,000 for all my upcoming work.
+        </li>
       </ul>
     </li>
     <li>Adding Conversations to my website</li>
@@ -36,7 +44,16 @@
 </div>
 
 <style>
-  ul {
-    @apply: pl6;
+  ul,
+  ol {
+    @apply mb6 pl6;
+  }
+
+  li {
+    @apply list-disc list-inside;
+  }
+
+  ol li {
+    @apply list-decimal list-inside;
   }
 </style>

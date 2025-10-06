@@ -145,13 +145,6 @@
         </li>
       </ul>
     </li>
-    <li
-      >Your decision about the purpose of the money, and exactly where it will
-      flow</li
-    >
-    <li>The full real name of your Guardian and his picture</li>
-    <li>Instructions about how to add money to your Flowing Fund</li>
-    <li>An updated </li>
   </ul>
 </div>
 

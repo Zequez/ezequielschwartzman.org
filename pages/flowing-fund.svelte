@@ -1,28 +1,38 @@
 <script lang="ts">
   import Contribution from '../components/Contribution.svelte'
+  import ezequiel from '../favicon.jpeg'
 </script>
 
 <div class="max-w-screen-md mx-auto px6">
   <h1> Ezequiel's Flowing Fund </h1>
+  <div class="flexcc">
+    <a
+      class="text-lime-600 font-bold underline underline-(1.5 offset-2 opacity-50) -mt6 mb6 px2 rounded-md font-serif"
+      href="/flowing-fund-gameworld"
+      >[The Edgeworker's Flowing Fund Gameworld]</a
+    >
+  </div>
+  <div class="flexcs">
+    <img
+      class="rounded-full h24 w24 inline-block mr6"
+      src={ezequiel}
+      alt="Ezequiel's face"
+    />
+    <span class="text-8 font-serif">Ezequiel Adrián Schwartzman</span>
+  </div>
 
-  <a href="/flowing-fund-gameworld">Flowing Fund Gameworld</a>
-
-  <p>Cycle: Every</p>
-
-  <p>
-    My commitment is to take $2,000 from the Ezequiel's Fund every new moon.
-  </p>
-  <p>Amounts are expressed in US$</p>
+  <p>Cycle: Every new moon</p>
+  <p>The decision is to take $1,600 from the Fund every cycle</p>
   <ul>
     <li>
-      $750 for whatever land-base treasury I'm currently staying at. This
+      $600 for whatever land-base treasury I'm currently staying at. This
       supports: stocking food, supplies, water, gas, electricity, Internet,
       taxes and/or rent (if it applies), and materials for maintenance, repairs
       and creative projects.
     </li>
     <li>
-      $500 for my son Coral fund: $250 stay with me, $250 go to his mother. When
-      he's 16, the $500 it goes to him directly.
+      $400 for my son Coral fund: $200 stay with me, $200 go to his mother. When
+      he's 16, the $400 it goes to him directly.
     </li>
     <li>
       $100 for personal leisure expenses that keep my Gremlin happy: namely to
@@ -32,16 +42,24 @@
       street. For carrying it around and throwing it in the air when appropiate.
     </li>
     <li>
-      $400 for trainings and coaching: directly to the pockets of collegues or
+      $300 for trainings and coaching: directly to the pockets of collegues or
       for traveling expeses and accomodation.
     </li>
     <li>
-      $250 for paying back old debts over time: I owe about $3000 to friends and
+      $200 for paying back old debts over time: I owe about $3000 to friends and
       family members that have given me money with the agreement that I would
       give it back, and I haven't yet.
     </li>
-    <li>Total: $2,000</li>
   </ul>
+
+  <p>Flowing Fund Guardian: ______________</p>
+  <p>Amount of money in the Flowing Fund</p>
+
+  <h2>Ongoing Loans</h2>
+  <h2>Cycles Turnings</h2>
+
+  <!--
+
   <p>
     The money will be held by a trusted third party with better financial
     discipline and impeccable integrity with money. And I get $2,000 from the
@@ -112,8 +130,8 @@
       class="text-3rem font-bold font-serif text-center mb6 underline underline-(8 offset-3 red-500)"
       >NO</div
     >
-  </div>
-  <p>I, Ezequiel, am personally raising funds for the following:</p>
+  </div> -->
+  <!-- <p>I, Ezequiel, am personally raising funds for the following:</p>
   <ul>
     <li>
       <div class="h12 w12 flexcc text-2rem float-left">🛖</div>
@@ -226,7 +244,7 @@
   <p>
     I was struggling between a fixed fundraising (like Kickstarter) and a
     flowrising (like Patreon)
-  </p>
+  </p>-->
 </div>
 
 <style global>
