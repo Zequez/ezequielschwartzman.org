@@ -34,7 +34,7 @@
     onresizeobserver,
     onTripleShift,
   } from '@/center/utils/runes.svelte'
-  import favicon from './favicon.jpeg'
+  import favicon from './favicon.jpg'
   import PagesList from './components/PagesList.svelte'
   import noise from './noise.png'
   import guard3 from './guarda.svg'

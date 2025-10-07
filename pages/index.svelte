@@ -4,7 +4,7 @@
 
 <script lang="ts">
   import { onMount, type Component } from 'svelte'
-  import ezequiel from '../ezequiel.jpeg'
+  import ezequiel from '../ezequiel.jpg'
   import { enes } from '../utils/enes.svelte'
   import TelegramIcon from '~icons/fa6-brands/telegram'
   import WhatsappIcon from '~icons/fa6-brands/whatsapp'
