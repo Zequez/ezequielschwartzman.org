@@ -83,14 +83,15 @@
   <div class="mb4">
     {#each [['AirTm', 'zequez'], ['Wise', 'zequez@gmail.com'], ['ETH', '0x8b61a066e7b29b4702b7bc78bd5cbb6a28442ba9'], ['Argentina Bank Alias', 'ezequiel.servicio']] as [name, address]}
       <div class="flex justify-between">
-        <div>{name}</div>
-        <div>{address}</div>
+        <div class="mr3">{name}</div>
+        <div class="break-all text-right font-mono text-3">{address}</div>
       </div>
     {/each}
   </div>
   <div class="flexcc">
     <a
       href="https://forms.gle/fjxHnTT5KZvoffsu5"
+      target="_blank"
       class={[
         'btn hover:bg-gray-200',
         'mx-auto inline-block rounded-.25rem font-serif px6 py3 mb6 font-bold',

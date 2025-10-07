@@ -212,7 +212,7 @@
   <div id="nav-start"></div>
   <div
     class={[
-      'sticky relative bottom-0 text-center tracking-wide flexcc',
+      'sticky flex-shrink-0 bottom-0 text-center tracking-wide flexcc overflow-hidden h6 w-full',
       'bg-gray-200 text-gray-600 text-shadow-[0_1px_0_#fff]',
       'dark:(bg-gray-800! text-gray-300! text-shadow-[0_1px_0_#000]) ',
     ]}
