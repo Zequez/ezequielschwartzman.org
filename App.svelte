@@ -9,6 +9,9 @@
   import favicon from './favicon.jpeg'
   import PagesList from './components/PagesList.svelte'
   import noise from './noise.png'
+  import guard from './guarda.svg?raw'
+  import guard2 from './guarda.png'
+  import guard3 from './guarda.svg'
 
   type Page = {
     Component: Component
@@ -44,8 +47,8 @@
     (v) => ({ Component: v.default, metadata: v.metadata }),
     rawPages,
   )
-
   function syntheticNavigateTo(navPath: string) {
+    console.log('Synthetic nav')
     currentPath = navPath
     window.history.pushState(null, '', navPath)
     document.documentElement.scrollTop = 0
@@ -99,6 +102,7 @@
     if (ev.target instanceof HTMLAnchorElement) {
       const url = new URL(ev.target.href)
       if (url.host === window.location.host) {
+        if (url.pathname === currentPath) return
         syntheticNavigateTo(url.pathname)
         ev.preventDefault()
         ev.stopPropagation()
@@ -159,8 +163,51 @@
     <currentPage.Component />
   </div>
 
+  <div id="nav-start"></div>
   <div
-    class="relative flex-grow bg-gray-950 text-white shadow-[0_-1px_0_0] shadow-black dark:shadow-white/80"
+    class={[
+      'sticky relative bottom-0 text-center tracking-wide flexcc',
+      'bg-gray-200 text-gray-600 text-shadow-[0_1px_0_#fff]',
+      'dark:(bg-gray-800! text-gray-300! text-shadow-[0_1px_0_#000]) ',
+    ]}
+  >
+    <span
+      class="absolute inset-0 pointer-events-none b-t-1 b-b-1 b-black/20 dark:b-white/50"
+    ></span>
+    <a
+      href="#nav-start"
+      onclick={(ev) => {
+        const el = document.getElementById('nav-start')!
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        ev.preventDefault()
+      }}
+      class="font-serif relative"
+    >
+      <div
+        class="absolute top-10% right-100% mr1 h-80% opacity-20 dark:filter-invert"
+      >
+        <img
+          src={guard3}
+          class="h-full max-w-none"
+          alt="Intricate design on left of name"
+        />
+      </div>
+
+      Ezequiel Adrián Schwartzman
+
+      <div
+        class="absolute top-10% left-100% ml1 h-80% scale-x-[-1] opacity-20 dark:filter-invert"
+      >
+        <img
+          src={guard3}
+          class="h-full max-w-none"
+          alt="Intricate design on right of name"
+        />
+      </div>
+    </a>
+  </div>
+  <div
+    class="relative flex-grow bg-gray-950 text-white"
     style="{`background-image: url(${noise});`}}"
   >
     {#if typeof window !== 'undefined'}

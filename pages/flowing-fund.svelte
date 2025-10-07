@@ -60,7 +60,8 @@
     </li>
   </ul>
 
-  <h3>Flowing Fund Guardian: Ezequiel Adrián Schwartzman</h3>
+  <h2>Flowing Fund Guardian</h2>
+  <div>Ezequiel Adrián Schwartzman</div>
   <p>
     Yes, there is nothing on the Gameworld rules about you not being able to be
     your own Guardian for you Flowing Fund</p
@@ -69,7 +70,7 @@
     And this will be until I find somenoe who is willing to be the Guardian of
     the money committed to my path, the Guardian of my Flowing Fund.
   </p>
-  <h3>The Fund</h3>
+  <h2>The Fund</h2>
   <p>Amount of money in the Flowing Fund:</p>
   <div class="text-center text-12 font-serif mb6"> AR$ 2000</div>
   <p>

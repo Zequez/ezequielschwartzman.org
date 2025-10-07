@@ -23,15 +23,7 @@
     }
   }
 
-  setContext('preview-page-mode', true)
-
   let container: HTMLDivElement
-
-  // const pages: typeof props.pages = {}
-
-  // for (const key of PAGES_ON_NAV) {
-  //   pages[key] = props.pages[key]
-  // }
 
   let pagesSizes = $state<{ [key: string]: { w: number; h: number } }>({})
   const LINE = 24

@@ -14,8 +14,6 @@
   import DarkToggle from '../components/DarkToggle.svelte'
   import LangToggle from '../components/LangToggle.svelte'
 
-  console.log(enes)
-
   onMount(() => {})
 </script>
 
