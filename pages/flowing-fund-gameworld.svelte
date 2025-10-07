@@ -2,10 +2,21 @@
   export const metadata = { title: 'Flowing Fund Gameworld' }
 </script>
 
+<script lang="ts">
+  import { onMount } from 'svelte'
+
+  import flowingFund from '../flowing-fund.png'
+</script>
+
 <DocPage>
   <h1
     ><em class="font-mono font-size-6">The Edgeworker's</em><br /> Flowing Fund Gameworld
   </h1>
+  <img
+    src={flowingFund}
+    class="mx-auto max-w-full rounded-lg mb6"
+    alt="A is sort of etheric water container that is filled from many sources, and it sends waves of flying water-rivers towards a being. As the water converges on the being, it's energy is transformed into a fiery light that spills out of it"
+  />
   <h2>New values</h2>
   <p>
     Having all-the-time access to large quantities of money accumulated can be
@@ -44,6 +55,11 @@
     The purpose of the Edgeworker's Flowing Fund Gameworld is to create the
     value of committing to each others committments at scale.
   </p>
+  <p
+    class="italic opacity-75"
+    title="Meta notes are notes that I add as I re-read what I wrote and I  make observations but I don't have enough clarity yet to modify the documents"
+    >Meta: There is also something about transparency and integrity.</p
+  >
   <h2>Rules of Engagement</h2>
   <p>Read this Codex before you start.</p>
   <p>Look at least another participant Flowing Fund Page.</p>

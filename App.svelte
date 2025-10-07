@@ -1,3 +1,31 @@
+<script lang="ts" module>
+  if (import.meta.hot) {
+    let scrollY = 0
+    let scrollX = 0
+
+    // before the module is replaced, capture scroll
+    import.meta.hot.dispose(() => {
+      scrollX = window.scrollX
+      scrollY = window.scrollY
+      sessionStorage.setItem(
+        '__hmr_scroll',
+        JSON.stringify({ x: scrollX, y: scrollY }),
+      )
+    })
+
+    // after the new module is accepted, restore scroll
+    import.meta.hot.accept(() => {
+      const raw = sessionStorage.getItem('__hmr_scroll')
+      if (raw) {
+        const { x, y } = JSON.parse(raw)
+        requestAnimationFrame(() => {
+          window.scrollTo(x, y)
+        })
+      }
+    })
+  }
+</script>
+
 <script lang="ts">
   import { onMount, type Component } from 'svelte'
   import { globImportToRecord } from '@/center/utils/neutral'
@@ -16,7 +44,7 @@
     metadata: { title: string }
   }
 
-  console.log('Tick 1')
+  console.log('Tick 2t4')
 
   // WORKAROUND FOR A BUG I HAVENT FIGURED OUT YET
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -164,7 +192,7 @@
 
 <svelte:head>
   <link rel="icon" type="image/jpg" href={favicon} />
-  <title>{currentPage.metadata.title}</title>
+  <title>{currentPage.metadata?.title || 'Untitled'}</title>
 </svelte:head>
 
 <svelte:window

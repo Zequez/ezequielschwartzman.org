@@ -78,6 +78,32 @@
     account, creating the possibility of free bus drives due to an apparent bug
     in the system. This is a most practical use of the accumulated money.
   </p>
+  <h3>How to add money to the fund</h3>
+  <p>Here is a list of money protocols that I can receive funds at:</p>
+  <div class="mb4">
+    {#each [['AirTm', 'zequez'], ['Wise', 'zequez@gmail.com'], ['ETH', '0x8b61a066e7b29b4702b7bc78bd5cbb6a28442ba9'], ['Argentina Bank Alias', 'ezequiel.servicio']] as [name, address]}
+      <div class="flex justify-between">
+        <div>{name}</div>
+        <div>{address}</div>
+      </div>
+    {/each}
+  </div>
+  <div class="flexcc">
+    <a
+      href="https://forms.gle/fjxHnTT5KZvoffsu5"
+      class={[
+        'btn hover:bg-gray-200',
+        'mx-auto inline-block rounded-.25rem font-serif px6 py3 mb6 font-bold',
+        'bg-gray-300 ',
+      ]}>Contribution Commitment Form</a
+    ></div
+  >
+  <p>
+    All recorded contributions proposals and committed to the fund <a
+      href="https://docs.google.com/spreadsheets/d/15MQjtOWWAVehjbRlyFHfG89XPLiLp0UZq4B5h5Lj2ms/edit?usp=sharing"
+      target="_blank">are listed here on this spreadsheet</a
+    >.
+  </p>
 
   <h2>Ongoing Loans</h2>
   <p>$0</p>

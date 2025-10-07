@@ -29,6 +29,10 @@
     @apply text-6 line-height-12 font-sans underline underline-(offset-2 2 black/70) mb6;
   }
 
+  .doc :global(h4) {
+    @apply text-4 font-sans underline underline-(offset-2 2 black/70) mb6;
+  }
+
   .doc :global(p) {
     @apply mb6;
   }
@@ -44,5 +48,9 @@
 
   .doc :global(ol li) {
     @apply list-decimal list-inside;
+  }
+
+  .doc :global(a):not(.btn) {
+    @apply text-sky-500 underline hover:(text-sky-600  underline-sky-500) underline-(1.5 offset-2 sky-500/40);
   }
 </style>
