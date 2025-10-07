@@ -1,8 +1,11 @@
-<script lang="ts">
+<script module>
+  export const metadata = { title: 'Flowing Fund Gameworld' }
 </script>
 
-<div class="max-w-screen-md mx-auto px6">
-  <h1>The Edgeworker's Flowing Fund Gameworld </h1>
+<DocPage>
+  <h1
+    ><em class="font-mono font-size-6">The Edgeworker's</em><br /> Flowing Fund Gameworld
+  </h1>
   <h2>New values</h2>
   <p>
     Having all-the-time access to large quantities of money accumulated can be
@@ -146,39 +149,4 @@
       </ul>
     </li>
   </ul>
-</div>
-
-<style global>
-  h1 {
-    @apply text-12 font-serif font-bold text-center my6;
-  }
-
-  h2 {
-    @apply text-8 font-serif font-bold mb6;
-  }
-
-  h3 {
-    @apply text-6 line-height-12 font-sans underline underline-(offset-2 2 black/70) mb6;
-  }
-
-  h4 {
-    @apply text-4 font-sans underline mb6 font-bold underline-(offset-2 1 black/70);
-  }
-
-  p {
-    @apply mb6;
-  }
-
-  ul,
-  ol {
-    @apply mb6 pl6;
-  }
-
-  li {
-    @apply list-disc list-inside;
-  }
-
-  ol li {
-    @apply list-decimal list-inside;
-  }
-</style>
+</DocPage>

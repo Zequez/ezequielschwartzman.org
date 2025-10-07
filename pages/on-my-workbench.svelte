@@ -1,4 +1,8 @@
-<div class="pb6 px6">
+<script module>
+  export const metadata = { title: 'On My Workbench' }
+</script>
+
+<DocPage>
   <h1 class="text-12 font-serif text-center py6">On My Workbench</h1>
 
   <ul class="max-w-screen-sm mx-auto">
@@ -44,19 +48,4 @@
     <li>Adding Conversations to my website</li>
     <li>Adding gallery of past artistic work to my website</li>
   </ul>
-</div>
-
-<style>
-  ul,
-  ol {
-    @apply mb6 pl6;
-  }
-
-  li {
-    @apply list-disc list-inside;
-  }
-
-  ol li {
-    @apply list-decimal list-inside;
-  }
-</style>
+</DocPage>

@@ -1,3 +1,7 @@
+<script module>
+  export const metadata = { title: 'Ezequiel A. Schwartzman' }
+</script>
+
 <script lang="ts">
   import { onMount, type Component } from 'svelte'
   import ezequiel from '../ezequiel.jpeg'

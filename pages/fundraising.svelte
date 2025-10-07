@@ -1,8 +1,14 @@
-<div class="max-w-screen-md mx-auto px6 pb6">
-  <h2 class="text-12 font-serif text-center mb6"
-    ><span class="line-through text-6">Fundraising</span><br />
-    <i class="underline underline-(black/25 offset-4 2) mr1">Flow</i>raising</h2
+<script module>
+  export const metadata = { title: 'Fundraising' }
+</script>
+
+<DocPage>
+  <div class="line-through text-6 -mb6 mt6 opacity-50 font-serif text-center"
+    >Fundraising</div
   >
+  <h1>
+    <i class="underline underline-(black/25 offset-4 2) mr1">Flow</i>raising
+  </h1>
   <p class="text-center mb6">
     I'm not interested in accumulating money.<br />
     I'm interested in money to flow into my land-base and those who hold space for
@@ -12,12 +18,12 @@
     I'm interested in practicing next culture and inventing next culture commons.<br
     />
     I'm interested in being supported by those who benefit from the Gameworlds I'm
-    taking a stand for.<br />
+    holding space for.<br />
   </p>
 
-  <p class="text-center text-6 font-serif">I'm raising</p>
+  <p class="text-center text-8 font-serif">I'm raising</p>
   <div class="text-center text-12 font-serif font-bold"> $10,000</div>
-  <p class="text-center text-6 font-serif">
+  <p class="text-center text-8 font-serif">
     for my <a class="text-lime-500 underline" href="/flowing-fund"
       >my Flowing Fund</a
     >.</p
@@ -59,4 +65,4 @@
     >NO</div
   >
 </div> -->
-</div>
+</DocPage>

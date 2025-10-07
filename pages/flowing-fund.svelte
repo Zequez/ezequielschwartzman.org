@@ -1,9 +1,13 @@
+<script module>
+  export const metadata = { title: 'Flowing Fund' }
+</script>
+
 <script lang="ts">
   import Contribution from '../components/Contribution.svelte'
   import ezequiel from '../favicon.jpeg'
 </script>
 
-<div class="max-w-screen-md mx-auto px6">
+<DocPage>
   <h1> Ezequiel's Flowing Fund </h1>
   <div class="flexcc">
     <a
@@ -268,35 +272,4 @@
     I was struggling between a fixed fundraising (like Kickstarter) and a
     flowrising (like Patreon)
   </p>-->
-</div>
-
-<style global>
-  h1 {
-    @apply text-12 font-serif font-bold text-center my6;
-  }
-
-  h2 {
-    @apply text-8 font-serif font-bold mb6;
-  }
-
-  h3 {
-    @apply text-6 line-height-12 font-sans underline underline-(offset-2 2 black/70) mb6;
-  }
-
-  p {
-    @apply mb6;
-  }
-
-  ul,
-  ol {
-    @apply mb6 pl6;
-  }
-
-  li {
-    @apply list-disc list-inside;
-  }
-
-  ol li {
-    @apply list-decimal list-inside;
-  }
-</style>
+</DocPage>

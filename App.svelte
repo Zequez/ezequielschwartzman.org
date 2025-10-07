@@ -10,6 +10,19 @@
   import PagesList from './components/PagesList.svelte'
   import noise from './noise.png'
 
+  type Page = {
+    Component: Component
+    metadata: { title: string }
+  }
+
+  console.log('Tick 1')
+
+  // WORKAROUND FOR A BUG I HAVENT FIGURED OUT YET
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  const preRenderingPathname =
+    typeof global !== 'undefined' ? (global as any).pathname : null
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
   onMount(() => {})
 
   let container: HTMLDivElement
@@ -19,11 +32,18 @@
 
   const props: { preRenderingPathname?: string } = $props()
 
+  // if (!props.preRenderingPathname && typeof window === 'undefined')
+  //   throw 'Must give a path name'
+
   const rawPages = import.meta.glob('./pages/*.(svx|svelte)', {
     eager: true,
-  }) as { [key: string]: { default: Component } }
+  }) as { [key: string]: { default: Component; metadata: { title: string } } }
 
-  const pages = globImportToRecord('./pages/', (v) => v.default, rawPages)
+  const pages = globImportToRecord(
+    './pages/',
+    (v) => ({ Component: v.default, metadata: v.metadata }),
+    rawPages,
+  )
 
   function syntheticNavigateTo(navPath: string) {
     currentPath = navPath
@@ -31,18 +51,36 @@
     document.documentElement.scrollTop = 0
     recalculatePagesListHeight()
   }
-
   let currentPath = $state(
-    props.preRenderingPathname
-      ? props.preRenderingPathname
-      : window.location.pathname,
+    preRenderingPathname
+      ? preRenderingPathname
+      : typeof window !== 'undefined'
+        ? window.location.pathname
+        : '/',
   )
+
+  const navPathToPageName = $derived(generateNavigationPaths())
+  const navPathToPage = $derived.by(() => {
+    const o: { [key: string]: Page } = {}
+    for (let path in navPathToPageName) {
+      o[path] = pages[navPathToPageName[path]]
+    }
+    return o
+  })
+  const pageNameToNavPath = $derived.by(() => {
+    const o: { [key: string]: string } = {}
+    for (let path in navPathToPageName) {
+      o[navPathToPageName[path]] = path
+    }
+    return o
+  })
+
   const currentPageName = $derived.by(() => {
     const page = navPathToPageName[currentPath]
     if (page) return page
     else return '404'
   })
-  const CurrentPageComponent = $derived(pages[currentPageName])
+  const currentPage = $derived(pages[currentPageName])
 
   function generateNavigationPaths(): { [key: string]: string } {
     let paths: { [key: string]: string } = {}
@@ -57,24 +95,7 @@
     return paths
   }
 
-  const navPathToPageName = $derived(generateNavigationPaths())
-  const navPathToPage = $derived.by(() => {
-    const o: { [key: string]: Component } = {}
-    for (let path in navPathToPageName) {
-      o[path] = pages[navPathToPageName[path]]
-    }
-    return o
-  })
-  const pageNameToNavPath = $derived.by(() => {
-    const o: { [key: string]: string } = {}
-    for (let path in navPathToPageName) {
-      o[navPathToPageName[path]] = path
-    }
-    return o
-  })
-
   function intersectLinkClicks(ev: MouseEvent) {
-    console.log('Handling click', ev)
     if (ev.target instanceof HTMLAnchorElement) {
       const url = new URL(ev.target.href)
       if (url.host === window.location.host) {
@@ -120,8 +141,8 @@
 </script>
 
 <svelte:head>
-  <title>Ezequiel A. Schwartzman</title>
   <link rel="icon" type="image/jpg" href={favicon} />
+  <title>{currentPage.metadata.title}</title>
 </svelte:head>
 
 <svelte:window
@@ -135,7 +156,7 @@
     bind:this={container}
     use:onresizeobserver={recalculatePagesListHeight}
   >
-    <CurrentPageComponent />
+    <currentPage.Component />
   </div>
 
   <div

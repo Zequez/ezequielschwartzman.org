@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount, tick, type Component } from 'svelte'
+  import { onMount, tick, type Component, setContext } from 'svelte'
 
   // prettier-ignore
   const NAV = [
@@ -10,7 +10,7 @@
   ]
 
   const props: {
-    pages: Record<string, Component>
+    pages: Record<string, { Component: Component }>
     currentPage: string
     pageNameToNavPath: Record<string, string>
   } = $props()
@@ -22,6 +22,8 @@
       }
     }
   }
+
+  setContext('preview-page-mode', true)
 
   let container: HTMLDivElement
 
@@ -110,7 +112,7 @@
               'bg-gray-100 text-gray-950 dark:(bg-gray-950! text-gray-100!)',
             ]}
           >
-            <Page />
+            <Page.Component />
           </div>
           <a
             href={props.pageNameToNavPath[pageName]}
