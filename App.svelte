@@ -9,8 +9,6 @@
   import favicon from './favicon.jpeg'
   import PagesList from './components/PagesList.svelte'
   import noise from './noise.png'
-  import guard from './guarda.svg?raw'
-  import guard2 from './guarda.png'
   import guard3 from './guarda.svg'
 
   type Page = {
@@ -35,9 +33,6 @@
 
   const props: { preRenderingPathname?: string } = $props()
 
-  // if (!props.preRenderingPathname && typeof window === 'undefined')
-  //   throw 'Must give a path name'
-
   const rawPages = import.meta.glob('./pages/*.(svx|svelte)', {
     eager: true,
   }) as { [key: string]: { default: Component; metadata: { title: string } } }
@@ -49,11 +44,32 @@
   )
   function syntheticNavigateTo(navPath: string) {
     console.log('Synthetic nav')
+
+    const currentState = history.state || {}
+    history.replaceState(
+      { ...currentState, scrollTop: document.documentElement.scrollTop },
+      '',
+      window.location.pathname,
+    )
+    history.pushState({ path: navPath, scrollTop: 0 }, '', navPath)
+
     currentPath = navPath
-    window.history.pushState(null, '', navPath)
     document.documentElement.scrollTop = 0
     recalculatePagesListHeight()
   }
+
+  onMount(() => {
+    window.addEventListener('popstate', (event) => {
+      const path = event.state?.path || window.location.pathname
+      const scrollTop = event.state?.scrollTop ?? 0
+
+      currentPath = path
+      recalculatePagesListHeight()
+      document.documentElement.scrollTop = scrollTop
+      // optionally restore scrollTop or do other state updates
+    })
+  })
+
   let currentPath = $state(
     preRenderingPathname
       ? preRenderingPathname
@@ -109,6 +125,8 @@
       }
     }
   }
+
+  onMount(() => {})
 
   // VERTICAL RYHTHM GRID TOGGLING
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
