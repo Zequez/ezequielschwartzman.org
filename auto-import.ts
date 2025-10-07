@@ -7,6 +7,9 @@ export default AutoImport({
     {
       '../components/DocPage.svelte': [['default', 'DocPage']],
     },
+    {
+      '../utils/enes.svelte': ['enes'],
+    },
   ],
   // dirsScanOptions: {
   //   filePatterns: ['*.svelte'], // Glob patterns for matching files

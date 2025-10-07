@@ -28,6 +28,7 @@ export function setLang(newlang: string) {
 }
 
 export function toggleLang() {
+  console.log('Language toggled')
   setLang(lang === 'es' ? 'en' : 'es')
 }
 

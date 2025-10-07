@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getLang, toggleLang } from '../enes.svelte'
+  import { getLang, toggleLang } from '../utils/enes.svelte'
 </script>
 
 <button onclick={toggleLang} class="font-thin text-center">

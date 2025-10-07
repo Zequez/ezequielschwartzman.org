@@ -5,7 +5,7 @@
 <script lang="ts">
   import { onMount, type Component } from 'svelte'
   import ezequiel from '../ezequiel.jpeg'
-  import { enes } from '../enes.svelte'
+  import { enes } from '../utils/enes.svelte'
   import TelegramIcon from '~icons/fa6-brands/telegram'
   import WhatsappIcon from '~icons/fa6-brands/whatsapp'
   import EmailIcon from '~icons/fa6-solid/envelope'
@@ -13,6 +13,8 @@
 
   import DarkToggle from '../components/DarkToggle.svelte'
   import LangToggle from '../components/LangToggle.svelte'
+
+  console.log(enes)
 
   onMount(() => {})
 </script>
