@@ -3,17 +3,18 @@
 </script>
 
 <script lang="ts">
-  import { onMount } from 'svelte'
-
-  import flowingFund from '../flowing-fund.png'
+  import flowingFund from '../flowing-fund.png?width=100;250;500&format=webp&srcset'
+  import flowingFundMeta from '../flowing-fund.png?as=meta:height;width'
+  import OptimizedImg from '../components/OptimizedImg.svelte'
 </script>
 
 <DocPage>
   <h1
     ><em class="font-mono font-size-6">The Edgeworker's</em><br /> Flowing Fund Gameworld
   </h1>
-  <img
+  <OptimizedImg
     src={flowingFund}
+    meta={flowingFundMeta}
     class="mx-auto max-w-full rounded-lg mb6"
     alt="A is sort of etheric water container that is filled from many sources, and it sends waves of flying water-rivers towards a being. As the water converges on the being, it's energy is transformed into a fiery light that spills out of it"
   />

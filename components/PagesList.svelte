@@ -3,7 +3,7 @@
 
   // prettier-ignore
   const NAV = [
-    ['index'],
+    ['index', 'birth-celestial-influences', 'etimologia-nueva', 'web-gallery'],
     ['on-my-workbench', 'fundraising'],
     ['flowing-fund'],
     ['flowing-fund-gameworld'],
@@ -22,6 +22,8 @@
       }
     }
   }
+
+  setContext('preview-page-mode', true)
 
   let container: HTMLDivElement
 

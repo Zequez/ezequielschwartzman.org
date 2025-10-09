@@ -4,7 +4,7 @@
 
 <script lang="ts">
   import Contribution from '../components/Contribution.svelte'
-  import ezequiel from '../favicon.jpeg'
+  import ezequiel from '../ezequiel.jpg'
 </script>
 
 <DocPage>

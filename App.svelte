@@ -102,7 +102,9 @@
     preRenderingPathname
       ? preRenderingPathname
       : typeof window !== 'undefined'
-        ? window.location.pathname
+        ? window.location.pathname.length > 1
+          ? window.location.pathname.replace(/\/$/, '')
+          : window.location.pathname
         : '/',
   )
 

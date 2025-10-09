@@ -4,7 +4,8 @@
 
 <script lang="ts">
   import { onMount, type Component } from 'svelte'
-  import ezequiel from '../ezequiel.jpg'
+  import ezequiel from '../ezequiel.jpg?width=100;250;500&format=webp&srcset'
+  import ezequielMeta from '../ezequiel.jpg?as=meta:height;width'
   import { enes } from '../utils/enes.svelte'
   import TelegramIcon from '~icons/fa6-brands/telegram'
   import WhatsappIcon from '~icons/fa6-brands/whatsapp'
@@ -13,6 +14,7 @@
 
   import DarkToggle from '../components/DarkToggle.svelte'
   import LangToggle from '../components/LangToggle.svelte'
+  import OptimizedImg from '../components/OptimizedImg.svelte'
 
   onMount(() => {})
 </script>
@@ -27,11 +29,12 @@
 
 <div class="max-w-sm mx-auto pt6">
   <div class="w42 h42 mx-auto mb6">
-    <img
+    <OptimizedImg
       src={ezequiel}
+      meta={ezequielMeta}
       class="size-full object-cover rounded-full"
       alt="Ezequiel's face"
-      title="Picture taken 5th of October 2025"
+      title="Picture taken 8 of October 2025"
     />
   </div>
   <h1 class="text-8 text-center font-serif font-bold tracking-wider my6">
