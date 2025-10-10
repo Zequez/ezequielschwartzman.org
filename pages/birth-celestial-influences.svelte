@@ -35,11 +35,12 @@
     The assumption here is that when I decided to come to Earth, I chose the
     exact time of my birth so that this particular configuration would happen so
     I would have a human body with certain functionalities, and so learning
-    about this
+    about this could be useful and fun. I find it specially interesting to
+    discover how other people experience being human differently from me.
   </p>
   <div class="flexcc font-serif mb6">
     <div
-      class="bg-yellow-500 bg-gradient-to-b from-white/10 to-white/0 b-black/10 b-t-white/30 b-x-0.5 b-1.5 p2 text-center rounded-1 text-yellow-100 font-bold text-shadow"
+      class="bg-yellow-500 dark:bg-yellow-600 bg-gradient-to-b from-white/10 to-white/0 b-black/10 b-t-white/30 b-x-0.5 b-1.5 p2 text-center rounded-1 text-yellow-100 font-bold text-shadow"
     >
       <span class="underline underline-(offset-2 1.2)"
         >Ezequiel Adrián Schwartzman</span

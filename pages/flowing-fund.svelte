@@ -73,18 +73,34 @@
   <h2>The Fund</h2>
   <p>Amount of money in the Flowing Fund:</p>
   <div class="text-center text-12 font-serif mb6"> AR$ 2000</div>
-  <p>
-    Where is the money located? It's on Argentina's Banco Nación Ezequiel's
-    account, creating the possibility of free bus drives due to an apparent bug
-    in the system. This is a most practical use of the accumulated money.
-  </p>
+  <!-- <div class="w-full h12 bg-red-500 rounded-1"></div> -->
   <h3>How to add money to the fund</h3>
   <p>Here is a list of money protocols that I can receive funds at:</p>
-  <div class="mb4">
+  <div class="mb6 grid grid-cols-2 gap-6">
     {#each [['AirTm', 'zequez'], ['Wise', 'zequez@gmail.com'], ['ETH', '0x8b61a066e7b29b4702b7bc78bd5cbb6a28442ba9'], ['Argentina Bank Alias', 'ezequiel.servicio']] as [name, address]}
-      <div class="flex justify-between">
-        <div class="mr3">{name}</div>
-        <div class="break-all text-right font-mono text-3">{address}</div>
+      <div
+        class="relative text-center bg-black/10 shadow-[inset_0_0_0_1px_#0003] dark:(bg-white/10 shadow-none) rounded-md"
+      >
+        <div class="uppercase opacity-70 font-bold tracking-wide">{name}</div>
+        <div class="break-all font-mono text-3 line-height-6">{address}</div>
+        <input
+          class="absolute inset-0 focus:outline-none opacity-0 cursor-pointer peer"
+          value={address}
+          onclick={(ev) => {
+            ev.currentTarget.select()
+            document.execCommand('copy')
+            ev.currentTarget.blur()
+          }}
+        />
+        <div
+          class={[
+            'flexcc opacity-0 peer-active:(opacity-90 transition-duration-0) transition-duration-1000 transition-opacity absolute',
+            'bg-black/30 text-white dark:(bg-white/70 text-black) font-bold text-6 inset-0 uppercase',
+            ' pointer-events-none rounded-1',
+          ]}
+        >
+          Copied
+        </div>
       </div>
     {/each}
   </div>
@@ -93,10 +109,15 @@
       href="https://forms.gle/fjxHnTT5KZvoffsu5"
       target="_blank"
       class={[
-        'btn hover:bg-gray-200',
-        'mx-auto inline-block rounded-.25rem font-serif px6 py3 mb6 font-bold',
-        'bg-gray-300 ',
-      ]}>Contribution Commitment Form</a
+        'btn px6 py3 mb6 mx-auto rounded-1',
+        'bg-yellow-400 dark:(bg-yellow-500 text-gray-100)',
+        'bg-gradient-to-br from-white/10 to-white/0',
+        'hover:(from-white/30 to-white/20)',
+        'shadow-[inset_0_1px_0_#fffa,inset_0_-1px_0_#0002,1px_1px_1.5px_0px_#0003]',
+        'text-white tracking-wide text-shadow-[0px_1.2px_0_#0004,1.2px_1.2px_0_#0004]',
+        ' font-sans font-bold',
+        'bg-gray-300',
+      ]}>Show your commitment to my commitments</a
     ></div
   >
   <p>

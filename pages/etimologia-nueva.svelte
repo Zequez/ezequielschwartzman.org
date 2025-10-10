@@ -36,4 +36,22 @@
     >Ej: Estuve toda la mañana <em>trarribando</em> en mi sitio web, escribiendo
     sobre <a href="/etimologia-nueva">Etimología Nueva Reemplazativa</a>.</p
   >
+  <p
+    >Fue interesante también descubrir la etimología de la palabra "trabajo",
+    que me eludió por 32 años.
+  </p>
+  <blockquote>
+    <cite>
+      <a
+        href="https://es.wikipedia.org/wiki/Trabajo_(sociolog%C3%ADa)#Etimolog%C3%ADa"
+      >
+        De Wikipedia:</a
+      >
+    </cite>
+    La palabra «trabajar» deriva del latín tripaliare, que originalmente significaba
+    torturar. Este verbo hacía referencia al tripalium, una herramienta parecida
+    a un cepo con tres puntas o pies que se usaba inicialmente para sujetar caballos
+    o bueyes y así poder herrarlos. También se usaba como instrumento de tortura
+    para castigar esclavos o reos.
+  </blockquote>
 </DocPage>
