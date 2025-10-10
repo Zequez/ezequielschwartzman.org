@@ -3,13 +3,13 @@
 </script>
 
 <DocPage>
-  <div class="line-through text-6 -mb6 mt6 opacity-50 font-serif text-center"
+  <div class="line-through text-4 -mb6 mt6 opacity-50 font-serif text-center"
     >Fundraising</div
   >
   <h1>
     <i class="underline underline-(black/25 offset-4 2) mr1">Flow</i>raising
   </h1>
-  <p class="text-center mb6">
+  <p class="text-center">
     I'm not interested in accumulating money.<br />
     I'm interested in money to flow into my land-base and those who hold space for
     the Gameworlds I play on.<br />
@@ -24,7 +24,7 @@
   <p class="text-center text-8 font-serif">I'm raising</p>
   <div class="text-center text-12 font-serif font-bold"> $10,000</div>
   <p class="text-center text-8 font-serif">
-    for my <a class="text-lime-500 underline" href="/flowing-fund"
+    for <a class="text-lime-500 underline" href="/flowing-fund"
       >my Flowing Fund</a
     >.</p
   >

@@ -84,7 +84,7 @@
         <div class="uppercase opacity-70 font-bold tracking-wide">{name}</div>
         <div class="break-all font-mono text-3 line-height-6">{address}</div>
         <input
-          class="absolute inset-0 focus:outline-none opacity-0 cursor-pointer peer"
+          class="absolute inset-0 focus:outline-none opacity-0 hover:opacity-20 rounded-1 text-transparent bg-white cursor-pointer peer"
           value={address}
           onclick={(ev) => {
             ev.currentTarget.select()

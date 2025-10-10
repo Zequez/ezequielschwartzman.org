@@ -1,4 +1,12 @@
-<script lang="ts" module>
+<script module lang="ts">
+  import { onMount, type Component } from 'svelte'
+  import { globImportToRecord } from '@/center/utils/neutral'
+  import { onresizeobserver } from '@/center/utils/runes.svelte'
+  import { default as favicon } from './favicon.jpg'
+  import { default as noise } from './noise.png'
+  import { default as guarda } from './guarda'
+  import { default as VerticalRhythmLines } from './components/VerticalRhythmLines.svelte'
+  import { default as PagesList } from './components/PagesList.svelte'
   if (import.meta.hot) {
     let scrollY = 0
     let scrollX = 0
@@ -27,17 +35,6 @@
 </script>
 
 <script lang="ts">
-  import { onMount, type Component } from 'svelte'
-  import { globImportToRecord } from '@/center/utils/neutral'
-  import { onresizeobserver } from '@/center/utils/runes.svelte'
-  import favicon from './favicon.jpg'
-  import noise from './noise.png'
-  import guarda from './guarda.svg'
-
-  import VerticalRhythmLines from './components/VerticalRhythmLines.svelte'
-  import PagesList from './components/PagesList.svelte'
-  import Editor from './Editor.svelte'
-
   type Page = {
     Component: Component
     metadata: { title: string }
@@ -178,38 +175,24 @@
   }
 </script>
 
-<svelte:head>
-  <link rel="icon" type="image/jpg" href={favicon} />
-  <title>{currentPage.metadata?.title || 'Untitled'}</title>
-</svelte:head>
-
+<svelte:head
+  ><link rel="icon" type="image/jpg" href={favicon} />
+  <title>{currentPage.metadata?.title || 'Untitled'}</title></svelte:head
+>
 <svelte:window
   onclick={intersectLinkClicks}
   onresize={recalculatePagesListHeight}
 />
-
-{#if import.meta.env.DEV}
-  <Editor />
-{/if}
-
-<div class="flex flex-col min-h-screen relative">
-  <div
-    class="bg-gray-100 text-gray-950 dark:(bg-gray-950! text-gray-100!)"
+<div class="flex flex-col min-h-screen relative"
+  ><div
+    class="bg-gray-100 text-gray-950 dark:(bg-gray-950! text-gray-100!"
     bind:this={container}
     use:onresizeobserver={recalculatePagesListHeight}
+    ><currentPage.Component></currentPage.Component></div
   >
-    <currentPage.Component />
-  </div>
-
   <div id="nav-start"></div>
-  <div
-    class={[
-      'sticky flex-shrink-0 bottom-0 text-center tracking-wide flexcc overflow-hidden h6 w-full',
-      'bg-gray-200 text-gray-600 text-shadow-[0_1px_0_#fff]',
-      'dark:(bg-gray-800! text-gray-300! text-shadow-[0_1px_0_#000]) ',
-    ]}
-  >
-    <span
+  <div class="[object Object]"
+    ><span
       class="absolute inset-0 pointer-events-none b-t-1 b-b-1 b-black/20 dark:b-white/50"
     ></span>
     <a
@@ -220,39 +203,28 @@
         ev.preventDefault()
       }}
       class="font-serif relative"
-    >
-      <div
+      ><div
         class="absolute top-10% right-100% mr1 h-80% opacity-20 dark:filter-invert"
+        ><undefined></undefined></div
       >
-        <img
-          src={guarda}
-          class="h-full max-w-none"
-          alt="Intricate design on left of name"
-        />
-      </div>
-
       Ezequiel Adrián Schwartzman
-
       <div
         class="absolute top-10% left-100% ml1 h-80% scale-x-[-1] opacity-20 dark:filter-invert"
-      >
-        <img
+        ><img
           src={guarda}
           class="h-full max-w-none"
           alt="Intricate design on right of name"
-        />
-      </div>
-    </a>
-  </div>
+        /></div
+      ></a
+    ></div
+  >
   <div
     class="relative flex-grow bg-gray-950 text-white"
-    style="{`background-image: url(${noise});`}}"
-  >
-    {#if typeof window !== 'undefined'}
-      <!-- <div class="h6 w-full bg-white/50 dark:bg-black/50"></div> -->
-      <PagesList {pages} currentPage={currentPageName} {pageNameToNavPath} />
+    style={`background-image: url(${noise});`}
+    >{#if typeof window !== undefined}
+      <PagesList {pages} currentPage={currentPageName} {pageNameToNavPath}
+      ></PagesList>
     {/if}
-  </div>
-
-  <VerticalRhythmLines />
-</div>
+    <VerticalRhythmLines></VerticalRhythmLines></div
+  ></div
+>

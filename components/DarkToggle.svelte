@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { lsState } from '@/center/utils/runes.svelte'
+  import { lsState, onTripleKey } from '@/center/utils/runes.svelte'
   import SunIcon from '~icons/fa6-solid/sun'
   import MoonIcon from '~icons/fa6-solid/moon'
 
@@ -36,6 +36,8 @@
       darkMode.v = 'system'
     }
   }
+
+  onTripleKey('2', window, cycleDarkMode)
 </script>
 
 <button

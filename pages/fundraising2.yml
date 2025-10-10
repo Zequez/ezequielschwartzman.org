@@ -1,0 +1,65 @@
+module:
+  export:
+    metadata:
+      title: Fundraising
+
+script:
+  imports:
+    Components:
+
+html:
+  - DocPage:
+    children:
+      - div:
+          class: line-through text-4 -mb6 mt6 opacity-50 font-serif text-center
+          children:
+            - text: Fundraising
+      - h1:
+          children:
+            - i:
+              class: underline underline-(black/25 offset-4 2) mr1
+              children:
+                - text: Flow
+            - text: raising
+      - p:
+        class: text-center
+        children:
+          -
+            text: |
+              I'm not interested in accumulating money.
+              I'm interested in money to flow into my land-base and those who hold space for the Gameworlds I play on.
+              I'm not interested in selling anything.
+              I'm not interested in creating anything because I'm paid for.
+              I'm interested in practicing next culture and inventing next culture commons.
+              I'm interested in being supported by those who benefit from the Gameworlds I'm holding space for.
+          -
+      - p:
+        class: text-center text-8 font-serif
+        children:
+          - text: I'm raising
+      - div:
+        class: text-center text-12 font-serif font-bold
+        children:
+          - text: $10,000
+      - p:
+        class: text-center text-8 font-serif
+        children:
+          - text: for
+          - a:
+            class: text-lime-500 underline
+            href: /flowing-fund
+            onclick:
+              $: alert('Hello world')
+            children:
+              - text: my Flowing Fund
+          - text: .
+      - $:
+        $$: \#if typeof window !== undefined
+        children:
+          - PagesList:
+            pages:
+              $: pages
+            currentPage:
+              $: currentPageName
+            pageNameToNavPath:
+              $: pageNameToNavPath

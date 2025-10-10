@@ -36,7 +36,6 @@
 
   import VerticalRhythmLines from './components/VerticalRhythmLines.svelte'
   import PagesList from './components/PagesList.svelte'
-  import Editor from './Editor.svelte'
 
   type Page = {
     Component: Component
@@ -187,10 +186,6 @@
   onclick={intersectLinkClicks}
   onresize={recalculatePagesListHeight}
 />
-
-{#if import.meta.env.DEV}
-  <Editor />
-{/if}
 
 <div class="flex flex-col min-h-screen relative">
   <div
