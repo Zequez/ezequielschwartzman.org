@@ -30,9 +30,9 @@
   import { onMount, type Component } from 'svelte'
   import { globImportToRecord } from '@/center/utils/neutral'
   import { onresizeobserver } from '@/center/utils/runes.svelte'
-  import favicon from './favicon.jpg'
-  import noise from './noise.png'
-  import guarda from './guarda.svg'
+  import favicon from './photos/favicon.jpg'
+  import noise from './photos/noise.png'
+  import guarda from './photos/guarda.svg'
 
   import VerticalRhythmLines from './components/VerticalRhythmLines.svelte'
   import PagesList from './components/PagesList.svelte'
@@ -43,7 +43,7 @@
     metadata: { title: string }
   }
 
-  console.log('Tick 2t4')
+  console.log('Tick st')
 
   // WORKAROUND FOR A BUG I HAVENT FIGURED OUT YET
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -248,7 +248,7 @@
     class="relative flex-grow bg-gray-950 text-white"
     style="{`background-image: url(${noise});`}}"
   >
-    {#if typeof window !== 'undefined'}
+    {#if !import.meta.env.SSR}
       <!-- <div class="h6 w-full bg-white/50 dark:bg-black/50"></div> -->
       <PagesList {pages} currentPage={currentPageName} {pageNameToNavPath} />
     {/if}

@@ -4,8 +4,8 @@
 
 <script lang="ts">
   import { onMount, type Component } from 'svelte'
-  import ezequiel from '../ezequiel.jpg?width=100;250;500&format=webp&srcset'
-  import ezequielMeta from '../ezequiel.jpg?as=meta:height;width'
+  import ezequiel from '../photos/ezequiel.jpg?width=100;250;500&format=webp&srcset'
+  import ezequielMeta from '../photos/ezequiel.jpg?as=meta:height;width'
   import { enes } from '../utils/enes.svelte'
   import TelegramIcon from '~icons/fa6-brands/telegram'
   import WhatsappIcon from '~icons/fa6-brands/whatsapp'
@@ -62,7 +62,7 @@
     {/snippet}
     {@render link('Telegram', 'https://t.me/ezequielschwartzman', TelegramIcon)}
     {@render link('WhatsApp', 'https://wa.me/5492235235568', WhatsappIcon)}
-    {@render link('Email', 'mailto:zequez@gmail.com', EmailIcon)}
+    {@render link('Email', 'mailto:ezequielschwartzman@gmail.com', EmailIcon)}
     {@render link('Github', 'https://github.com/zequez', GithubIcon)}
   </div>
 </div>

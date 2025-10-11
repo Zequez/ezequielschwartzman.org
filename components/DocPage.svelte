@@ -50,7 +50,8 @@
     @apply list-decimal list-inside;
   }
 
-  .doc :global(a):not(.btn) {
+  .doc :global(a):not(.btn),
+  .doc :global(.link) {
     @apply text-sky-500 underline hover:(text-sky-600  underline-sky-500) underline-(1.5 offset-2 sky-500/40);
   }
 

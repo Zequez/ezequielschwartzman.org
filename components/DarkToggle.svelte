@@ -37,7 +37,7 @@
     }
   }
 
-  onTripleKey('2', window, cycleDarkMode)
+  onTripleKey('2', null, cycleDarkMode)
 </script>
 
 <button

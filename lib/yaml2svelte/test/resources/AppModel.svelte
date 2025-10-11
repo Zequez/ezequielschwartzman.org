@@ -42,7 +42,7 @@
     metadata: { title: string }
   }
 
-  console.log('Tick 2t4')
+  // 'Tick 2t4'
 
   // WORKAROUND FOR A BUG I HAVENT FIGURED OUT YET
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

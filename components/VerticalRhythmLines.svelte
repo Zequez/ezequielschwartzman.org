@@ -6,11 +6,9 @@
 
   let vGridEnabled = lsState('v-grid-enabled', { v: false })
 
-  if (typeof window !== 'undefined') {
-    onTripleKey('1', window, () => {
-      vGridEnabled.v = !vGridEnabled.v
-    })
-  }
+  onTripleKey('1', null, () => {
+    vGridEnabled.v = !vGridEnabled.v
+  })
 </script>
 
 {#if vGridEnabled.v}

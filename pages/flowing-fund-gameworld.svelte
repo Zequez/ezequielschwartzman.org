@@ -3,8 +3,8 @@
 </script>
 
 <script lang="ts">
-  import flowingFund from '../flowing-fund.png?width=100;250;500&format=webp&srcset'
-  import flowingFundMeta from '../flowing-fund.png?as=meta:height;width'
+  import flowingFund from '../photos/flowing-fund.png?width=100;250;500&format=webp&srcset'
+  import flowingFundMeta from '../photos/flowing-fund.png?as=meta:height;width'
   import OptimizedImg from '../components/OptimizedImg.svelte'
 </script>
 

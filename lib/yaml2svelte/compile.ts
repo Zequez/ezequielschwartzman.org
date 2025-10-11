@@ -89,6 +89,8 @@ function compileHtml(html: YamlSvelteNode[]): string {
           return `{${nn.$value}}\n${compileHtml(nn.children!)}\n{/if}`
         } else if (nn.$value.startsWith('#each')) {
           return `{${nn.$value}}\n${compileHtml(nn.children!)}\n{/each}`
+        } else if (nn.$value.startsWith('#snippet')) {
+          return `{${nn.$value}}\n${compileHtml(nn.children!)}\n{/snippet}`
         } else {
           return `{${nn.$value}}`
         }
