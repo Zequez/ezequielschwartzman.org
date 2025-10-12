@@ -12,7 +12,7 @@
   {/if}
 </svelte:head> -->
 
-<div class="max-w-screen-md mx-auto px6 doc">
+<div class="max-w-screen-md mx-auto px6 doc pb12">
   {@render props.children?.()}
 </div>
 

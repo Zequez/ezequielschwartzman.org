@@ -3,8 +3,8 @@
 
   // prettier-ignore
   const NAV = [
-    ['index', 'birth-celestial-influences', 'etimologia-nueva', 'web-gallery'],
-    ['on-my-workbench', 'fundraising'],
+    ['index', 'birth-celestial-influences', 'etimologia-nueva'],
+    ['on-my-workbench', 'web-gallery'],
     ['flowing-fund'],
     ['flowing-fund-gameworld'],
   ]
@@ -102,7 +102,7 @@
             data-name={pageName}
             style={`transform: scale(${scale})`}
             class={[
-              'pointer-events-none transform-origin-tl w-screen overflow-hidden ',
+              'pointer-events-none transform-origin-tl w-screen overflow-hidden',
               'bg-gray-100 text-gray-950 dark:(bg-gray-950! text-gray-100!)',
             ]}
           >
