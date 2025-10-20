@@ -1,6 +1,8 @@
 <script lang="ts">
   import { onMount } from 'svelte'
 
+  const props: { class?: any } = $props()
+
   let canvas: HTMLCanvasElement
 
   onMount(() => {
@@ -20,8 +22,10 @@
 
     function resize() {
       const { width, height } = canvas.getBoundingClientRect()
-      w = canvas.width = width
-      h = canvas.height = height
+      w = width
+      h = height
+      canvas.width = w
+      canvas.height = h
       makeStars()
     }
     window.addEventListener('resize', resize)
@@ -57,4 +61,7 @@
   })
 </script>
 
-<canvas class="absolute top-0 left-0 w-full h-full" bind:this={canvas}></canvas>
+<canvas
+  class={['absolute top-0 left-0 w-full h-full', props.class]}
+  bind:this={canvas}
+></canvas>

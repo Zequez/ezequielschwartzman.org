@@ -6,7 +6,7 @@
   import { onMount, type Component } from 'svelte'
   import ezequiel from '../photos/ezequiel.jpg?width=100;250;500&format=webp&srcset'
   import ezequielMeta from '../photos/ezequiel.jpg?as=meta:height;width'
-  import { enes } from '../utils/enes.svelte'
+  import { enes } from '../../../center/enes.svelte'
   import TelegramIcon from '~icons/fa6-brands/telegram'
   import WhatsappIcon from '~icons/fa6-brands/whatsapp'
   import EmailIcon from '~icons/fa6-solid/envelope'
@@ -14,7 +14,7 @@
 
   import DarkToggle from '../components/DarkToggle.svelte'
   import LangToggle from '../components/LangToggle.svelte'
-  import OptimizedImg from '../components/OptimizedImg.svelte'
+  import OptimizedImg from '../../../substrates/toroid-web/components/OptimizedImg.svelte'
 
   onMount(() => {})
 </script>

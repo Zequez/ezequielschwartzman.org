@@ -6,7 +6,7 @@
   import { type Snippet } from 'svelte'
   import ShieldIcon from '~icons/fa6-solid/shield'
 
-  import Contribution from '../components/Contribution.svelte'
+  import { enes } from '../../../center/enes.svelte'
   import ezequiel from '../photos/ezequiel.jpg'
   import PM from '../components/PM.svelte'
   import StarrySky from '../components/StarrySky.svelte'
@@ -32,7 +32,7 @@
 {/snippet}
 
 <DocPage>
-  <h1>Ezequiel's Flowing Fund</h1>
+  <h1>{enes(`Ezequiel's Flowing Fund`, `Fondo Fluyente de Ezequiel`)}</h1>
   <div class="flexcc">
     <a
       class="text-lime-600 font-bold underline underline-(1.5 offset-2 opacity-50) -mt6 mb6 px2 rounded-md font-serif"

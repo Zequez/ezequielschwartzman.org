@@ -16,7 +16,7 @@
     que yo elijo hacer.
   </p>
 
-  <h2>Aprendimientos</h2>
+  <h2 id="aprendimientos">Aprendimientos</h2>
   <p>
     Un Mundo de Juego que integra al flujo de Dinero como parte de sus reglas de
     juego, pero cuyo propósito es aprender, divertirse y crear Colaboración
