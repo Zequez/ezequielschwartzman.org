@@ -137,7 +137,7 @@
       <span>0 / 9,600</span>
       <span class="text-4 ml6 opacity-50">US$</span>
     </div>
-    <StarrySky />
+    <!-- <StarrySky /> -->
   </div>
   <p class="text-center">6 cycles &times; US$ 1,600 = 9,600</p>
   <h2 class="text-center">Fund Guardian</h2>
@@ -238,7 +238,7 @@
           Received <span class="font-mono ml3">US$ 1,600</span>
         </div>
         <div class="relative rounded-2 overflow-hidden py3 bg-black">
-          <StarrySky />
+          <!-- <StarrySky /> -->
           <div class="relative flexcc">
             <div
               class="w-1/4 text-white text-3 lh-4.5 flexcc font-serif text-center"

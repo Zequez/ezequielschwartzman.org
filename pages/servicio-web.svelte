@@ -1,20 +1,94 @@
+<script module lang="ts">
+  export const metadata = {
+    title: 'Servicio Web',
+    description: 'Ofrezco sitios web a mi gente',
+  }
+</script>
+
+<script lang="ts">
+  import { mergeImagesImports } from '@/center/utils/neutral'
+  import OptimizedImg from '@/substrates/toroid-web/components/OptimizedImg.svelte'
+  import ChangingWord from '../components/ChangingWord.svelte'
+
+  const photosSrc = import.meta.glob('../photos/servicio-web/*.{png,jpg}', {
+    query: { format: 'webp', width: '100;250;500', picture: '' },
+    import: 'default',
+    eager: true,
+  }) as { [key: string]: [string, string, string] }
+
+  const photosMeta = import.meta.glob('../photos/servicio-web/*.{png,jpg}', {
+    query: { format: 'webp', as: 'meta:height;width', picture: '' },
+    import: 'default',
+    eager: true,
+  }) as { [key: string]: { height: number; width: number } }
+
+  const photos = mergeImagesImports(
+    '../photos/servicio-web/',
+    photosSrc,
+    photosMeta,
+  )
+</script>
+
+{#snippet cat(
+  title: string,
+  value: string,
+  toAddress: string,
+  explain?: string,
+)}
+  <div
+    class=" bg-blue-300 dark:bg-blue-500 p3 rounded-2 b b-black/10 text-center"
+  >
+    <div
+      class="text-5 lh-6 underline underline-(1 offset-2.5) text-white font-serif text-shadow-[0_1px_0_#0005]"
+    >
+      {title}
+    </div>
+    <div class="font-mono">{value}</div>
+    <div class="font-mono text-sm">{toAddress}</div>
+    {#if explain}
+      <div class="mt6">{explain}</div>
+    {/if}
+  </div>
+{/snippet}
+
 <DocPage>
   <h1>Servicio Web</h1>
-  <p
-    >Puedo facilitarte uno de estos
-    <span
-      >bellos/elegantes/hermosos/maravillosos/geniales/fantásticos/increíbles/novedosos/innovadores/zarpadísimos</span
+  <div class="mb6 tracking-wide text-center">
+    Puedo facilitarte uno de estos...
+    <div
+      title="Cada vez que volví a editar esta página me  encontré con adjetivos diferentes que me resonaban; y decidí elegirlos todos."
     >
-    sitios web (como el mío, que lo amo):</p
-  >
+      <ChangingWord
+        text="bellos/elegantes/hermosos/maravillosos/geniales/fantásticos/increíbles/novedosos/innovadores/zarpadísimos"
+      />
+      <ChangingWord
+        text="funcionales/autogestivos/soberanos/futurísticos/arqueárquicos/valiosos/auténticos/artesanales"
+      />
+      <ChangingWord text="prácticos/útiles/customizables" />
+    </div>
+    <br />
+    ...sitios web (como el mío, que lo amo)
+  </div>
 
-  <div class="bg-green-400 w-full h-90 mb6"></div>
-  <div class="bg-green-400 w-full h-90 mb6"></div>
+  <div class="flex space-x-1 mb6">
+    {#each [['ezequiel', 'https://ezequielschwartzman.org'], ['nami', 'https://nami.ezequielschwartzman.org'], ['agroeco', 'https://agroeco.ezequielschwartzman.org']] as [key, href] (key)}
+      {@const photo = photos[key]}
+      <div class="w-1/3">
+        <a
+          class="block b b-black/50 rounded-2 overflow-hidden hover:brightness-120"
+          target="_blank"
+          {href}
+        >
+          <OptimizedImg {...photo} alt={key} />
+        </a>
+      </div>
+    {/each}
+  </div>
 
   <p>
     Si no leiste la página titulada <a href="/sitios-web">Sitios Web</a>; ahí
     está. Es un artículo, creo. O un manifesto. O simplemente un texto que
-    esribí donde expreso lo que siento, lo que pienso, de donde vengo, y mis
+    escribí donde expreso lo que siento, lo que pienso, de donde vengo, y mis
     valores.
   </p>
 
@@ -52,117 +126,174 @@
   <h2>¿Y cómo me pedís un sitio web?</h2>
 
   <p>
-    Mirá. Siento miedo porque sé que el dinero es un tema sensible para muchos y
-    quiero ser super cuidadoso con lo próximo que voy a proponer.
+    Mirá. Sé que el dinero es un tema sensible para muchos (incluyéndome) y
+    siento miedo porque quiero ser super cuidadoso con lo próximo que voy a
+    proponer.
   </p>
 
-  <p>Aquí va:</p>
+  <p>
+    <span class="num">1</span>
+    Hay una lista de espera.
+  </p>
 
-  hn
+  <p>
+    <span class="num">2</span>
+    Para entrar en la lista de espera tenés que señar (mandar una señal)
+  </p>
+
+  <p>
+    <span class="num">3</span>
+    La señal es diferente dependiendo de tu posición relativa a mí; mientras más
+    lejos estés, la señal debe ser más fuerte.
+  </p>
+
+  <div class="grid grid-cols-2 gap-6 my6">
+    {@render cat(
+      'Familia y Comunidad',
+      'AR$ 10,000',
+      'Alias: ezequiel.servicio',
+      `Aplica si sos familiar de sangre mío, o estaría dispuesto presentarte a mi hijo
+          como su tí@ "X". O nos conocemos personalmente y me invitaste a pasar a tu casa.`,
+    )}
+    {@render cat(
+      'Bioregion Paternal',
+      'AR$ 15,000',
+      'Alias: ezequiel.servicio',
+      '¿Viajaría 2 veces por semana a Mar del Plata desde ahí para que mi hijo esté con su madre? Aplica si vivís en Mar del Plata, Mar Chiquita, Chapadmalal, Sierra de los Padres, o alrededores.',
+    )}
+    {@render cat('Latinoamerica', 'US$ 12', 'Airtm: zequez')}
+    {@render cat('Resto del Mundo', 'US$ 40', 'Wise: zequez@gmail.com')}
+  </div>
+
+  <p>
+    <span class="num">4</span>
+    Podés enviarme mensajes con todas las consultas que quieras antes de señar, y
+    si vivís cerca podes invitarme a tu casa.
+  </p>
+
+  <p>
+    <span class="num">5</span>
+    Estás invitad@ a negociar conmigo otro intercambios en vez de la seña.
+  </p>
+
+  <p>
+    La seña es una señal para darme luz verde a mí para enfocar mi energía en lo
+    que me estás pidiendo, sin que sea una imposición mía, y yo poder trabajar
+    con la confianza de que es algo que realmente es deseado.
+  </p>
+
+  <h2>¿En qué momento se considera que el acuerdo está completado?</h2>
+
+  <p></p>
 
   <ul>
-    <li>1. Hay una lista de espera.</li>
-    <li
-      >2. Para entrar en la lista de espera tenés que señar (mandar una señal).</li
-    >
+    <li>Tenés un sitio web propio en un dominio de tu elección</li>
     <li>
-      3. La seña es:
-      <ul>
-        <li>
-          3.0 Si nos conocemos personalmente (físicamente) y estás a menos de
-          50km de donde estoy yo, la seña es de $10,000
-        </li>
-        <li>
-          3.1 Si no nos conocemos personalmente y estás a menos de 50km de donde
-          estoy yo, la seña es de $20,000.
-        </li>
-        <li>
-          3.2 Si sos familiar mío, o nos conocemos íntimamente hace más de 10
-          años, la seña es de $10,000 independientemente de donde estés.
-        </li>
-        <li> 3.3 Si estás actualmente en Argentina, la seña es de $25,000. </li>
-        <li>3.4 Si estás en latinoamérica la seña es de US$ 20</li>
-        <li
-          >3.5 Si estás en cualquier otro lado del mundo, la seña es de US$ 40</li
-        >
-      </ul>
+      Tenés en algún dispositivo el sistema necesario para modificar el sitio
+      web, y el sistema está funcionando de tal manera que se actualiza
+      automáticamente desde un repositorio público custodiado por mí.
+    </li>
+    <li>
+      El sistema tiene los bloques de construcción que vos necesitás para crear
+      en él lo que vos querés
+    </li>
+    <li>
+      Tenés en tu mente integrado el conocimiento para usar el sistema para
+      crear lo que querés
+    </li>
+    <li>
+      El sitio web tiene una portada, diseño y estilo adaptados a vos o tu
+      proyecto que son de tu agrado y aprovación
     </li>
   </ul>
 
-  <p
-    >La seña es la seña. El valor de lo que recibís no voy a osarme de
-    especularlo. Por ello, cuando el acuerdo esté completado (tengas un sitio
-    web hosteado en el dominio que vos quieras y el sistema preparado y
-    sincronizado en tu computadora para actualizarlo cómodamente)
+  <p>
+    La señal de cierre es la siguiente: en alguna red social pública compartís
+    el link a tu nuevo sitio web, o lo pintás o imprimís en algún medio físico
+    para compartir.
+  </p>
+  <p>Con la señal tu sitio se marca como completado en la lista de espera.</p>
+  <p>
+    La prioritización es heuréstica y es posible que sea necesario enfocarme en
+    varios sitios simultáneamente.
   </p>
 
   <h2>¿Qué podés esperar de mí una vez señado?</h2>
 
-  <p>Hola. Esto es</p>
-  <p>Hola. Mi nombre es Ezequiel.</p>
-  <p>La verdad es que no suelo hacer esto.</p>
-  <p>Vender cosas digo.</p>
+  <ul>
+    <li>Te voy a enviar un mensaje confirmando que recibí la señal</li>
+    <li>
+      Te voy a invitar a que me compartas tu visión lo más detallada posible del
+      resultado que te gustaría recibir.
+    </li>
+    <li>
+      En la medida que avance con tu pedido voy a mandarte actualizaciones
+    </li>
+    <li>
+      Vas a recibir un mensaje con instrucciones para instalar el sistema en tu
+      dispositivo
+    </li>
+    <li>
+      Vas a recibir toda la atención y asistencia necesaria para que el sistema
+      esté funcionando, incluido videollamadas y compartir pantallas si fuese
+      necesario.
+    </li>
+    <li>
+      Te voy a pedir que tomes algunas decisiones concretas, por ejemplo,
+      respecto al dominio web donde querés que esté el sitio. Y si preferís
+      encargarte vos del alquiler y la configuración o de darme el dinero a mí y
+      que yo me encargue.
+    </li>
+  </ul>
+
+  <h2>¿Y qué pasa cuando se completa el acuerdo señado?</h2>
+
   <p>
-    Se siente inauténtico. Siento miedo de estar adaptándome a las formas del
-    sistema por dinero.
+    Te voy a invitar a que salga de tí compensar en el espíritu del regalo
+    acorde a lo que recibiste de la manera que a vos te surja, y te voy a
+    ofrecer posibilidades que yo valoro.
   </p>
-  <p>No quiero venderte nada.</p>
-  <p>Si quiero compartir algo con vos.</p>
-  <p>Empecé a hacer sitios web cuando tenía unos 12 años, tengo 32 ahora.</p>
-  <p>Este medio creativo es para mí como el agua para los peces.</p>
+
   <p>
-    Puedo armar y desarmar cualquier cosa que funcione adentro de un navegador
-    web.</p
-  >
-  <p>Tuve trabajos en empresas, corporaciones, equipos quasi-cooperativos.</p>
-  <p>
-    Todos esos trabajos siempre terminaron igual. Terminaba haciendo cosas que
-    solo las hacía porque me pagaban.
+    Esta página la voy actualizar con una captura del sitio marcado como
+    completado.
   </p>
-  <p>Estoy creando algo diferente ahora.</p>
+
   <p>
-    Esto que ves acá es mi sitio web. No es un sitio web convencional. Tuve 7
-    sitios web diferentes desde que arranqué. Lo que sucedió una y otra vez es
-    que cada vez que lo miraba, yo era una persona distinta, y lo anterior ya no
-    me reflejaba.
+    Vas a seguir recibiendo soporte y actualizaciones automáticas del sistema, y
+    te vas a seguir beneficiando de nuevas funcionalidades que yo vaya
+    agregando.
   </p>
-  <p>
-    Si vas a buscar un sitio web al mercado te van a ofrecer sitios web con
-    cierta forma, ciertas herramientas, ciertas suposiciones sobre tu propósito.
-  </p>
-  <p>
-    Yo quiero que cuando alguien entre a mi sitio web se pueda llevar un reflejo
-    auténtico de quién soy yo. Y quién soy es algo que estoy descubriendo cada
-    día.
-  </p>
-  <p>
-    No quiero venderte nada. Quiero que me veas y pienses "Quiero hacer algo con
-    esta persona". Quiero inspirarte a que me envíes una propuesta que me
-    encienda, que me invites a crear algo juntos.
-  </p>
-  <p>
-    La verdad es que estoy disfrutando muchísimo creando el sistema, la
-    infraestructura de código detrás de este sitio web. El entorno ya está
-    preparado para ser re-utilizado infinitas veces sin ningún costo adicional.
-  </p>
-  <p>
-    Y eso es otra cosa, yo no puedo venderte un sitio web como si fuese algo
-    material escaso. No puedo no porque no sea posible, sino porque en mis ojos
-    sería un engaño.
-  </p>
-  <p>
-    Yo quiero que personas irracionalmente entusiasmadas por compartir con el
-    mundo lo que hacen me pidan que les prepare un sitio web.
-  </p>
-  <p>
-    Quiero que artistas, escritor@s, investigador@s, sostenedor@s de espacios,
-    sanadores, agentes de transformación, usen los sitios web que yo les puedo
-    facilitar. Quiero darles a las personas un medio de expresión y difusión
-    digital en Internet que no esté ligado a ninguan red social capturada por el
-    sistema, un espacio propio y auténtico, que refleje tus propios valores.
-  </p>
-  <p>
-    Quiero que la infraestructura de la nueva cultura que estamos creando, no
-    esté capturada por corporaciones.
-  </p>
+
+  <h2 class="text-center">Lista de Espera</h2>
+
+  <div class="flexcc mb6">
+    <a
+      href="https://docs.google.com/forms/d/e/1FAIpQLScLL2NP9yUfqvtdmEZKUB-0qLiuTYT1KA029CmvqAD510OImw/viewform?usp=header"
+      target="_blank"
+      class="btn bg-blue-400 hover:bg-blue-300 dark:(bg-blue-500 hover:bg-blue-400) text-white uppercase font-mono px3 py3 rounded-1 b b-black/10 shadow-[0_1.5px_0px_0px_#0006] text-shadow-[0_1px_0_#0005]"
+      >Completar Formulario</a
+    >
+  </div>
+
+  <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+    <div class="b b-black/10 rounded-1 p3 bg-black/10 dark:bg-white/10"
+      ><strong>Familia y Comunidad</strong><br />
+    </div>
+    <div class="b b-black/10 rounded-1 p3 bg-black/10 dark:bg-white/10"
+      ><strong>Bioregión</strong></div
+    >
+    <div class="b b-black/10 rounded-1 p3 bg-black/10 dark:bg-white/10"
+      ><strong>Latinoamérica</strong>
+    </div>
+    <div class="b b-black/10 rounded-1 p3 bg-black/10 dark:bg-white/10"
+      ><strong>Resto del Mundo</strong>
+    </div>
+  </div>
 </DocPage>
+
+<style>
+  .num {
+    @apply h6 w6 mr1ch inline-block text-center font-bold rounded-full bg-blue-300 b b-black/10 dark:bg-blue-500 text-white text-shadow-[0_0_0_#0005];
+  }
+</style>

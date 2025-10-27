@@ -2,18 +2,32 @@
   import App from '@/substrates/toroid-web/components/App.svelte'
   import favicon from './photos/favicon.jpg'
   import noise from './photos/noise.png'
-  import guarda from './photos/guarda.svg'
+  import Guarda from './components/Guarda.svelte'
+  import NavContainer from './components/NavContainer.svelte'
 </script>
 
 <App
   title="Ezequiel Adrian Schwartzman"
   {favicon}
-  {guarda}
+  {Guarda}
+  {NavContainer}
   navBg={noise}
   nav={[
-    ['index', 'land-base', 'birth-celestial-influences', 'material-lovers'],
+    [
+      'index',
+      'written',
+      'land-base',
+      'birth-celestial-influences',
+      'material-lovers',
+    ],
     ['on-my-workbench', 'web-gallery'],
-    ['flowing-fund'],
-    ['flowing-fund-gameworld', 'etimologia-nueva', 'aprendimientos'],
+    ['servicio-web'],
+    [
+      'flowing-fund-gameworld',
+      'flowing-fund',
+      'etimologia-nueva',
+      'aprendimientos',
+      'distincionario',
+    ],
   ]}
 ></App>

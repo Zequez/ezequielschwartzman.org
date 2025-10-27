@@ -1,0 +1,397 @@
+<script module>
+  export const metadata = { title: 'Me and my jobs' }
+</script>
+
+<script>
+  import DocPage from '../components/DocPage.svelte'
+</script>
+
+<DocPage>
+  <h1>Me and my jobs</h1>
+
+  <p class="italic bg-black/10 dark:bg-white/10 rounded-1 p3 text-center mb6"
+    ><span class="opacity-50"
+      >The title of this page is a reference to the <a
+        href="https://youandyourjob.mystrikingly.com/">You And Your Job</a
+      > website from Startover</span
+    ></p
+  >
+
+  <p>
+    I won't do much preamble. I'm defining jobs are the things I've done and
+    I've been paid for in response to some work done.
+  </p>
+
+  <h2>Shit picker</h2>
+
+  <p
+    >When I was a child my father used to pay me and my brother to pick up dog
+    shit from the garden. He must have thought this was very clever of him. It
+    was. It was a job and I could do it.
+  </p>
+  <p>
+    The payment was for each poop; we would both go with hand shovels and sticks
+    and pick up poops and then each individual poop was counted, and payments
+    due. There was some nuance about what counted as a complete poop since some
+    poops had many parts.
+  </p>
+
+  <h2>Earth Team... For a banner towing planes businesses</h2>
+
+  <p>
+    Some friendly neighbours were the owners of a business banner towing planes
+    that would mostly fly during the Mar del Plata high season.
+  </p>
+
+  <p
+    >I was about 14 years old, and I spend a whole summer in the local aeroclub
+    hauling, preparing and folding banners, sometimes driving a bike or a car
+    into the grassland airstrip.</p
+  >
+
+  <p>
+    In hindsight it was actually very interesting. In fact I got to fly on a
+    plane every day, because I was on the Villa Gesel team, and so we would fly
+    every morning there, and come back in the evening. One pilot, Juan, the
+    owner son, even did a corkscrew once just for fun; that was exciting. There
+    was a lot of downtime in the quiet field, just waiting for the planes. I
+    also did some plane-washing, banner painting, mate serving and hangar
+    brooming. And I did get once like 20 minutes of actually sitting as co-pilot
+    and actually controlling the plane.
+  </p>
+  <p>
+    Additionally, my teammate was from a completely different social background
+    from mine; and some things we talked about very shocking; he was a few years
+    older than me. I remembered him talking about a friend who was in prision
+    for murder, and complete indifference about drinking from the same bottle
+    spout, and frightening comments about what he would like to do with women.
+  </p>
+
+  <p>
+    Contrary to popular belief, the banners are not hanging from the plane from
+    the get go, the planes have a kind of rope with a grappling hook and after
+    they take off they release the rope, which hangs from the plane, and then
+    the banner is layed out in the field with a rope that hangs from 2 post, and
+    the plane's gotta fly very low and snatch it in mid-air. The whole process
+    is coordinated with a wakie-takie. And when the plane comes back they just
+    release the banner mid-air and I was in charge, with a teammate, of picking
+    it up, folding it and taking it back to the hangars.
+  </p>
+
+  <p>
+    I loved to bring it up in conversations about how interesting of a job it
+    was.
+  </p>
+
+  <p>
+    With the money from that I bought my own computer. Prior to that we shared
+    one with my brother.
+  </p>
+
+  <h2>Avalith</h2>
+
+  <p
+    ><a href="https://www.avalith.net/" target="_blank">Avalith</a> still exists
+    actually. It's now a software consulting company.
+  </p>
+  <p>
+    At the time I had created the Mapa de Transporte project. And then I was
+    "discovered", and offered a job on Avalith because they wanted to create a
+    sort of app for Mar del Plata that would include the transport map app that
+    I was creating.</p
+  >
+  <p>
+    This was really cool. Someone noticed something I made, and they wanted to
+    create something even bigger it! And they wanted my help!
+  </p>
+  <p>
+    Anyway, it turned into a software factory job; they actually already had
+    clients, and this idea was a kind of internal project they were trying to
+    build; and the attention shifted from it over time; there was no funding or
+    money or whatever.
+  </p>
+  <p>
+    I was getting paid regardless,jobs that landed on my workbench, worked with
+    new technology, socializing in the office with like-minded tech-people, and
+    I actually felt appreciated for what I was capable of. It was really cool to
+    have my own money.
+  </p>
+  <p>
+    At the time I didn't much question the hierarchy or the "employment"
+    contract agreement. It was just how it was, and I was grateful to be invited
+    to play.
+  </p>
+  <p
+    >Since Avalith was kind of a rent-a-programmer scheme, I actually got to be
+    onboarded with a US-team and got to travel to San Diego, California for abou
+    2 months to work in a corporate office! This was really the cream of my job
+    at Avalith. I knew I was being paid very little, but yay! Free international
+    traveling? Count me in! I even gotten per-diem, which I saved most of it.
+    Bought myself a phone, a laptop and gadgets! And I tried all the fast-food
+    chains. And I bought a used bicycle and drove everywhere with a bicycle! I
+    drove a trains and took buses! And I met people in the office and there was
+    an office kitchen with free hot and cold canned drinks! I got the full
+    american corporate job experience! I had lunch breaks where we would even
+    drive to certain fast-food chains that my teammates wanted to share with me!
+    And once we even went to an electric go-karting place after-office! And I
+    got to be in meeting rooms with power point slides every other day! And
+    there was one person that would take the tootbrush to the office. And I
+    there was one programmer from Italy that only had one hand! And one
+    teammate, the team-leader, had this incredible sports japanese car, and he
+    was paying US$ 3,000 monthly in rent for his apartment! And I was being paid
+    less than US$ 1,000 monthly! He was this very friendly geeky guy much older
+    than me that had a blue hoodie.
+  </p>
+  <p>
+    I visited the beautiful Balboa Park and did a lot of hiking! And I lived on
+    a Day's Inn the whole time! I even had a bathtub! And there were bagels and
+    peanut butter for breakfast! And I was speaking in english with everybody!
+    And I was alone in a foreign land!
+  </p>
+  <p>
+    I even had my very own office conflict with someone! It was an accident
+    though, about me transgressing his limits, and he being very sensitive to;
+    if I recall correctly, I picked his headphones and said something on his
+    ear, and he reacted very strongly and there was this huge commottion and
+    everybody was watching. I don't even remember what was about, just that I
+    didn't expect him reacting like that, it was meant to be something to laugh
+    about. Anyway, he apologized afterwards and he drove me to my hotel after
+    that day, and we talked in the car, and he mentioned something about
+    aspegers, and a motorcycle accident, and he shared with me some Tim Michin
+    songs; and I was an ardid atheist at the time, so we bonded over it.
+  </p>
+  <p>
+    Also, during the whole time, I was called Adrian, my second name, because
+    there was already an Ezequiel.
+  </p>
+  <p>
+    It was a little bit disenchanting though; surely there were countless social
+    gatherings happening; but I was content to spend the weekend evenings just
+    playing Civilization 5 on my brand new laptop and eating Subway.
+  </p>
+
+  <h2>Wube Software</h2>
+
+  <p
+    >Factorio is a game that is doing a huge service to us humans and Earth. I
+    used to want to automate everything, used to long for industrilly automating
+    the production of food to make a brighter food for humanity. And automating
+    everything with robots for <a
+      href="https://en.wikipedia.org/wiki/Fully_Automated_Luxury_Communism"
+      >Fully Automated Luxury Communism</a
+    >. Thanks to Factorio, I satisfied all my automation desires without
+    incurring any material weight on Gaia. I must have played more than 400
+    hours of Factorio, and I even bought the Space expansion, but I was already
+    disenchanted from civilization enough that I did't have the will to finish
+    it, it just stopped being so interesting for me, as my attention is now on
+    cavitating
+    <a href="https://archiarchy.mystrikingly.com/" target="_blank"
+      >next culture</a
+    > rather than creating automated technology to free humanity from the evil of
+    work.
+  </p>
+
+  <p>
+    Anyway, the job story with Wube Software, the team behind Factorio, is that
+    the system for sharing mods for Factorio was... a forum, and it was just
+    very inelegant, and things were hard to find. There were mods that were pure
+    gold, but you wouldn't know about them because it was all buried on forum
+    posts.
+  </p>
+
+  <p>
+    So I set myself to make a Factorio Mods portal website. And I added
+    functionalities for people to upload mods, download them, upload pictures,
+    categories, ratings, stuff like that.
+  </p>
+
+  <p
+    >I shared it with the community. And it got the attention of the team. And
+    they wanted to hire me to make it "official"!</p
+  >
+
+  <p>
+    You can imagine my joy at hearing this. I didn't even make this proposal,
+    THEY ASKED ME. There I was just coding stuff for fun and glory, and someone
+    offers me money for what I'm creating!
+  </p>
+  <p>
+    This marked a little bit of a shift from my previous job, because I was like
+    a contractor rather than an employee. However what didn't work well for me
+    was that they wanted to re-write everything on a different language. See I
+    wrote the original portal with Ruby on Rails; and they wanted to write it in
+    Python, because they liked Python.
+  </p>
+  <p>
+    The portal was already working, and I was competent in Ruby on Rails; I had
+    never written a line of Python in my life. Long story short, the project
+    turned dreadful, and I was just doing it for money at the end. The
+    development slowed down to a halt, and I had to apologize once and again for
+    not delivering what I promised. Then they just cut me off and I was free
+    again; or maybe I cut them off. Anyway, they decided to take care of the
+    portal internally.
+  </p>
+  <p>
+    I still feel sad about it, I think it could have gone differently. I still
+    celebrate the Wube team, for their service in creating Factorio, and I'm sad
+    I lost touch with them; they are a truly talented bunch. And there were
+    shared values, there was a love for coding itself, and efficiency, and
+    elegance, and creating.
+  </p>
+  <p
+    >They did pay me well and it was the first time there was no intermediary
+    between me and the client. I even negotiated the rate, and tracked my own
+    time and made invoices.</p
+  >
+
+  <h2>Willdom</h2>
+
+  <p>
+    This was the rocket fuel for my independance. With this job I moved out of
+    my mother house, and got to pay rent for my own apartment, bought a car,
+    bought my own food, my own bed with my own sheets, and my own virtual
+    reality Oculus Rift headset, and I even had a couch, and sexual experiences,
+    and ice cream, and alcohol with friends, and made my own indoor for growing
+    marijuana.
+  </p>
+
+  <p>
+    With the money I also bought a van to turn into a motorhome, which didn't
+    work very well (how do I work on building a motorhome from an apartment?).
+    And I also managed to make a whole trip to Europe! I visited Barcelona,
+    London, Berlin, Prague, Paris and Rome, in about 1 month! This actually was
+    very disenchanting, traveling as a tourist was very depressing; I realized
+    there that traveling like that wasn't for me; I wanted something different.
+  </p>
+
+  <p
+    >Regarding the job itself, it was completely absurd. I was onboarded on a
+    team that was working on a project about creating a software for making
+    Newsletters for real state agents. The Newsletter were written by
+    ghostwritters, and then the agents would pay to feed their circle of clients
+    with this newsletter software, with custom styles and websites.
+  </p>
+
+  <p>
+    The job was completely meaningless for me. I got a chance to experience the
+    reality of international-tech-working-from-home-job, since this was 100%
+    remote, I was paid 100% US dollars, I was earning 100% more than other
+    people in my born culture, I was bullshitting my way through reports and
+    bending reality so that the work done would look like I had worked 8hs every
+    day; which was definitely not the case; but I was asked to always report
+    that I worked 8hs, even when I didn't; so I followed orders; yes-sir! The
+    company was paid by each hour reported by me, not by each hour worked by me,
+    so that was what they cared about, not the truth.
+  </p>
+  <p
+    >The self-pressure of "I should be working" all the time was truly
+    wretching. I didn't actually want to do the job, I wanted to play videogames
+    and watch anime. And of course I liked the money; anyway I piloted that job
+    for a couple of years I think. By the end I was probably just doing about
+    3hs of productive work per day, and being paid for 8hs. Honestly, there
+    wasn't really enough to do; the "tasks" were rigid with little space for
+    just doing whatever I wanted. And I guess I was just getting paid more by
+    each hour that I did work; it was like giving myself a rise without asking
+    for permission! It's easy to rationalize.</p
+  >
+  <p>
+    Anyway, this put me face to face with the bullshit of how the money earning
+    schemes work; I was earning way more money than my culture was telling me
+    that I deserved. All in all, I managed to amass an accumulated money of
+    about US$ 19,000, which I spent on traveling to Europe the van mostly. In my
+    career of money, that was it, I never topped that afterwards.
+  </p>
+
+  <h2>The Covid Gig</h2>
+
+  <h2>Ubiquity</h2>
+
+  <h2>The Before After Audio Player Gig</h2>
+
+  <h2>Lightningrod Labs</h2>
+
+  <p>
+    With the money from this I managed to save enough for a plane ticket and
+    training fees to get my ass to the April 2025 <a
+      href="https://expandthebox.mystrikingly.com/"
+      target="_blank">Expand the Box</a
+    >
+    in Brasil hosted at the
+    <a href="https://cee.com.vc/" target="_blank"
+      >Centro de Experiências Existenciais</a
+    >
+    on Brasil, held by the legendary
+    <a href="https://www.annechloedestremau.org/" target="_blank">Anne-Chloe</a>
+    and
+    <a href="https://www.clintoncallahan.org/" target="_blank"
+      >Clinton Callahan</a
+    >.
+  </p>
+
+  <p>Enough money was leftover to pay for a second Rage Club afterward.</p>
+
+  <p>
+    There were other ordinary things I did with the money, like providing for my
+    son and creating adventures for him.
+  </p>
+
+  <p>
+    As for the job itself, I assumed I was getting myself into an horizontal
+    team, but there were hidden hierarchies, which was obvious in hindsight
+    given that one person was paying everbody else in the team.
+  </p>
+
+  <p>
+    I did enjoy more freedom than in all my previous jobs, and I was celebrated
+    for my craft. I didn't quite felt I had a say on the direction of the
+    project itself; so it never quite felt like mine. I did have my little
+    sandboxed corner within the project boundaries that I could just do whatever
+    essentially, so that was really cool. But when I started to notice the
+    project was not really going anywhere useful, and I wanted to propose to
+    discard everything and just focus on the team itself, and take our skills to
+    new directions, that didn't took off. I was honestly more interested in the
+    team dynamics than the project, and after the ETB it was just too painful to
+    endure the meetings.
+  </p>
+
+  <p>
+    Survival strategies abounded and I didn not navigate them well. I held on to
+    this until I reached the ETB, and then right after I came back, it collapsed
+    and never had the will to get any more money from it.
+  </p>
+
+  <h2>What's next...?</h2>
+
+  <p>
+    And here I vowed never to sell my soul again for money. And I'm one
+    obstinate bastard, enduring the most dreadful poverty somehow knowing there
+    must be water on the other side of this. And I sold all my excess material
+    possession, which now I see they were my unconscious savings for this very
+    purpose, and now I'm lighter than ever.
+  </p>
+  <p>
+    And moved to a cooperative house, Nami house, and co-living with another
+    man, another father, and 4 children (intermitently because they spend time
+    with their 3 different mothers).
+  </p>
+  <p>
+    And I did some bioconstruction work for a friend where I was given money as
+    a gift.
+  </p>
+  <p>
+    And I somehow just keep on surviving, and I somehow keep on eating ice cream
+    some times, and I can count on the people that love me. And I still have my
+    laptop, and Internet, and electricity, and water, and a roof over my head.
+  </p>
+  <p>
+    And man, if I had known that everything would be alright, that not having
+    money would just be an inconvenience rather than a dead sentence, that I
+    would still receive money from unsuspecting sources at the right time, then,
+    then I would probably have worried a little less.
+  </p>
+  <p>
+    So what now? Now I'm <a href="https://becomemoney.mystrikingly.com/"
+      >shifting my context about money</a
+    >. Learning about values. Upgrading my thoughtware. Doing experiments.
+  </p>
+</DocPage>
