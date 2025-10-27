@@ -48,14 +48,17 @@
     {@render TAGS(['tech'])}
     Toroid Substrate improvements:
     <ul>
-      <li>
+      <li class="line-through">
         Optimize PagesList component so that pages are rendered and loaded
         asynchronically and on-deman and progressively as they become visible on
         the viewport on scrolling.
       </li>
-      <li>
+      <li class="line-through">
         Polish the rendering process sizing so that the margins of the pages can
-        be expressed precisely
+        be expressed and rendered precisely
+      </li>
+      <li class="line-through">
+        Make the PageList page hovering and page active elements customizable
       </li>
       <li>
         On development mode add list of pages that are not visible on the
@@ -64,6 +67,10 @@
       <li>
         On development mode allow to move pages from one column to the other and
         update the App file configuration
+      </li>
+      <li>
+        Make sticky header more consisten so it sticks to bottom when above and
+        it sticks to top when below
       </li>
     </ul>
   </div>
@@ -81,15 +88,25 @@
   </div>
 
   <div class="item">
+    {@render TAGS(['waitlist'])}
+    Sitio web para Rodrigo
+  </div>
+
+  <div class="item">
+    {@render TAGS(['waitlist', 'local'])}
+    Sitio web para el mundo de juego de Muralismo Itinerante
+  </div>
+
+  <div class="item">
     {@render TAGS(['visibility', 'writing'])}
-    Write <a href="/grant-application">grant application</a> for 6 months of/
+    Write <a href="/grant-application">grant application</a> for 6 months of
     personal material support for my work on the the Web Environment commons
     project to be sent to the
     <a href="https://nlnet.nl/propose/">NLNet Foundation</a> to be delivered by
     filling my
     <a href="/flowing-fund">Flowing Fund</a>.
   </div>
-{}
+
   <div class="item">
     {@render TAGS(['writing'])}
     Escribir la página de <a href="/servicio-web">/servicio-web</a> y publicarla

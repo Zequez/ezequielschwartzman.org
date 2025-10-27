@@ -279,6 +279,9 @@
   <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
     <div class="b b-black/10 rounded-1 p3 bg-black/10 dark:bg-white/10"
       ><strong>Familia y Comunidad</strong><br />
+      <a target="_blank" href="https://www.instagram.com/rodrigovaldesortiz/"
+        >Rodrigo Valdés</a
+      >
     </div>
     <div class="b b-black/10 rounded-1 p3 bg-black/10 dark:bg-white/10"
       ><strong>Bioregión</strong></div
