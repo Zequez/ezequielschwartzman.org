@@ -84,6 +84,15 @@
         function of any substrate as an API that has access to the filesystem
         and such
       </li>
+      <li>
+        Make the build & publish process more reliable and error-proof because
+        right now there is an issue with building that the build server breaks
+        after the first time and I gotta restart the app every time.
+      </li>
+      <li>
+        Improve UI for the repos list; make it so they can be organized on a
+        spatial substrate
+      </li>
     </ul>
   </div>
 

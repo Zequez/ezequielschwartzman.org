@@ -52,23 +52,32 @@
 {/snippet}
 
 <DocPage>
-  <h1>Servicio Web</h1>
-  <div class="mb6 tracking-wide text-center">
-    Puedo facilitarte uno de estos...
+  <h1>Un Sitio Web<br />es tu propio<br />Jardín Digital</h1>
+  <div
+    class="mx-auto w-80 h-50 flex relative bg-main-700 p6 rounded-2 mb12 mt12 b-4 b-main-900 shadow-[0_0_0px_1px] shadow-main-800"
+  >
+    <div class="absolute -inset-5 rounded-2 b b-10 b-dotted b-yellow-400"></div>
     <div
+      class="flexcc uppercase font-mono font-bold tracking-wide text-center flex-grow text-white text-shadow-[0_1px_0_#0006]"
+      >Pida su <br />sitio web <br />aquí</div
+    >
+    <div
+      class="bg-main-900 relative w-1/2 h-full flexcc rounded-2 shadow-[0_2px_0] shadow-main-500"
       title="Cada vez que volví a editar esta página me  encontré con adjetivos diferentes que me resonaban; y decidí elegirlos todos."
     >
-      <ChangingWord
-        text="bellos/elegantes/hermosos/maravillosos/geniales/fantásticos/increíbles/novedosos/innovadores/zarpadísimos"
-      />
-      <ChangingWord
-        text="funcionales/autogestivos/soberanos/futurísticos/arqueárquicos/valiosos/auténticos/artesanales"
-      />
-      <ChangingWord text="prácticos/útiles/customizables" />
+      <div class="w-1/2 h-full relative top-16% font-mono">
+        <ChangingWord
+          text="bellos/elegantes/hermosos/maravillosos/geniales/fantásticos/increíbles/novedosos/innovadores/zarpadísimos"
+        />
+        <ChangingWord
+          text="funcionales/autogestivos/soberanos/futurísticos/arqueárquicos/valiosos/auténticos/artesanales"
+        />
+        <ChangingWord text="prácticos/útiles/customizables" />
+      </div>
     </div>
-    <br />
-    ...sitios web (como el mío, que lo amo)
   </div>
+
+  <div> </div>
 
   <div class="flex space-x-1 mb6">
     {#each [['ezequiel', 'https://ezequielschwartzman.org'], ['nami', 'https://nami.ezequielschwartzman.org'], ['agroeco', 'https://agroeco.ezequielschwartzman.org']] as [key, href] (key)}
