@@ -27,6 +27,14 @@
     photosSrc,
     photosMeta,
   )
+
+  const sites = [
+    ['ezequiel', 'https://ezequielschwartzman.org'],
+    ['nami', 'https://nami.ezequielschwartzman.org'],
+    ['agroeco', 'https://agroeco.ezequielschwartzman.org'],
+    ['mogotes', 'https://mogotes.ezequielschwartzman.org'],
+    ['webenv', 'https://webenv.ezequielschwartzman.org'],
+  ]
 </script>
 
 {#snippet cat(
@@ -79,10 +87,32 @@
 
   <div> </div>
 
-  <div class="flex space-x-1 mb6">
-    {#each [['ezequiel', 'https://ezequielschwartzman.org'], ['nami', 'https://nami.ezequielschwartzman.org'], ['agroeco', 'https://agroeco.ezequielschwartzman.org']] as [key, href] (key)}
+  <div class="flex space-x-1">
+    {#snippet site(photoStr: string, url: string)}
+      {@const photo = photos[photoStr]}
+      <a
+        class="block b b-black/50 rounded-2 overflow-hidden hover:brightness-120 mb1"
+        target="_blank"
+        href={url}
+      >
+        <OptimizedImg {...photo} alt={photoStr} />
+      </a>
+    {/snippet}
+    <div class="w1/3">
+      {@render site(sites[0][0], sites[0][1])}
+    </div>
+    <div class="w1/3">
+      {@render site(sites[1][0], sites[1][1])}
+      {@render site(sites[3][0], sites[3][1])}
+    </div>
+    <div class="w1/3">
+      {@render site(sites[2][0], sites[2][1])}
+      {@render site(sites[4][0], sites[4][1])}
+    </div>
+    <!--
+    {#each [['ezequiel', 'https://ezequielschwartzman.org'], ['nami', 'https://nami.ezequielschwartzman.org'], ['agroeco', 'https://agroeco.ezequielschwartzman.org'], ['mogotes', 'https://mogotes.ezequielschwartzman.org'], ['webenv', 'https://webenv.ezequielschwartzman.org']] as [key, href] (key)}
       {@const photo = photos[key]}
-      <div class="w-1/3">
+      <div class="">
         <a
           class="block b b-black/50 rounded-2 overflow-hidden hover:brightness-120"
           target="_blank"
@@ -91,7 +121,7 @@
           <OptimizedImg {...photo} alt={key} />
         </a>
       </div>
-    {/each}
+    {/each} -->
   </div>
 
   <p>

@@ -45,13 +45,50 @@
   </h1>
 
   <div class="item">
+    {@render TAGS(['visibility', 'writing'])}
+    Write <a href="/grant-application">grant application</a> for 6 months of
+    personal material support for my work on the the Web Environment commons
+    project to be sent to the
+    <a href="https://nlnet.nl/propose/">NLNet Foundation</a>
+    <ul>
+      <li
+        >Share the web-environment repo and website on the NLNet community and
+        get feedback</li
+      >
+      <li>Actually write the application according to the form by NLNet</li>
+      <li>Network with NLNet people</li>
+      <li
+        >Pick 5 projects from NLNet and contact the spaceholders for help
+        presenting the project</li
+      >
+    </ul>
+  </div>
+
+  <div class="item">
+    {@render TAGS(['local', 'writing'])}
+
+    Escribir presentación sobre nodos.lat y mogotes.nodos.lat y de qué se trata
+    todo esto.
+  </div>
+
+  <div class="item">
+    {@render TAGS(['tech'])}
+
+    Web environment website. Will probably be important for the NLNet grant.
+
+    <ul>
+      <li>Record video with an overview of the web environment</li>
+    </ul>
+  </div>
+
+  <div class="item">
     {@render TAGS(['tech'])}
     Toroid Substrate improvements:
     <ul>
       <li class="line-through">
         Optimize PagesList component so that pages are rendered and loaded
-        asynchronically and on-deman and progressively as they become visible on
-        the viewport on scrolling.
+        asynchronically and on-demand and progressively as they become visible
+        on the viewport on scrolling.
       </li>
       <li class="line-through">
         Polish the rendering process sizing so that the margins of the pages can
@@ -69,7 +106,7 @@
         update the App file configuration
       </li>
       <li>
-        Make sticky header more consisten so it sticks to bottom when above and
+        Make sticky header more consistent so it sticks to bottom when above and
         it sticks to top when below
       </li>
     </ul>
@@ -77,22 +114,49 @@
 
   <div class="item">
     {@render TAGS(['tech'])}
-    Web Environment:
+    <a href="https://github.com/Zequez/web-environment">Web Environment</a>:
     <ul>
-      <li>
+      <li class="line-through">
         Add tunneling server that allows you to call any arbitrary file and
         function of any substrate as an API that has access to the filesystem
         and such
       </li>
-      <li>
+      <li class="line-through">
         Make the build & publish process more reliable and error-proof because
         right now there is an issue with building that the build server breaks
         after the first time and I gotta restart the app every time.
       </li>
-      <li>
+      <li class="line-through">
         Improve UI for the repos list; make it so they can be organized on a
         spatial substrate
       </li>
+      <li>Improve the self-updater experience </li>
+      <li>Test installation from scratch; document</li>
+      <li>Show terminal output as part of the mainframe UI</li>
+      <li
+        >Test workflow for initializing repositories with a minimum working
+        App.svelte file</li
+      >
+      <li>Enable adding remote repositories directly</li>
+      <li>
+        Get insight into the substrates and the canvas and toroid systems and
+        the vite meta configurator that ended up all mixed.
+      </li>
+    </ul>
+  </div>
+
+  <div class="item">
+    {@render TAGS(['tech'])}
+    <ul>
+      <li>Mover agroeco y mogotes a nodos.lat</li>
+      <li
+        >Agregar algo de contenido a nodos.latexplicando que es un dominio libre
+        para compartir</li
+      >
+      <li
+        >Setup script que convierta configuración de YAML a configuración de
+        dominios de Namecheap usando la API</li
+      >
     </ul>
   </div>
 
@@ -102,24 +166,13 @@
   </div>
 
   <div class="item">
+    {@render TAGS(['waitlist'])}
+    Sitio web para Mirta
+  </div>
+
+  <div class="item">
     {@render TAGS(['waitlist', 'local'])}
     Sitio web para el mundo de juego de Muralismo Itinerante
-  </div>
-
-  <div class="item">
-    {@render TAGS(['visibility', 'writing'])}
-    Write <a href="/grant-application">grant application</a> for 6 months of
-    personal material support for my work on the the Web Environment commons
-    project to be sent to the
-    <a href="https://nlnet.nl/propose/">NLNet Foundation</a> to be delivered by
-    filling my
-    <a href="/flowing-fund">Flowing Fund</a>.
-  </div>
-
-  <div class="item">
-    {@render TAGS(['writing'])}
-    Escribir la página de <a href="/servicio-web">/servicio-web</a> y publicarla
-    junto con <a href="/sitios-web">/sitios-web</a>
   </div>
 
   <div class="item">
@@ -155,17 +208,12 @@
   </div>
 
   <div class="item">
-    {@render TAGS(['writing'])}
+    {@render TAGS(['writing', 'on-hold'])}
     Create a page about the Web Substrating Gameworld and the Digital Substrate distinction.
   </div>
 
   <div class="item">
-    {@render TAGS(['tech'])}
-    Test Web Environment Setup And Running from zero on Rediguana laptop
-  </div>
-
-  <div class="item">
-    {@render TAGS(['tech'])}
+    {@render TAGS(['tech', 'on-hold'])}
     Adding substrate selection and initialization to the Web Environment repos UI
   </div>
 
@@ -269,6 +317,12 @@
                                                        -->
 
   {#if showArchive}
+    <div class="item">
+      {@render TAGS(['writing'])}
+      Escribir la página de <a href="/servicio-web">/servicio-web</a> y
+      publicarla junto con <a href="/sitios-web">/sitios-web</a>
+    </div>
+
     <div class="item">
       {@render TAGS(['waitlist', 'local'])}
       Creating website for Nami house.
