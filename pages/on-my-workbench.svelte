@@ -142,7 +142,28 @@
         Get insight into the substrates and the canvas and toroid systems and
         the vite meta configurator that ended up all mixed.
       </li>
+      <li
+        >Add some sort of loader for the build and the publish process. Track
+        the time it took last time, and show a loading bar.</li
+      >
+      <li>
+        Make UI for build + publish all together, maybe shift-clicking; add a
+        single button that once it's built without errors it converts into
+        publish, and if you shift-click it does both.
+      </li>
     </ul>
+  </div>
+
+  <div class="item">
+    {@render TAGS(['tech'])}
+    Create a UI-based workbench with kanban-like multiple columns that can save the
+    data to the filesystem.
+  </div>
+
+  <div class="item">
+    {@render TAGS(['tech'])}
+    Create a UI-based family constellation system that we talked with my brother
+    Maxi.
   </div>
 
   <div class="item">
