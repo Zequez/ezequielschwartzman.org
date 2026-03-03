@@ -57,7 +57,7 @@
     </div>
     <div class="w-1/2 text-center">
       <div class="text-8 font-serif">Flow</div>
-      <div class="font-mono">US$ 1,600</div>
+      <div class="font-mono">US$ 2,000</div>
     </div>
   </div>
   <h2 class="text-center">What is the money for?</h2>
@@ -86,13 +86,13 @@
       and creative projects.
     {/snippet}
 
-    {@render moneyFor('Coral', 'US$ 400', moneyForCoral)}
+    {@render moneyFor('Coral', 'US$ 500', moneyForCoral)}
     {#snippet moneyForCoral()}
       Coral is my son. $200 stay with me, $200 go to his mother. When he's 16,
       the $400 it goes to him directly.
     {/snippet}
 
-    {@render moneyFor('Personal', 'US$ 100', moneyForPersonal)}
+    {@render moneyFor('Personal', 'US$ 200', moneyForPersonal)}
     {#snippet moneyForPersonal()}
       Expenses that keep my Gremlin happy: namely to get ice cream once per week
       and go to the trampoline park or buy books and such. Also for bus rides,
@@ -101,7 +101,7 @@
       around and throwing it in the air when appropiate.
     {/snippet}
 
-    {@render moneyFor('Trainings', 'US$ 300', moneyForTrainings)}
+    {@render moneyFor('Trainings', 'US$ 400', moneyForTrainings)}
     {#snippet moneyForTrainings()}
       Directly to the pockets of collegues or for traveling expeses and
       accomodation. I'm recording here on the website all <a href="/trainings"
@@ -109,12 +109,12 @@
       >.
     {/snippet}
 
-    {@render moneyFor('Paying Back', 'US$ 200', moneyForPayingBack)}
+    {@render moneyFor('Paying Back', 'US$ 300', moneyForPayingBack)}
     {#snippet moneyForPayingBack()}
       For paying back <a href="#money-coming-round">old debts</a> over time.
     {/snippet}
 
-    {@render moneyFor('TOTAL', 'US$ 1600')}
+    {@render moneyFor('TOTAL', 'US$ 2,000')}
   </div>
 
   <h2 class="text-center"> What am I working on?</h2>

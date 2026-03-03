@@ -1,33 +1,74 @@
 <script lang="ts">
   import App from '@/substrates/toroid-web/components/App.svelte'
   import favicon from './photos/favicon.jpg'
-  import noise from './photos/noise.png'
-  import Guarda from './components/Guarda.svelte'
-  import NavContainer from './components/NavContainer.svelte'
+  import guarda from './photos/guarda.svg'
+  import noiseAbstract from '@/center/collections/patterns/noise-abstract.png'
 </script>
 
 <App
   title="Ezequiel Adrian Schwartzman"
   {favicon}
-  {Guarda}
-  {NavContainer}
-  navBg={noise}
   nav={[
     [
       'index',
       'written',
       'land-base',
       'birth-celestial-influences',
-      'material-lovers',
+      // "material-lovers"
     ],
-    ['on-my-workbench', 'web-gallery'],
-    ['servicio-web'],
-    [
-      'flowing-fund-gameworld',
-      'flowing-fund',
-      'etimologia-nueva',
-      'aprendimientos',
-      'distincionario',
-    ],
+    ['web-gallery'], // 'on-my-workbench',
+    // [
+    // "servicio-web",
+    // "hola"
+    // ],
+    // [
+    // "flowing-fund-gameworld",
+    // "flowing-fund",
+    // "etimologia-nueva",
+    // "aprendimientos",
+    // "distincionario"
+    // ],
   ]}
-></App>
+>
+  {#snippet NavContainerBg()}
+    <div
+      class="w-full h-full bg-slate-600 dark:bg-slate-800"
+      style={`background-image: url(${noiseAbstract})`}
+    ></div>
+  {/snippet}
+
+  {#snippet RailingBar()}
+    <span
+      class={[
+        'size-full relative flexcc font-serif',
+        'b-t-1 b-b-1 b-black/20 dark:b-white/50',
+        'bg-gray-200 text-gray-600 text-shadow-[0_1px_0_#fff]',
+        'dark:(bg-gray-800! text-gray-300! text-shadow-[0_1px_0_#000])',
+      ]}
+    >
+      <span class="block relative">
+        <span
+          class="absolute block top-10% right-100% mr1 h-80% opacity-20 dark:filter-invert"
+        >
+          <img
+            src={guarda}
+            class="h-full max-w-none"
+            alt="Intricate design on left of name"
+          />
+        </span>
+
+        Ezequiel Adrian Schwartzman
+
+        <span
+          class="absolute block top-10% left-100% ml1 h-80% scale-x-[-1] opacity-20 dark:filter-invert"
+        >
+          <img
+            src={guarda}
+            class="h-full max-w-none"
+            alt="Intricate design on right of name"
+          />
+        </span>
+      </span>
+    </span>
+  {/snippet}
+</App>

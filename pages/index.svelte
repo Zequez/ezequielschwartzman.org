@@ -43,9 +43,8 @@
 
   <div class="text-center font-mono mb6">
     {enes(
-      `Artist, Inventor, Gameworld Builder, Researcher and Spaceholder`,
-      `Artista, Inventor, Constructor de Mundos de Juego,
-    Investigador y Sostenedor de Espacios`,
+      `Programmer & Spaceholder • Artist, Inventor, Researcher and Gameworld Builder`,
+      `Programador & Sostenedor de Espacios • Artista, Inventor, Investigador y Constructor de Mundos de Juego`,
     )}
   </div>
 

@@ -1,2 +1,3 @@
 cname: ezequielschwartzman.org
 substrate: nothing-web
+driver: vite-svelte-unocss

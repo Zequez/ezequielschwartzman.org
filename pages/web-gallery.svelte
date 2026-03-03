@@ -172,8 +172,10 @@
 <DocPage>
   <h1>{enes('Web Gallery', 'Galería de obras web')}</h1>
   <p>
-    Back in 2005 when I was about 12 years old, I crafted my first web page
-    using the Windows XP Notepad.
+    {enes(
+      "Back in 2005 when I was about 12 years old, I crafted my first web page using the Windows XP Notepad. I haven't stopped since.",
+      'Allá por el 2005 cuando tenía 12 años, creé mi primer sitio web usando Windows XP y Notepad. Nunca paré de crear en la web desde entonces.',
+    )}
   </p>
 </DocPage>
 
@@ -194,19 +196,31 @@
 {#if projectFocus}
   {@const projectVal = PROJECTS[projectFocus[0] as keyof typeof PROJECTS]}
   <div class="fixed z-9999 bg-gray-950 h-full w-full top-0 left-0">
-    <div class="w-full h-full overflow-hidden flexcc">
-      <OptimizedImg
-        class="block object-contain max-h-full max-w-full"
-        {...projectVal.imgs[projectFocus[1]]}
-        alt={(projectVal as any).name}
-      />
+    <div class="size-full flex flex-col">
+      <div class="flex-grow relative overflow-auto">
+        <OptimizedImg
+          class="max-w-full"
+          {...projectVal.imgs[projectFocus[1]]}
+          alt={(projectVal as any).name}
+        />
+      </div>
+      <div
+        class="w-full bg-gray-800 backdrop-blur-sm text-white p2 sm:p3 md:p6 shrink-0"
+      >
+        <div class="text-5 md:text-8 font-bold font-serif"
+          >{(projectVal as any).name}</div
+        >
+        <div>{(projectVal as any).narrative}</div>
+        {#if projectVal.archive}
+          <a
+            class="text-sky-500 underline"
+            href={(projectVal as any).archive}
+            target="_blank">{(projectVal as any).archive}</a
+          >
+        {/if}
+      </div>
     </div>
-    <div
-      class="absolute bottom-0 w-full bg-black/30 backdrop-blur-sm text-white p6"
-    >
-      <div class="text-8 font-serif">{(projectVal as any).name}</div>
-      <div>{(projectVal as any).narrative}</div>
-    </div>
+
     <button
       class="absolute h12 w12 top-0 right-0 z-100 bg-black hover:bg-gray-900 text-white text-8 rounded-bl-1"
       onclick={closeProjects}>&times;</button

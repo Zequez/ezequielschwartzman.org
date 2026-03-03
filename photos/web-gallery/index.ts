@@ -54,7 +54,8 @@ function hueGen() {
 const PROJECTS: { [key: string]: ProjectBuilt } = {
   'web-environment': {
     name: 'Web Environment',
-    narrative: ``,
+    narrative: `The Web Environment is a all inclusive UI based development environment with publishing included for my own usea and for introducing others to web development.`,
+    archive: 'https://github.com/zequez/web-environment',
     imgs: IM('web-environment-1'),
     hue: hueGen(),
   },
@@ -69,13 +70,14 @@ const PROJECTS: { [key: string]: ProjectBuilt } = {
   },
   substrate: {
     name: 'Substrate',
-    narrative: ``,
+    narrative: `Substrate is an experimental UI made for The Weave while I was working on Lightningrod Labs. It's designed to create a kind of infinite canvas of assembled Holochain-based apps.`,
     imgs: IM('substrate-1', 'substrate-2'),
+    archive: 'https://github.com/Zequez/substrate',
     hue: hueGen(),
   },
   gamez: {
     name: 'Gamez',
-    narrative: '',
+    narrative: 'Gamez is a Weave applet for playing board games. ',
     imgs: IM('gamez-1', 'gamez-2', 'gamez-3', 'gamez-4', 'gamez-5'),
     hue: hueGen(),
   },
@@ -84,12 +86,14 @@ const PROJECTS: { [key: string]: ProjectBuilt } = {
     narrative: `Hoja was an attempt to make an accessible collaborative
         web building system and Gameworld all in one. Ancestor of the Web Environment.`,
     imgs: IM('hoja-0', 'hoja-1', 'hoja-2', 'hoja-3'),
+    archive: 'https://github.com/Zequez/hoja-core',
     hue: hueGen(),
   },
   'coral-sandbox': {
     name: 'Coral Sandbox',
     narrative:
       'A space where I create curated digital experiences for my toddler son, Coral.',
+    archive: 'https://github.com/Zequez/coral-sandbox',
     imgs: IM(
       'coral-sandbox-1',
       'coral-sandbox-2',
@@ -105,6 +109,7 @@ const PROJECTS: { [key: string]: ProjectBuilt } = {
     name: 'Startover.xyz Spaceport Rework',
     narrative: '',
     imgs: IM('spaceport-1', 'spaceport-2'),
+    archive: 'https://github.com/Zequez/spaceport',
     hue: hueGen(),
   },
   websiteV6: {
@@ -118,6 +123,7 @@ const PROJECTS: { [key: string]: ProjectBuilt } = {
     name: 'Components Editor',
     narrative: 'First experimenting with structured code editing.',
     imgs: IM('components-editor'),
+    archive: 'https://github.com/Zequez/component-editor',
     hue: hueGen(),
   },
   'email-signatures': {
@@ -125,6 +131,7 @@ const PROJECTS: { [key: string]: ProjectBuilt } = {
     narrative: `Someone asked me to build this. You can create
       templates and generate custom copyable email signatures you can then paste on email apps.`,
     imgs: IM('email-signatures'),
+    archive: 'https://github.com/Zequez/email-signature-builder',
     hue: hueGen(),
   },
   'before-after-player': {
@@ -132,6 +139,7 @@ const PROJECTS: { [key: string]: ProjectBuilt } = {
     narrative: `Found a client on Upwork that commissioned me this for his own website. Then we agreed
       to build a general-purpose SASS-like app afterwards together. Long story short, communication
       breakdown; didn't work; context war.`,
+    archive: 'https://github.com/Zequez/audio-before-after-player',
     imgs: IM(
       'before-after-player-1',
       'before-after-player-2',
@@ -143,6 +151,7 @@ const PROJECTS: { [key: string]: ProjectBuilt } = {
     name: 'Wavy SVG Generator',
     narrative: ``,
     imgs: IM('wavy-svg'),
+    archive: 'https://github.com/Zequez/wavy-svg-generator',
     hue: hueGen(),
   },
   websiteV5: {
@@ -156,6 +165,7 @@ const PROJECTS: { [key: string]: ProjectBuilt } = {
     narrative: `Earliest seed of the Web Environment Project. First experiments with self-editing websites
         and collaborative web Substrating.`,
     imgs: IM('archy-collab-1'),
+    archive: 'https://github.com/Zequez/archy-collab',
     hue: hueGen(),
   },
   websiteV4: {
@@ -175,19 +185,23 @@ const PROJECTS: { [key: string]: ProjectBuilt } = {
 
   'mandelbrot-sandbox': {
     name: 'Mandelbrot Sandbox',
-    narrative: ``,
+    narrative: `Here I was experimenting with web assembly and Rust for the calculation of the Mandelbrot fractal. The UI is made with React.`,
+    archive: 'https://zequez.github.io/mandelbrot-sandbox/',
     imgs: IM('mandelbrot-sandbox-1', 'mandelbrot-sandbox-2'),
     hue: hueGen(),
   },
   ggfilter: {
     name: 'GGFilter',
-    narrative: ``,
+    narrative: `On Steam there was a metric of how much time someone had played a game. So naturally I wanted to know the playtime-for-the-buck for every game on steam. In response I scraped the whole of steam database of games and comments with playtime information and put it on a JSON file and made a UI around it to explore it. Made a refreshed UI afterwards.`,
+    archive:
+      'https://github.com/search?q=owner%3AZequez%20ggfilter&type=repositories',
     imgs: IM('ggfilter-0', 'ggfilter-1'),
     hue: hueGen(),
   },
   'prismata-subreddit-extension': {
     name: 'Prismata Subreddit Extension',
     imgs: IM('prismata-subreddit-extension'),
+    archive: 'https://github.com/Zequez/prismata-subreddit-extension',
     narrative: `
         Prismata was, and still is, a symmetric cards game that I enjoyed for a while. The subreddit
         was very active, and people would quote cards constantly. So I made a Chrome extension that
@@ -198,14 +212,16 @@ const PROJECTS: { [key: string]: ProjectBuilt } = {
   },
   'reddit-placebot': {
     name: 'Reddit Placebot',
-    narrative: ``,
+    narrative: `During the original Reddit /r/place craze I made this. A bot that paints on Reddit /r/place. Works with multiple accounts, and can work with a remote target file for multiple people with the same objective.`,
+    archive: 'https://github.com/Zequez/reddit-placebot',
     imgs: IM('reddit-placebot'),
     hue: hueGen(),
   },
   'factorio-mods-portal': {
     name: 'Factorio Mods Portal',
-    narrative: ``,
+    narrative: `I made the original Factorio Mods portal on Ruby on Rails. Then Wube Software hired me to make the official portal, which was then ported to Python.`,
     imgs: IM('factorio-mods-portal'),
+    archive: 'https://github.com/Zequez/FactorioMods',
     hue: hueGen(),
   },
   'playtime-for-the-buck': {
@@ -220,6 +236,7 @@ const PROJECTS: { [key: string]: ProjectBuilt } = {
         was generated regularly in my computer and then pushed to Github with a cronjob. I scraped information about
         thousands of Steam games using this.
       `,
+    archive: 'https://github.com/Zequez/playtimeforthebuck.github.io',
     hue: hueGen(),
   },
   websiteV2: {
@@ -241,6 +258,7 @@ const PROJECTS: { [key: string]: ProjectBuilt } = {
         which opened many doors for me years down the line. There was a crowd-sourcing functionality, where people
         were able to send information about places where you could recharge the bus card.
       `,
+    archive: 'https://github.com/Zequez/mapa-de-transporte',
     hue: hueGen(),
   },
   websiteV1: {

@@ -36,7 +36,10 @@
         x: Math.random() * w,
         y: Math.random() * h,
         r: Math.random() * 1.2 + 0.2,
-        hue: Math.random() * 60 + 200, // bluish to whitish
+        hue:
+          Math.random() > 0.05
+            ? Math.random() * 60 + 200
+            : Math.random() * 40 + 0, // bluish to whitish
         twinkle: Math.random() * Math.PI * 2,
       }))
     }
