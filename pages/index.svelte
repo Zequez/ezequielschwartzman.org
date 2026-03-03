@@ -4,8 +4,8 @@
 
 <script lang="ts">
   import { onMount, type Component } from 'svelte'
-  import ezequiel from '../photos/ezequiel.jpg?width=100;250;500&format=webp&srcset'
-  import ezequielMeta from '../photos/ezequiel.jpg?as=meta:height;width'
+  import ezequiel from '../photos/ezequiel2.jpg?width=100;250;500&format=webp&srcset'
+  import ezequielMeta from '../photos/ezequiel2.jpg?as=meta:height;width'
   import { enes } from '../../../center/enes.svelte'
   import TelegramIcon from '~icons/fa6-brands/telegram'
   import WhatsappIcon from '~icons/fa6-brands/whatsapp'
