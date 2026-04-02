@@ -1,0 +1,14 @@
+---
+size: md
+fromDate: '2015-09'
+toDate: '2016-07'
+---
+
+After I made the unofficial Factorio Mods Portal on Ruby on Rails and got involved in the modding
+community, I was contacted by the Wube Software team. They hired me to work on the official mods
+portal, which was part of their long term plan.
+
+I had to let go of Ruby on Rails and re-build everything on Python as that was what they used. The
+portal server additionally served as an API for the core game to fetch the mods.
+
+This was my first independent contracting job. They paid me well and I'm forever grateful.

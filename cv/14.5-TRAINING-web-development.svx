@@ -1,0 +1,17 @@
+---
+size: md
+fromDate: '2007'
+title: A Course in Web Development
+---
+
+I was 14 years old and still on high school. I was interested in computers and my father brought me
+this possibility of joining a Web Design course in IAC. We used notepad and then Dreamweaver.
+
+My teacher name was Exequiel, with an X. I still got him on Facebook.
+
+I never could have imagined how much this course would affect the direction of my life. I learned
+the basics of web development. How an HTML file worked, how to publish to a server, registering domain names,
+how to make dynamic stuff with PHP.
+
+Anyway, this set the foundation for a lifelong journey with the web. My insatiable 14-years old mind
+would later come to learn everything about programming and the web.

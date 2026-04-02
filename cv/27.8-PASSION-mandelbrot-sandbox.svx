@@ -1,0 +1,17 @@
+---
+size: md
+fromDate: '2020-10'
+---
+
+This has been one of my favorite projects. I was learning React and Web Assembly. So I
+made a Rust-based Mandelbrot calculation system that compiled some Web Assembly code and then
+I made a React-based UI to browse the Mandelbrot.
+
+I hit some limits with floating point numbers math in deeper levels of depth so you cannot actually
+zoom to infinity. I could probably let AI do the hard math in Rust nowadays for infinite zoom. But back
+then I said, good enough!
+
+It also does not work on mobile.
+
+This small projects delighted a person looking at my portfolio that would later hire me and I would
+work with him for a few years at Ubiquity and later his own company.

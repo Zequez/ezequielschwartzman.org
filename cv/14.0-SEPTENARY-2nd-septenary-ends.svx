@@ -1,0 +1,8 @@
+---
+size: md
+fromDate: '1999-12-14'
+toDate: '2006-12-14'
+title: '7 to 14 years wrapped'
+---
+
+The second 7 years of my life. From the age of 7 to 14.

@@ -1,0 +1,6 @@
+---
+size: md
+fromDate: '2025-07'
+---
+
+Infinite canvas website

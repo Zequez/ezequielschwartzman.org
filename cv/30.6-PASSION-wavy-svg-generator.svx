@@ -1,0 +1,8 @@
+---
+size: sm
+fromDate: '2023-6'
+title: Wavy SVG Generator
+---
+
+While working on my next website I needed a way to generate fancy page-breaks for it using
+wavy SVG curves. So naturally I made a tool to randomly generate wavy SVGs.

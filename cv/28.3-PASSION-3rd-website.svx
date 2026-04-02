@@ -1,0 +1,11 @@
+---
+size: md
+fromDate: '2021-04'
+---
+
+One of my favorites websites. Very wacky.
+Very colorful. Very simple. Very full of aspirations and unfinished projects.
+
+I specially loved working on the procedurally generated rainbow-colored SVG-based background.
+
+This was the website I had when I got the Ubiquity job.

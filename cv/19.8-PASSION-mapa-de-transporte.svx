@@ -1,0 +1,6 @@
+---
+size: md
+fromDate: '2013-01'
+---
+
+Lorem Ipsum

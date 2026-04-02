@@ -1,0 +1,13 @@
+---
+size: sm
+fromDate: '2023-6'
+---
+
+
+
+This was a very small project. I wanted to create a UI to programmatically edit HTML-like trees
+with tailwind-like classes to build UIs.
+
+It ended up being only an experiment and proof of concept. I'm still looking forward to craft
+a visual editor for building web UIs that maintains the connection to the code and it's
+bi-directional. Kind of like an AST block editor.

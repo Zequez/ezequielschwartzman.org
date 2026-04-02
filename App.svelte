@@ -6,13 +6,13 @@
 </script>
 
 <App
-  title="Ezequiel Adrian Schwartzman"
+  title="Ezequiel Adrián Schwartzman"
   {favicon}
   nav={[
     [
       'index',
       'written',
-      'land-base',
+      'curriculum-vitae',
       'birth-celestial-influences',
       // "material-lovers"
     ],
@@ -40,7 +40,8 @@
   {#snippet RailingBar()}
     <span
       class={[
-        'size-full relative flexcc font-serif',
+        'size-full relative flexcc font-serif overflow-hidden h10',
+        'shadow-[0_-1px_0px_#0003,0_-2px_10px_#0004]',
         'b-t-1 b-b-1 b-black/20 dark:b-white/50',
         'bg-gray-200 text-gray-600 text-shadow-[0_1px_0_#fff]',
         'dark:(bg-gray-800! text-gray-300! text-shadow-[0_1px_0_#000])',
@@ -48,7 +49,7 @@
     >
       <span class="block relative">
         <span
-          class="absolute block top-10% right-100% mr1 h-80% opacity-20 dark:filter-invert"
+          class="absolute block top-10% right-100% mr1 h-80% opacity-30 dark:filter-invert"
         >
           <img
             src={guarda}
@@ -57,10 +58,10 @@
           />
         </span>
 
-        Ezequiel Adrian Schwartzman
+        Ezequiel Adrián Schwartzman
 
         <span
-          class="absolute block top-10% left-100% ml1 h-80% scale-x-[-1] opacity-20 dark:filter-invert"
+          class="absolute block top-10% left-100% ml1 h-80% scale-x-[-1] opacity-30 dark:filter-invert"
         >
           <img
             src={guarda}

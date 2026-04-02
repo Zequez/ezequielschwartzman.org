@@ -1,0 +1,10 @@
+---
+size: md
+fromDate: '2017-04-1'
+---
+
+During the April fools Reddit Place craze, I made a bot that allowed you to use multiple accounts to
+click on the pixels and replicate a given image. People would download the repo with the template
+image included, and provide the username and passwords and it would paint the thing.
+
+This, has been my most starred and forked repository on Github. A one-day project.

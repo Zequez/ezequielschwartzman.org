@@ -1,0 +1,11 @@
+---
+size: md
+fromDate: '2017-2'
+toDate: '2018-09'
+---
+
+Worked with [Willdom](https://willdom.com/) for almost 2 years.
+
+I got to work on a Ruby on Rails project that was a Newsletter SASS for Real State Agents
+for a company called [Home Actions](https://homeactions.net/). Yes, they are still on business.
+

@@ -1,0 +1,10 @@
+---
+size: md
+fromDate: '2024-08'
+toDate: '2025-04'
+---
+
+Picked up the Gamez project that Eric had already started and then I refactored it and
+added a bunch of amazing new features. Made it my own and I did it with passion. I also got to
+learn Svelte in the process; which I hated at first, coming from React, and then I learned to
+love it and I haven't looked back.

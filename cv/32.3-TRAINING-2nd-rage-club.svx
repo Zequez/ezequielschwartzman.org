@@ -1,0 +1,6 @@
+---
+size: md
+fromDate: '2025-04'
+---
+
+Lorem Ipsum

@@ -1,0 +1,6 @@
+---
+size: md
+fromDate: '1992'
+---
+
+Lorem Ipsum

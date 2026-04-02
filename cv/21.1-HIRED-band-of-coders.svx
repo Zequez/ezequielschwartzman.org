@@ -1,0 +1,20 @@
+---
+size: md
+fromDate: '2014-2'
+toDate: '2015-2'
+title: Avalith ◀ Band of Coders ◀ Piksel
+---
+
+While working on Avalith I interviewed for a project in a company called [Piksel](https://piksel.com/).
+
+At the time Avalith was working with Band of Coders as a third party people-pool, and
+then [Band of Coders](https://www.bandofcoders.com/) was providing people for Piksel. Piksel people thought I worked for Band of Coders; Avalith was not
+to be mentioned.
+
+So Piksel paid Band of Coders, they took a cut, and then they paid Avalith, who they also took a cut, and
+then I was paid.
+
+I accepted the job because it came with a free 2 month trip to San Diego, USA! It was my first all-english work also, which
+is why I got chosen, they needed someone who was very good at JavaScript and was fluent in English. And I was both.
+
+I worked for a year on this projects.

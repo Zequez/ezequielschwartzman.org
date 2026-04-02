@@ -1,0 +1,8 @@
+---
+size: md
+fromDate: '2024-07'
+---
+
+Short lived website
+
+https://github.com/Zequez/personal-website

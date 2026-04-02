@@ -1,0 +1,12 @@
+---
+size: sm
+fromDate: '2023-6'
+---
+
+I was contacted by someone who needed a configurable email signatures generator that you could
+have a template and people would add their data and the email signature would be generated
+using the template. It was something that you had to be able to add to Gmail or other email clients.
+
+Was a technically interesting project. I ended up not getting paid at all, but I'm considering that
+I was hired anyway. At the time I was quite frightened to put a price to my work and the negotiations
+were mushy.

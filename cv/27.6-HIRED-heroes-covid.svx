@@ -1,0 +1,18 @@
+---
+size: md
+fromDate: '2020-08'
+toDate: '2020-10'
+---
+
+I was hired to create a website called Heroes Covid by a guy named Gonzalo, who was refered
+to me by a friend in common.
+
+There were some yankees contracting him to build a website to generate fantasy
+Covid Survival Certificates that you could buy to print. Yes, that was a thing. It was
+essentially a browser-based image generator that would overlay a your picture and make
+some fancy handwritten name over a static certificate template.
+
+Anyway, it felt quite dirty to work on it, but the
+work was technically pleasing, working with JS canvas, Stripe, and getting away with not having
+a backend. Took me a couple of months and got paid a few hundred dollars.
+

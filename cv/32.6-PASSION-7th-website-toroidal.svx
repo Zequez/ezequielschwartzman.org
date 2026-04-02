@@ -1,0 +1,8 @@
+---
+size: md
+fromDate: '2025-09'
+---
+
+Miniature navigation website, codenamed *Toroidal*.
+
+https://github.com/Zequez/ezequielschwartzman.org

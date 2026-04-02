@@ -1,0 +1,15 @@
+---
+size: md
+fromDate: '2012-5'
+toDate: '2012-8'
+title: Bakery Helper Training
+---
+
+This is a wild card. After coming back home from Tandil I joined a free course from the municipality
+to bake breads and *facturas* (Argentinian pastries).
+
+It was I think twice per week, there were textbooks, we worked on a *cuadra* (a bakery workshop),
+and it was really fun and delicious.
+
+I took much bread and medias lunas home, and integrated cooking techniques and processes
+that I use to this date. I never actually worked on a bakery afterwards.

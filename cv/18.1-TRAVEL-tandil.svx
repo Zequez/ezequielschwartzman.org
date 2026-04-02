@@ -1,0 +1,14 @@
+---
+size: md
+fromDate: '2011-3'
+toDate: '2011-6'
+title: Systems Engineering on Tandil
+---
+
+After done with school I was on track to study Systems Engineering at the Tandil University.
+
+My father was paying for everything and I lived on a pension for about 4 months.
+
+I bombed every single subject, including programming, and after the first semester I went
+ashamed back home to Mar del Plata where I moved back to my mother's home.
+

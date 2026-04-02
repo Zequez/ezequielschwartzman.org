@@ -1,0 +1,8 @@
+---
+title: Became Parent
+size: lg
+datePrecision: d
+fromDate: '2021-11-07'
+---
+
+I started my full time job as the parent of my son Coral.

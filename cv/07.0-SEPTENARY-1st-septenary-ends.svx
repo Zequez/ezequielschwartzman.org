@@ -1,0 +1,8 @@
+---
+size: md
+fromDate: '1992-12-14'
+toDate: '1999-12-14'
+title: '0-7 years wrapped'
+---
+
+The first 7 years of my life. From 1992 to 1999. From the age of 0 to 7.

@@ -1,0 +1,12 @@
+---
+size: md
+fromDate: '2024-12'
+toDate: '2025-04'
+---
+
+I can say for sure that while I was working on Lightningrod Labs I got to do some very passionate
+freerange work for The Weave. I had lots of creative freedom. One of these projects was the Substrate
+Weave applet. A tool to craft a navigatable infinite canvas where you could embed other applets.
+
+My vision was to create a new canvas-based computer UI that could eventually replace the traditional
+windows. I got a little ahead of my time. It was a little out of scope.

@@ -1,0 +1,8 @@
+---
+size: md
+fromDate: '2013-12-14'
+toDate: '2020-12-14'
+title: '21 to 28 years wrapped'
+---
+
+The fourth 7 years of my life. From the age of 21 to 28.

@@ -1,0 +1,9 @@
+---
+size: md
+fromDate: '2013-12'
+toDate: '2015-02'
+title: Second Time on Avalith
+---
+
+After my year solely focusing on Engineering University I went back to working with Avalith
+during the summer.

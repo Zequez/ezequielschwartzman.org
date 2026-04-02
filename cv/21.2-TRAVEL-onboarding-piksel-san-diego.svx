@@ -1,0 +1,20 @@
+---
+size: md
+fromDate: '2014-02'
+toDate: '2014-05'
+---
+
+While working at Avalith I had an interview for a company called Piksel. It seems they loved me
+and so they offered me an all-inclusive 2 months trip to the San Diego, USA, with per-diem and all.
+
+Monday to Friday on work hours I went to the Piksel office and had the whole IT corporate experience,
+with fast-food lunch hour, meeting room meetings, go-kart after office hours, kitchennette with free drinks,
+ethnically diverse coworkers, Jira project management, old legacy systems.
+
+I loved it. I bought an old bicycle on Craiglist and drove around all I could. I loved specially
+the beautiful Balboa Park. And I loved trying all the fast food chains I had only heard off in movies
+and the Internet.
+
+Great experience.
+
+I ended up working with them for a year.

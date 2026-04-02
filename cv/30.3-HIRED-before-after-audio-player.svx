@@ -1,0 +1,19 @@
+---
+size: sm
+fromDate: '2023-4'
+toDate: '2023-7'
+---
+
+First job from Upwork. A guy hired me to build a before-after audio player to showcase his
+audio engineering work.
+
+Had some specs and went to town. Made the player fully static and pluggable on his website by
+an iframe. He only needed to upload the files to Github, and then the player was configured using
+Github pages.
+
+We agreed to later work on another version that was like a SASS we called it SoundToggle.
+
+And so I made a NextJS version that people could sign up and pay for the widget. We agreed
+to split the money in two. And this later part didn't go well, because I was deep in
+scarcity then and I needed money for survival. So anyway, he ended up paying me, and then
+the relationship deteriorated over time, and the project got shelved.

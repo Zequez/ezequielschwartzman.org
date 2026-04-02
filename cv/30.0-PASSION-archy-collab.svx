@@ -1,0 +1,14 @@
+---
+size: sm
+fromDate: '2022-12'
+toDate: '2023-02'
+---
+
+After getting in touch with the Archiarchy context, I was eager to make a contribution to the
+community and creating my part of Arhiarchy. This was my first experiment with
+empowering people with collaborative web publishing powers.
+
+Was my first experiment with generating websites on the fly on subdomains for people.
+
+I had the archy.site domain and using Archy Collab you could just make any website at *.archy.site
+from the web itself without any kind of authorization or anything.

@@ -1,0 +1,15 @@
+---
+size: sm
+fromDate: '2014-11'
+toDate: '2014-12'
+---
+
+This was my first incursion to creating Web Browser Extensions.
+
+I was into Prismata, the cards game, at the time, and I was into the Prismata subreddit
+on Reddit. So many cards were mentioned during discussion, and you would have to look them up
+on the wiki manually. So I made an extension that would scan the subreddit for any mentions of cards
+and attempt to load the card from the wiki automatically and then it would show the card image with all
+the stats when you hovered the mouse.
+
+It was a moderate success, and it was fun to shared and get virtual gratitude from virtual people.
