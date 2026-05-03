@@ -1,0 +1,13 @@
+---
+size: md
+fromDate: '2025-03'
+---
+
+<Website href="https://possibilitymanagement.org/etb">Expand The Box</Website>
+
+Held at the [Centro de Experiências Existenciais](https://cee.com.vc/) near São Paulo, Brasil, <br/>
+from 9hs 2nd of April to 16hs 6 of April, <br/>
+by the legendaries
+[Clinton Callahan](https://www.clintoncallahan.org/) and [Anne Chloe](https://www.annechloedestremau.org/).
+
+<Photo ids={[['etb', 'Expand The Box group photo']]}/>

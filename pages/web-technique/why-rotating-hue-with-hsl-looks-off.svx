@@ -1,0 +1,34 @@
+# Color Space For Humans
+
+Or why rotating HUE when using HSL looks off.
+
+The first time I learned about HSL it all made sense.
+
+## The RGB model
+
+I was introduced to color space from the traditional RGB pattern:
+
+- #000000 = #[00][00][00] = #<0% red><0% green><0% blue> = black
+- #ffffff = #[00][00][00] = #<0% red><0% green><0% blue> = white
+- #ff7F00 = #[00][7F][00] = #<100% red><50% green><blue> = orange
+
+Intuitively determining how a color will look like by looking at the HEX pattern it's
+not intuitive at all. It's unclear how to change the brightness or the saturation, or
+how much to mix of each color to get another color. Not that it cannot be learned, but
+it does require some extra cognitive steps.
+
+## Introducing HSL
+
+HSL means HUE, SATURATION, LIGHTNESS
+
+In simple terms, HUE is the color, from a color wheel. It goes from 0 to 360 and it
+determines the proportion of each.
+
+- hsl(0 0% 0%) = hsl(<hue> <saturation> <lightness>) = black
+- hsl(0 0% 100%) = white
+- hsl(0 100% 50%) = pastel red
+- hsl(0 100% 30%) = dark red
+
+## When it's convenient to use HEX
+
+I still prefer to express grayscale in short-form hex, #0007 = #<0><0><0><50% alpha>

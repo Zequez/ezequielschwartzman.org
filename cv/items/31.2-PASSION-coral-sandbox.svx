@@ -1,0 +1,18 @@
+---
+size: md
+fromDate: '2024-04'
+---
+
+Small experimental web tools and games for my son Coral.
+
+<Photo ids={[
+  ['coral-sandbox-1', 'Screenshot 1'],
+  ['coral-sandbox-2', 'Screenshot 2'],
+  ['coral-sandbox-3', 'Screenshot 3'],
+  ['coral-sandbox-4', 'Screenshot 4'],
+  ['coral-sandbox-5', 'Screenshot 5'],
+  ['coral-sandbox-6', 'Screenshot 6'],
+  ['coral-sandbox-7', 'Screenshot 7'],
+]}/>
+
+<GithubLink url="https://github.com/Zequez/coral-sandbox"/>

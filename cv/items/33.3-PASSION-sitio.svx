@@ -1,0 +1,34 @@
+---
+title: "`sitio` Personal Web Builder"
+size: lg
+datePrecision: m
+fromDate: '2026-02'
+---
+
+<Code>
+bun i -g @ezequielschw/sitio
+bun update -g @ezequielschw/sitio
+</Code>
+
+In a sense sitio is my own personal framework for building
+websites.
+
+You know how, as a developer, you often setup a Vite configuration,
+configure the same plugins, and then tweak it, and change it for every project.
+
+Well, while tools like Yeoman can get you so far, what I wanted is
+to be able to build websites or apps in a way that the work directory
+does not even has a node_modules folder or any configuration file.
+
+Why? Because I wanted to teach how to build websites, and in order to do this
+I wanted to hide away as much of the complexity as I could.
+
+Sitio is available as an installable NPM script. So you can just
+have a single folder with an index.html file, install the sitio command
+and you get my latest website building setup.
+
+<Photo ids={[
+  ['sitio', 'Screenshot of sitio --help'],
+]}/>
+
+<GithubLink url="https://github.com/zequez/sitio"/>

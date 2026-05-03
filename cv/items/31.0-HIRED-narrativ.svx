@@ -1,0 +1,27 @@
+---
+size: md
+fromDate: '2023-08'
+toDate: '2024-03'
+---
+
+<Website href="https://www.narrativ.ventures/">Narrativ</Website>
+
+Here I worked with Dawson Allen, whom I had worked with before during my time on the
+Ubiquity project. This was another project from him about driving growth for crypto finance
+projects. He's really into metrics and emails.
+
+The project involved getting data from Twitter and analyzing tweets and metrics. Crypto projects
+were paying influencers to share their projects, and so what he solved was the issue of how to
+keep track of this, measure the impact, and make sure people were delivering.
+
+The interesting thing about this is that it was done entirely with [Airtable](https://www.airtable.com/).
+I had some resistance at first, and actually, I had some resistance all the time, because
+Airtable is very limited as far as a development environment is concerned. Anyway, I adapted to the
+circumstances and pushed the limits to what it could be done with Airtable scripts.
+
+I love Dawson, he's a person of integrity, but my heart was not truly into the project, for me it
+was mostly a survival move, although I did manage to find it mentally engaging and fun for myself.
+Working on an Airtable project is not something I would do for fun in the long term.
+
+Anyway, was there in the beginning and then I moved on from the project; he scaled it up and hired
+more people.

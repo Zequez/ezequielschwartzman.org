@@ -1,0 +1,36 @@
+---
+size: md
+fromDate: '2025-09'
+---
+
+After the *infinite canvas* website, I realized I realized that having a website
+that's very complex and technically impressive does not serve me in the way
+that I wanted.
+
+First, having a list of everything going on in my life in the website involves
+a huge time commitment to keep it up to date. An outdated website does not serve me.
+
+Second, having a website that's hard to navigate makes for a confusing experience, which
+is unpleasant. The website itself it's easier to read on desktop.
+
+Third, older hardware have a sub-par experience navigating the UI due to physical restrictions.
+
+Anyway, so I settled for having a list of all the relevant and curated pages still visible
+on the screen but organized in a way that's easier to navigate. Gave up with the perfectly spatial relationship
+and settled with having a list of columns with pages and choosing on which column
+I put each page. I still get to see a preview of the entire page on the miniature.
+
+I called this pattern, *Toroidal* navigation; why? Because I imagined the columns to be sideways
+scrollable so the last column is next to the first one in theory; in practice I never
+implemented that, but in my mind it could work well for very extensive websites systems
+like Startover. And having columns, and maybe color coding for the minituares, could
+be a nice trade off for a kind of spatial sense of the pages, in a way that the pages
+are also easily navigatable.
+
+
+<GithubLink url="https://github.com/Zequez/ezequielschwartzman.org"/>
+
+
+<Todo>Record a video of the website system and publish it to YouTube</Todo>
+
+

@@ -1,0 +1,34 @@
+---
+size: md
+fromDate: '2024-07'
+toDate: '2025-04'
+---
+
+Of all the cross-national, Internet-based projects, Holochain seemed like the
+most promising endevour. The technology seemed like it had a solid chance at restructuring
+the whole Internet systems. And the agent-centric approach and DHT is truly paradigm-shifting.
+
+There was a team called Lightningrod Labs that was working
+on [The Weave](https://theweave.social/) and [Moss](https://moss.social/). And many
+small applets for them.
+
+Anyway, so I prepared an [Excalidraw-canvas-based-CV](https://excalidraw.com/#json=Jvhxb82dXU3AsfjL4qeKa,krzPuvT-APib0Sy8EgXsew),
+and I shared it with Eric. After an enthusiastic message and a call I was on and working on the Gamez happ
+for test run.
+
+We did an intersections call every week and everyone was kind of working on their own stuff.
+
+Eric was the de-facto leader, and he was paying for the whole thing from his own pocket or the
+Holochain foundation pocket; it wasn't very clear to me.
+
+While here I tried to implement [Torus Technology](https://torustechnology.mystrikingly.com/) from PM,
+but then the team seemt to be mostly productivity focused rather than having personal growth and evolution as
+the highest value, and I couldn't quite take off.
+
+Anyway I did not continue working here. Funding was running low and he couldn't pay us
+and my faith in The Weave was wavering. I had managed to raise the funds to go to the Expand The Box
+and after I came back the work just seemed to collapse, and I didn't seem to have the motivation to continue.
+
+## Work tracking system
+
+[I developed my latest work tracking system and invoice using Google Sheets.](https://docs.google.com/spreadsheets/d/1MeMrlM70ICYMXkiaU9J52j1oaNMP7dc3WBPBxx7ha50/edit?usp=sharing)

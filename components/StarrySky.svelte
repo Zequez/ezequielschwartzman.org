@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte'
 
-  const props: { class?: any } = $props()
+  const props: { class?: any; density?: number; upscale?: number } = $props()
 
   let canvas: HTMLCanvasElement
 
@@ -18,7 +18,8 @@
       hue: number
       twinkle: number
     }[]
-    let density = 50
+    let upscale = props.upscale || 1
+    let density = (props.density || 50) / upscale
 
     function resize() {
       const { width, height } = canvas.getBoundingClientRect()
@@ -35,7 +36,7 @@
       stars = new Array(count).fill(null).map(() => ({
         x: Math.random() * w,
         y: Math.random() * h,
-        r: Math.random() * 1.2 + 0.2,
+        r: Math.random() * 1.2 * (1 / upscale) + 0.2,
         hue:
           Math.random() > 0.05
             ? Math.random() * 60 + 200

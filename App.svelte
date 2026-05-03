@@ -1,5 +1,6 @@
 <script lang="ts">
   import App from '@/substrates/toroid-web/components/App.svelte'
+  import PageWrapper from './components/PageWrapper.svelte'
   import favicon from './photos/favicon.jpg'
   import guarda from './photos/guarda.svg'
   import noiseAbstract from '@/center/collections/patterns/noise-abstract.png'
@@ -10,13 +11,12 @@
   {favicon}
   nav={[
     [
-      'index',
-      'written',
-      'curriculum-vitae',
-      'birth-celestial-influences',
+      // 'index',
+      // 'written',
+      // 'birth-celestial-influences',
       // "material-lovers"
     ],
-    ['web-gallery'], // 'on-my-workbench',
+    // ['curriculum-vitae'], // 'on-my-workbench',
     // [
     // "servicio-web",
     // "hola"
@@ -29,6 +29,7 @@
     // "distincionario"
     // ],
   ]}
+  {PageWrapper}
 >
   {#snippet NavContainerBg()}
     <div

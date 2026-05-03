@@ -1,0 +1,18 @@
+---
+size: md
+fromDate: '2024-02'
+toDate: '2024-06'
+---
+
+My second attempt at building an open source web builder with custom subdomains for the masses
+and that I can use to give websites to people.
+
+
+<Photo ids={[
+  ['hoja-0', 'Screenshot 1'],
+  ['hoja-1', 'Screenshot 2'],
+  ['hoja-2', 'Screenshot 3'],
+  ['hoja-3', 'Screenshot 4'],
+]}/>
+
+<GithubLink url="https://github.com/Zequez/hoja-core"/>

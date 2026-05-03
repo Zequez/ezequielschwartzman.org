@@ -1,0 +1,36 @@
+---
+size: md
+fromDate: '2025-07'
+---
+
+Infinite canvas website. Because, according to me from the past, a simple website
+cannot truly reflect all the facets of my being and everything going on in mi life.
+
+So what I needed, according to me from the past, was a website based on an infinite
+canvas.
+
+I gotta grant it to me, the thing was truly a marvel of web engineering, and
+I still believe that's the right path for OS-level interfaces to go in the future. But
+for a website, maybe a little bit too much. The world is not ready yet for the void
+and infinity in user interfaces.
+
+
+<Photo ids={[
+  ['websiteV7-1', 'Screenshot of 6th website'],
+  ['websiteV7-2', 'Screenshot of 6th website'],
+]}/>
+
+
+The interesting thing about this website was that during the dev server it had some extra
+features. You could create a floating block, and reference import it from somewhere else,
+the code for each block was visible on itself. I love this pattern of apps that can edit
+themselves and I'm still interested in keep exploring this avenue.
+
+
+<YouTube src="https://www.youtube.com/watch?v=aKd_D7e6hqA"/>
+
+I didn't change the repo when I switched to the next website, so here is the last commit with the infinite navigation.
+
+<GithubLink url="https://github.com/Zequez/ezequielschwartzman.org/commit/26f943be1eb0918ca33251d60f888e60bffc9e99"/>
+
+<Todo>See if I can re-build the latest version and ship it to a Github page as a live usable archive</Todo>

@@ -1,3 +1,6 @@
 cname: ezequielschwartzman.org
 substrate: nothing-web
 driver: vite-svelte-unocss
+
+fonts:
+  mono: 'Suse Mono:300,400,700'

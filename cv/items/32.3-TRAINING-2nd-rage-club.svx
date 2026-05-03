@@ -1,0 +1,15 @@
+---
+size: md
+fromDate: '2025-04'
+---
+
+<Website href="https://rageclub.org">RAGE CLUB</Website>
+
+*Club de Rabia* in Spanish.
+
+Space held by possibilitator [Ana María Diaz Tirado](https://www.mariadiaz.org/).
+
+Ana also held an additional space for Rage Club spaceholders apprentices, which
+I also joined. I later failed to join the Rage Club Spaceholder Training.
+
+<Todo>Add a picture</Todo>

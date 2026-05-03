@@ -1,6 +1,0 @@
----
-size: md
-fromDate: '2025-03'
----
-
-Lorem Ipsum

@@ -1,11 +1,15 @@
 <script module>
-  export const metadata = { title: 'Ezequiel A. Schwartzman' }
+  export const metadata = {
+    title: 'Ezequiel A. Schwartzman',
+    noNav: true,
+    noRail: true,
+  }
 </script>
 
 <script lang="ts">
   import { onMount, type Component } from 'svelte'
-  import ezequiel from '../photos/ezequiel2.jpg?width=100;250;500&format=webp&srcset'
-  import ezequielMeta from '../photos/ezequiel2.jpg?as=meta:height;width'
+  import ezequiel from '../photos/ezequiel3.jpg?width=100;250;500&format=webp&srcset'
+  import ezequielMeta from '../photos/ezequiel3.jpg?as=meta:height;width'
   import { enes } from '../../../center/enes.svelte'
   import TelegramIcon from '~icons/fa6-brands/telegram'
   import WhatsappIcon from '~icons/fa6-brands/whatsapp'
@@ -19,49 +23,55 @@
   onMount(() => {})
 </script>
 
-<div class="absolute top-6 left-6">
-  <DarkToggle />
-</div>
-
-<div class="absolute top-6 right-6">
-  <LangToggle />
-</div>
-
-<div class="max-w-sm mx-auto pt6">
-  <div class="w42 h42 mx-auto mb6">
-    <OptimizedImg
-      src={ezequiel}
-      meta={ezequielMeta}
-      class="size-full object-cover rounded-full"
-      alt="Ezequiel's face"
-      title="Picture taken 8 of October 2025"
-    />
-  </div>
-  <h1 class="text-8 text-center font-serif font-bold tracking-wider my6">
-    Ezequiel Adrián<br /> Schwartzman
-  </h1>
-
-  <div class="text-center font-mono mb6">
-    {enes(
-      `Programmer & Spaceholder • Artist, Inventor, Researcher and Gameworld Builder`,
-      `Programador & Sostenedor de Espacios • Artista, Inventor, Investigador y Constructor de Mundos de Juego`,
-    )}
+<div class="min-h-screen">
+  <div class="absolute top-6 left-6">
+    <DarkToggle />
   </div>
 
-  <div class="flexcc h12 space-x-6 text-8 mb6">
-    {#snippet link(alt: string, href: string, IconComp: Component)}
-      <a
-        class="opacity-20 hover:opacity-100"
-        {href}
-        target="_blank"
-        title={alt}
-      >
-        <IconComp {alt} />
-      </a>
-    {/snippet}
-    {@render link('Telegram', 'https://t.me/ezequielschwartzman', TelegramIcon)}
-    {@render link('WhatsApp', 'https://wa.me/5492235235568', WhatsappIcon)}
-    {@render link('Email', 'mailto:ezequielschwartzman@gmail.com', EmailIcon)}
-    {@render link('Github', 'https://github.com/zequez', GithubIcon)}
+  <div class="absolute top-6 right-6">
+    <LangToggle />
+  </div>
+
+  <div class="max-w-sm mx-auto pt6 h-full">
+    <div class="w42 h42 mx-auto mb6">
+      <OptimizedImg
+        src={ezequiel}
+        meta={ezequielMeta}
+        class="size-full object-cover rounded-full"
+        alt="Ezequiel's face"
+        title="Picture taken 8 of October 2025"
+      />
+    </div>
+    <h1 class="text-8 text-center font-serif font-bold tracking-wider my6">
+      Ezequiel Adrián<br /> Schwartzman
+    </h1>
+
+    <div class="text-center font-mono mb6">
+      {enes(
+        `Programmer & Spaceholder • Artist, Inventor, Researcher and Gameworld Builder`,
+        `Programador & Sostenedor de Espacios • Artista, Inventor, Investigador y Constructor de Mundos de Juego`,
+      )}
+    </div>
+
+    <div class="flexcc h12 space-x-6 text-8 mb6">
+      {#snippet link(alt: string, href: string, IconComp: Component)}
+        <a
+          class="opacity-20 hover:opacity-100"
+          {href}
+          target="_blank"
+          title={alt}
+        >
+          <IconComp {alt} />
+        </a>
+      {/snippet}
+      {@render link(
+        'Telegram',
+        'https://t.me/ezequielschwartzman',
+        TelegramIcon,
+      )}
+      {@render link('WhatsApp', 'https://wa.me/5492235235568', WhatsappIcon)}
+      {@render link('Email', 'mailto:ezequielschwartzman@gmail.com', EmailIcon)}
+      {@render link('Github', 'https://github.com/zequez', GithubIcon)}
+    </div>
   </div>
 </div>

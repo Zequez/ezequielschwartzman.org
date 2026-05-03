@@ -5,171 +5,171 @@
 </script>
 
 <script lang="ts">
-  import OptimizedImg from '../../../substrates/toroid-web/components/OptimizedImg.svelte'
-  import RArrIcon from '~icons/fa6-solid/caret-right'
-  import LArrIcon from '~icons/fa6-solid/caret-left'
+  // import OptimizedImg from '../../../substrates/toroid-web/components/OptimizedImg.svelte'
+  // import RArrIcon from '~icons/fa6-solid/caret-right'
+  // import LArrIcon from '~icons/fa6-solid/caret-left'
 
-  import PROJECTS, { type ImgData } from '../photos/web-gallery'
-  import { enes } from '../../../center/enes.svelte'
+  // import PROJECTS, { type ImgData } from '../photos/web-gallery'
+  // import { enes } from '../../../center/enes.svelte'
 
-  let LIST: [string[], string[], string[], string[]] = $state([
-    [
-      'websiteV7',
-      'gamez',
-      'hoja',
-      'hoja',
-      'before-after-player',
-      'before-after-player',
-      'before-after-player',
-      'components-editor',
-      'email-signatures',
-      'mandelbrot-sandbox',
-      'prismata-subreddit-extension',
-      'comicsen',
-    ],
-    [
-      'websiteV7',
-      'gamez',
-      'gamez',
-      'hoja',
-      'hoja',
-      'spaceport',
-      'spaceport',
-      'archy-collab',
-      'ggfilter',
-      'ggfilter',
-      'playtime-for-the-buck',
-      'target-shooter',
-    ],
-    [
-      'substrate',
-      'gamez',
-      'websiteV6',
-      'websiteV5',
-      'websiteV5',
-      'websiteV4',
-      'websiteV4',
-      'wavy-svg',
-      'factorio-mods-portal',
+  // let LIST: [string[], string[], string[], string[]] = $state([
+  //   [
+  //     'websiteV7',
+  //     'gamez',
+  //     'hoja',
+  //     'hoja',
+  //     'before-after-player',
+  //     'before-after-player',
+  //     'before-after-player',
+  //     'components-editor',
+  //     'email-signatures',
+  //     'mandelbrot-sandbox',
+  //     'prismata-subreddit-extension',
+  //     'comicsen',
+  //   ],
+  //   [
+  //     'websiteV7',
+  //     'gamez',
+  //     'gamez',
+  //     'hoja',
+  //     'hoja',
+  //     'spaceport',
+  //     'spaceport',
+  //     'archy-collab',
+  //     'ggfilter',
+  //     'ggfilter',
+  //     'playtime-for-the-buck',
+  //     'target-shooter',
+  //   ],
+  //   [
+  //     'substrate',
+  //     'gamez',
+  //     'websiteV6',
+  //     'websiteV5',
+  //     'websiteV5',
+  //     'websiteV4',
+  //     'websiteV4',
+  //     'wavy-svg',
+  //     'factorio-mods-portal',
 
-      'mapa-de-transporte',
-      'websiteV1',
-    ],
-    [
-      'substrate',
-      'gamez',
-      'websiteV6',
-      'websiteV6',
-      'websiteV5',
+  //     'mapa-de-transporte',
+  //     'websiteV1',
+  //   ],
+  //   [
+  //     'substrate',
+  //     'gamez',
+  //     'websiteV6',
+  //     'websiteV6',
+  //     'websiteV5',
 
-      'websiteV3',
-      'websiteV3',
+  //     'websiteV3',
+  //     'websiteV3',
 
-      'mapa-de-transporte',
-      'websiteV2',
-    ],
-  ])
+  //     'mapa-de-transporte',
+  //     'websiteV2',
+  //   ],
+  // ])
 
-  let hovering: string | null = $state(null)
-  // let moveFocus: [number, number] | null = $state(null)
-  let projectFocus: [string, number] | null = $state(null)
+  // let hovering: string | null = $state(null)
+  // // let moveFocus: [number, number] | null = $state(null)
+  // let projectFocus: [string, number] | null = $state(null)
 
-  // function onDropPic(to: [number, number]) {
-  //   const from = moveFocus!
-  //   const toMove = LIST[from[0]][from[1]]
-  //   LIST[from[0]].splice(from[1], 1)
-  //   LIST[to[0]].splice(to[1], 0, toMove)
+  // // function onDropPic(to: [number, number]) {
+  // //   const from = moveFocus!
+  // //   const toMove = LIST[from[0]][from[1]]
+  // //   LIST[from[0]].splice(from[1], 1)
+  // //   LIST[to[0]].splice(to[1], 0, toMove)
 
-  //   console.log(JSON.stringify(LIST))
+  // //   console.log(JSON.stringify(LIST))
+  // // }
+
+  // function focusProject(projectId: string, picIndex: number) {
+  //   projectFocus = [projectId, picIndex]
+  //   document.body.classList.add('overflow-hidden')
+
+  //   function handleEsc(ev: KeyboardEvent) {
+  //     if (ev.key === 'Escape') {
+  //       closeProjects()
+  //     } else if (ev.key === 'ArrowRight') {
+  //       nextImage()
+  //     } else if (ev.key === 'ArrowLeft') {
+  //       prevImage()
+  //     }
+  //   }
+
+  //   window.addEventListener('keydown', handleEsc)
   // }
 
-  function focusProject(projectId: string, picIndex: number) {
-    projectFocus = [projectId, picIndex]
-    document.body.classList.add('overflow-hidden')
+  // function closeProjects() {
+  //   projectFocus = null
+  //   document.body.classList.remove('overflow-hidden')
+  // }
 
-    function handleEsc(ev: KeyboardEvent) {
-      if (ev.key === 'Escape') {
-        closeProjects()
-      } else if (ev.key === 'ArrowRight') {
-        nextImage()
-      } else if (ev.key === 'ArrowLeft') {
-        prevImage()
-      }
-    }
+  // function nextImage() {
+  //   const [projectName, imgIndex] = projectFocus!
+  //   const project = PROJECTS[projectName]
+  //   const nextImg = project.imgs[imgIndex + 1]
+  //   if (nextImg) {
+  //     projectFocus = [projectName, imgIndex + 1]
+  //   } else {
+  //     const projectsKeys = Object.keys(PROJECTS)
+  //     const nextProject = projectsKeys[projectsKeys.indexOf(projectName) + 1]
+  //     if (nextProject) {
+  //       projectFocus = [nextProject, 0]
+  //     } else {
+  //       projectFocus = [projectsKeys[0], 0]
+  //     }
+  //   }
+  // }
 
-    window.addEventListener('keydown', handleEsc)
-  }
+  // function prevImage() {
+  //   const [projectName, imgIndex] = projectFocus!
+  //   const project = PROJECTS[projectName]
+  //   const nextImg = project.imgs[imgIndex - 1]
+  //   if (nextImg) {
+  //     projectFocus = [projectName, imgIndex - 1]
+  //   } else {
+  //     const projectsKeys = Object.keys(PROJECTS)
+  //     const nextProject = projectsKeys[projectsKeys.indexOf(projectName) - 1]
+  //     if (nextProject) {
+  //       const nextProject2 = PROJECTS[nextProject]
+  //       projectFocus = [nextProject, nextProject2.imgs.length - 1]
+  //     } else {
+  //       projectFocus = [
+  //         projectsKeys[projectsKeys.length - 1],
+  //         project.imgs.length - 1,
+  //       ]
+  //     }
+  //   }
+  // }
 
-  function closeProjects() {
-    projectFocus = null
-    document.body.classList.remove('overflow-hidden')
-  }
+  // function generateProjectImagePicker(projects: typeof PROJECTS) {
+  //   let projectsIndex: { [key: string]: number } = {}
 
-  function nextImage() {
-    const [projectName, imgIndex] = projectFocus!
-    const project = PROJECTS[projectName]
-    const nextImg = project.imgs[imgIndex + 1]
-    if (nextImg) {
-      projectFocus = [projectName, imgIndex + 1]
-    } else {
-      const projectsKeys = Object.keys(PROJECTS)
-      const nextProject = projectsKeys[projectsKeys.indexOf(projectName) + 1]
-      if (nextProject) {
-        projectFocus = [nextProject, 0]
-      } else {
-        projectFocus = [projectsKeys[0], 0]
-      }
-    }
-  }
+  //   return (project: keyof typeof projects) => {
+  //     const projectBuilt = projects[project]
+  //     if (projectBuilt === undefined) {
+  //       throw new Error(`No such project: ${project}`)
+  //     }
 
-  function prevImage() {
-    const [projectName, imgIndex] = projectFocus!
-    const project = PROJECTS[projectName]
-    const nextImg = project.imgs[imgIndex - 1]
-    if (nextImg) {
-      projectFocus = [projectName, imgIndex - 1]
-    } else {
-      const projectsKeys = Object.keys(PROJECTS)
-      const nextProject = projectsKeys[projectsKeys.indexOf(projectName) - 1]
-      if (nextProject) {
-        const nextProject2 = PROJECTS[nextProject]
-        projectFocus = [nextProject, nextProject2.imgs.length - 1]
-      } else {
-        projectFocus = [
-          projectsKeys[projectsKeys.length - 1],
-          project.imgs.length - 1,
-        ]
-      }
-    }
-  }
+  //     if (projectsIndex[project] === undefined) {
+  //       projectsIndex[project] = 0
+  //     } else {
+  //       projectsIndex[project]++
+  //     }
 
-  function generateProjectImagePicker(projects: typeof PROJECTS) {
-    let projectsIndex: { [key: string]: number } = {}
+  //     const img = projects[project].imgs[projectsIndex[project]]
+  //     if (img === undefined) {
+  //       throw new Error(`No more images for ${project}`)
+  //     }
+  //     return [img, projectsIndex[project]] as [ImgData, number]
+  //   }
+  // }
 
-    return (project: keyof typeof projects) => {
-      const projectBuilt = projects[project]
-      if (projectBuilt === undefined) {
-        throw new Error(`No such project: ${project}`)
-      }
-
-      if (projectsIndex[project] === undefined) {
-        projectsIndex[project] = 0
-      } else {
-        projectsIndex[project]++
-      }
-
-      const img = projects[project].imgs[projectsIndex[project]]
-      if (img === undefined) {
-        throw new Error(`No more images for ${project}`)
-      }
-      return [img, projectsIndex[project]] as [ImgData, number]
-    }
-  }
-
-  let projectImg = $derived(generateProjectImagePicker(PROJECTS))
+  // let projectImg = $derived(generateProjectImagePicker(PROJECTS))
 </script>
 
-<DocPage>
+<!-- <DocPage>
   <h1>{enes('Web Gallery', 'Galería de obras web')}</h1>
   <p>
     {enes(
@@ -177,10 +177,10 @@
       'Allá por el 2005 cuando tenía 12 años, creé mi primer sitio web usando Windows XP y Notepad. Nunca paré de crear en la web desde entonces.',
     )}
   </p>
-</DocPage>
+</DocPage> -->
 
-{#snippet dropTarget(listNum: number, listIndex: number)}
-  <!-- {#if moveFocus}
+<!-- {#snippet dropTarget(listNum: number, listIndex: number)}
+  {#if moveFocus}
     <div class="h-0 relative z-100">
       <button
         onclick={() => {
@@ -190,10 +190,10 @@
         >DROP</button
       >
     </div>
-  {/if} -->
-{/snippet}
+  {/if}
+{/snippet} -->
 
-{#if projectFocus}
+<!-- {#if projectFocus}
   {@const projectVal = PROJECTS[projectFocus[0] as keyof typeof PROJECTS]}
   <div class="fixed z-9999 bg-gray-950 h-full w-full top-0 left-0">
     <div class="size-full flex flex-col">
@@ -244,10 +244,10 @@
       </div>
     </button>
   </div>
-{/if}
+{/if} -->
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<div
+<!-- <div
   style={`grid-template-columns: repeat(${LIST.length}, minmax(0, 1fr))`}
   onmouseleave={() => {
     hovering = null
@@ -320,4 +320,4 @@
       {/each}
     </div>
   {/each}
-</div>
+</div> -->

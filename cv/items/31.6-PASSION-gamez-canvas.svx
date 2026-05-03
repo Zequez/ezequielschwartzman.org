@@ -1,0 +1,39 @@
+---
+size: md
+fromDate: '2024-08'
+toDate: '2025-04'
+title: Gamez
+---
+
+Gamez is a tabletop simulator for Holochain where there are no coded rules. So you can
+build a chess game, but you are free to move the pieces as you wish or, as you would
+in real life, trash the board. So it relies on rules being enacted by social contracts
+and not by code.
+
+Picked up the Gamez project that [Eric](https://github.com/zippy) had already started and then I refactored it and
+added a bunch of amazing new features. Made it my own and I did it with passion. I also got to
+learn Svelte in the process; which I hated at first, coming from React, and then I learned to
+love it and I haven't looked back.
+
+While working on the project I implemented:
+
+- A canvas-based navigation
+- Arbitrary images
+- Pieces sources
+- Player pieces sources
+- Dice rolling
+- Turn tracker
+- Floating embeds of other Weave applets
+- Visual resizing and rotating system for pieces
+- Linking pieces to resources
+- Locking pieces rotation, moving, etc
+
+<Photo ids={[
+  ['gamez-1', 'Screenshot 1'],
+  ['gamez-2', 'Screenshot 2'],
+  ['gamez-3', 'Screenshot 3'],
+  ['gamez-4', 'Screenshot 4'],
+  ['gamez-5', 'Screenshot 5'],
+]}/>
+
+<GithubLink url="https://github.com/holochain-apps/gamez"/>

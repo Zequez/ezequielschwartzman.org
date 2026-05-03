@@ -56,7 +56,7 @@
   >
   <span
     class={[
-      'inline-block w6 text-center',
+      'inline-block w6 text-center text-sm',
       {
         'font-black': currentlyDarkMode,
         'opacity-25': !currentlyDarkMode,
@@ -64,7 +64,7 @@
     ]}><MoonIcon /></span
   ><span
     class={[
-      'inline-block w6 text-center',
+      'inline-block w6 text-center text-sm',
       {
         'font-black': !currentlyDarkMode,
         'opacity-25': currentlyDarkMode,

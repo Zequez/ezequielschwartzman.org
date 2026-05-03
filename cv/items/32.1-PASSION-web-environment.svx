@@ -1,0 +1,35 @@
+---
+title: Web Environment
+size: lg
+datePrecision: m
+fromDate: '2025-11'
+---
+
+My last attempt at creating a system for bringing advanced open source web development
+tools to the non-technically inclined folk was The Web Environment.
+
+So with the Web Environment you share a single node_modules with multiple projects,
+a single configuration for the bundler and publishing scripts. It even includes
+scripting for making Git commits and publishing to a separate branch for Github pages.
+
+It has a UI to start/stop the dev server for multiple projects from a central interface.
+
+The UI itself has tools to pull and update the system itself from Github directly.
+
+The projects, the repos of the projects, start from the source folder on, so they only have
+the pages.
+
+Most of the stuff is made using Svelte. It has some strange concept about Substrates
+and I started building different drivers to be able to switch between build systems before
+I moved on to the simpler, greener grass of the `sitio` system.
+
+Anyway, I still use Web Environment, it does require more technical expertise than Sitio
+to be used, and it still drives my personal website.
+
+The idea of the web environment is that it does not have an "official" version; there is
+an Ezequiel's Web Environment and there is a Mike's Web Environment. This spirit of
+autonomy and transparency of the system, I carried on to `sitio` too.
+
+<Photo ids={[['webenv', 'Screenshot of the web environment desktop UI']]}/>
+
+<GithubLink url="https://github.com/zequez/web-environment"/>
